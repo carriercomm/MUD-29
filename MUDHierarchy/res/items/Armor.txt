@@ -1,0 +1,13 @@
+# List of Armor
+# Name, type, AC, max dex bonus, weight, cost
+Padded      light  1 8 10 5
+Leather     light  2 6 15 10
+Chain-shirt light  4 4 25 100
+Hide        medium 4 4 25 15
+Scalemail   medium 5 3 30 50
+Chainmail   medium 6 2 40 150
+Breastplate medium 6 3 25 400
+Splintmail  heavy  7 0 45 200
+Bandedmail  heavy  7 1 35 250
+Half-plate  heavy  8 0 50 600
+Full-plate  heavy  9 1 50 1500

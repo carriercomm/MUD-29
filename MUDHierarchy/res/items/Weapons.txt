@@ -1,0 +1,24 @@
+# List of Weapons
+# Name, dmg type, hands used, number of dice, dice value, crit value, crit multiplier, weight, cost
+Greataxe      slashing 2 1 12 20 3 12 20
+Battleaxe     slashing 1 1 8  20 3 6  10
+Handaxe       slashing 1 1 6  20 3 3  6
+Greatsword    slashing 2 2 6  19 2 8  50
+Longsword     slashing 1 1 8  19 2 4  15
+Shortsword    slashing 1 1 6  19 2 2  10
+Dagger        slashing 1 1 4  19 2 1  2
+Falchion      slashing 2 2 4  18 2 8  75
+Scimitar      slashing 1 1 6  18 2 2  15
+Rapier        piercing 1 1 6  18 2 4  20
+Heavy_Flail   blunt    2 1 10 19 2 10 15
+Flail         blunt    1 1 8  20 2 5  15
+Morningstar   blunt    1 1 8  20 2 6  8
+Warhammer     blunt    2 1 8  20 3 5  12
+Light_Hammer  blunt    1 1 4  20 2 2  1
+Spear         piercing 1 1 8  20 3 6  2
+Shortspear    piercing 1 1 6  20 2 3  1
+Halberd       slashing 2 1 10 20 3 12 10
+Javelin       piercing 1 1 6  20 2 2  1
+Heavy_Mace    blunt    1 1 8  20 2 8  12
+Light_Mace    blunt    1 1 6  20 2 4  5
+Club          blunt    1 1 6  20 2 3  1
