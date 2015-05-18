@@ -3,14 +3,11 @@ package hierarchy;
 import hierarchy.subsystems.AI;
 import hierarchy.subsystems.NpcStats;
 
-import builders.NpcBuilder;
-
 public class Npc
 {
 	private String[] tokens = {"",""};	//TODO: fill in this
 	private AI ai;
 	private NpcStats stats;
-	private NpcBuilder builder;
 	
 	private String className;
 	private String raceName;

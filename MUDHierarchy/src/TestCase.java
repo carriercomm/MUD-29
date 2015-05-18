@@ -1,3 +1,4 @@
+import hierarchy.Npc;
 public class TestCase 
 {
 
