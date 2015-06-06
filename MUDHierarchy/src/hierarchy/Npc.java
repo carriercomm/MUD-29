@@ -1,9 +1,14 @@
 package hierarchy;
 
 import hierarchy.subsystems.AI;
+import hierarchy.subsystems.NpcClass;
 import hierarchy.subsystems.NpcStats;
+
+import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
+
 import java.io.FileReader;
+import java.io.IOException;
 
 public class Npc
 {
@@ -11,22 +16,27 @@ public class Npc
 	private AI ai;
 	private NpcStats stats;
 	
+	private String name;
+	private String description;
 	private String className;
 	private String raceName;
+	private int level;
+	private int[] baseStats;
 	
-	public Npc(String className, String raceName, int level)
+	public Npc(String fileName) throws IOException
 	{
-		this.className = className;
-		this.raceName = raceName;
+		JSONParser parser = new JSONParser();
+		JSONObject NpcOutline = new JSONObject((JSONObject) parser.parse(new FileReader("res/creatures/" + fileName)));
 		
-		try{
-			JSONParser parser = new JSONParser();
-			FileReader reader = new FileReader("res\");
-			JSONArray NpcArray = new JSONArray(reader);
-			JSONObject obj = new JSONObject();
-			obj.
-		}
+		this.name = (String) NpcOutline.get("Name");
+		this.className = (String) NpcOutline.get("Class");
+		this.raceName = (String) NpcOutline.get("Race");
+		this.level = (int) NpcOutline.get("Level");
+		this.baseStats = (int[]) NpcOutline.get("BaseStats");
+		this.description = (String) NpcOutline.get("Description");
 		
+		stats = new NpcStats(new NpcClass(className), baseStats, level);
+		ai = new AI(NpcOutline.get("AiName"));
 	}
 
 	public String getDescription()

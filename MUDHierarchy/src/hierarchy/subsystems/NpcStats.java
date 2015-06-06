@@ -21,26 +21,9 @@ public class NpcStats
 	
 	public NpcStats(){}	// empty constructor
 	
-	public NpcStats(String description, String raceName, String className, String[] flags, int[] baseStats, int level, int bab, int fort, int ref, int will, int mana, String[] weaponProfs, String[] armorProfs, String[] shieldProfs, String[] sAbilities, String[] spells)
+	public NpcStats(Object NpcClass, int[] baseStats, int level)
 	{
-		this.description = description;
-		this.raceName = raceName;
-		this.className = className;
-		this.flags = flags;
-		this.baseStats = baseStats;
-		this.level = level;
-		this.bab = bab;
-		
-		
-		this.fort = fort;
-		this.ref = ref;
-		this.will = will;
-		this.mana = mana;
-		this.weaponProfs = weaponProfs;
-		this.armorProfs = armorProfs;
-		this.shieldProfs = shieldProfs;
-		this.sAbilities = sAbilities;
-		this.spells = spells;
+
 	}
 	
 	public String getDescription()

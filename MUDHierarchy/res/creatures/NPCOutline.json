@@ -2,9 +2,9 @@
 "Name":"Default",
 "Description":"Default",
 "Ai":"AiOutline.json",	
-"Stats":"StatsOutline.json",
 "Race":"Default",
 "Class":"ClassOutline",
+"Level":"1",
 "BaseStat":[
 	{"Strength":0},
 	{"Dexterity":0},
