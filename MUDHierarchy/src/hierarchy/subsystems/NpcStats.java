@@ -75,9 +75,33 @@ public class NpcStats
 	{
 		return will;
 	}
-	public int get
-	
-	
-	
-	
+	public int getCurrMana()
+	{
+		return currMana;
+	}
+	public int getMana()
+	{
+		return mana;
+	}
+	public int getCurrHp()
+	{
+		return currHP;
+	}
+	public int getHP()
+	{
+		return hp;
+	}
+	public int getStat(String key)
+	{
+		return baseStats.get(key);
+	}
+	public String printStats()
+	{
+		return	"STR: "+baseStats.get("Strength")+" : "+baseStats.get("StrengthMod")+"\nDEX: "+baseStats.get("Dexterity")+" : "+baseStats.get("DexterityMod")+"\nCON: "+baseStats.get("Constitution")+" : "+baseStats.get("ConstitutionMod")+
+				"\nWIS: "+baseStats.get("Wisdom")+" : "+baseStats.get("WisdomMod")+"\nINI: "+baseStats.get("Intellegence")+" : "+baseStats.get("IntellegenceMod")+"\nCHA: "+baseStats.get("Charisma")+" : "+baseStats.get("CharismaMod");	
+	}
+	public String print()
+	{
+		return printStats()+"\nLevel: "+level+"\nBase Attack Bonus: "+bab+"\nFort Save: "+fort+"\nRef Save: "+ref+"\nWill Save: "+will+"\nMax mana: "+mana+"\nCurrent Mana: "+currMana+"Max HP: "+hp+"\nCurrent HP: "+currHP;
+	}
 }
