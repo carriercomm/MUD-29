@@ -6,11 +6,6 @@
 		"level": 1
 	}
 	"size": "medium",
-	"flags"[
-		{"": ""}
-		{"": ""}
-	]
-alert             #Other modifier flags
 17 11 12 7 8 6    #Base stats
 War_Axe           #Weapon
 Studded_Leather   #Armor
