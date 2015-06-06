@@ -1,0 +1,35 @@
+{
+	"Name":"Warrior",
+	"BaseMana":0,
+	"ManaPerLevel":0,
+	"BaseHp":10,
+	"HitDie":10,
+	"SpellList":[
+		{"Name":"default"}
+	],
+	"AbilityList":[
+		{"Name":"default"}
+	],
+	"Levels":[
+		{ "BaseAttackBonus":1, "FortitudeSave":2, "ReflexSave":0, "WillSave":0},
+		{ "BaseAttackBonus":2, "FortitudeSave":3, "ReflexSave":0, "WillSave":0},
+		{ "BaseAttackBonus":3, "FortitudeSave":3, "ReflexSave":1, "WillSave":1},
+		{ "BaseAttackBonus":4, "FortitudeSave":4, "ReflexSave":1, "WillSave":1},
+		{ "BaseAttackBonus":5, "FortitudeSave":4, "ReflexSave":1, "WillSave":1},
+		{ "BaseAttackBonus":6, "FortitudeSave":5, "ReflexSave":2, "WillSave":2},
+		{ "BaseAttackBonus":7, "FortitudeSave":5, "ReflexSave":2, "WillSave":2},
+		{ "BaseAttackBonus":8, "FortitudeSave":6, "ReflexSave":2, "WillSave":2},
+		{ "BaseAttackBonus":9, "FortitudeSave":6, "ReflexSave":3, "WillSave":3},
+		{ "BaseAttackBonus":10, "FortitudeSave":7, "ReflexSave":3, "WillSave":3},
+		{ "BaseAttackBonus":11, "FortitudeSave":7, "ReflexSave":3, "WillSave":3},
+		{ "BaseAttackBonus":12, "FortitudeSave":8, "ReflexSave":4, "WillSave":4},
+		{ "BaseAttackBonus":13, "FortitudeSave":8, "ReflexSave":4, "WillSave":4},
+		{ "BaseAttackBonus":14, "FortitudeSave":9, "ReflexSave":4, "WillSave":4},
+		{ "BaseAttackBonus":15, "FortitudeSave":9, "ReflexSave":5, "WillSave":5},
+		{ "BaseAttackBonus":16, "FortitudeSave":10, "ReflexSave":5, "WillSave":5},
+		{ "BaseAttackBonus":17, "FortitudeSave":10, "ReflexSave":5, "WillSave":5},
+		{ "BaseAttackBonus":18, "FortitudeSave":11, "ReflexSave":6, "WillSave":6},
+		{ "BaseAttackBonus":19, "FortitudeSave":11, "ReflexSave":6, "WillSave":6},
+		{ "BaseAttackBonus":20, "FortitudeSave":12, "ReflexSave":6, "WillSave":6}
+	]
+}
