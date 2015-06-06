@@ -5,7 +5,6 @@
 "Stats":"StatsOutline.json",
 "Race":"Default",
 "Class":"ClassOutline",
-"level":0,
 "BaseStat":[
 	{"Strength":0},
 	{"Dexterity":0},

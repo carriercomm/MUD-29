@@ -16,6 +16,8 @@ public class Npc
 	{
 		this.className = className;
 		this.raceName = raceName;
+		JSONParser parser = new JSONParser();
+		
 	}
 
 	public String getDescription()
