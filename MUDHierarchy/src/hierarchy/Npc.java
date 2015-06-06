@@ -8,7 +8,6 @@ import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 
 import java.io.FileReader;
-import java.io.IOException;
 
 public class Npc
 {
@@ -23,7 +22,7 @@ public class Npc
 	private int level;
 	private JSONArray baseStats;
 	
-	public Npc(String fileName) throws IOException
+	public Npc(String fileName) throws Exception
 	{
 		JSONParser parser = new JSONParser();
 		JSONObject NpcOutline = new JSONObject((JSONObject) parser.parse(new FileReader("res/creatures/" + fileName)));
@@ -36,22 +35,37 @@ public class Npc
 		this.description = (String) NpcOutline.get("Description");
 		
 		stats = new NpcStats(new NpcClass(className), baseStats, level);
-		ai = new AI(NpcOutline.get("AiName"));
+		ai = new AI((String)NpcOutline.get("AiName"));
 	}
 
 	public String getDescription()
 	{
-		return this.stats.getDescription();
+		return description;
 	}
 	
 	public String getClassName()
 	{
-		return this.stats.getClassName();
+		return className;
 	}
 	
 	public String getRace()
 	{
-		return this.stats.getRaceName();
+		return raceName;
+	}
+	
+	public String getName()
+	{
+		return name;
+	}
+	
+	public int getLevel()
+	{
+		return level;
+	}
+	
+	public String print()
+	{
+		return "name: " + name + ", class name" + className + ", race name: " + raceName + ", level: " + level + "\n" + "description: " + description + "\n" + ai.print() + "\n" + stats.print();
 	}
 	
 	public String Interact(String[] args)

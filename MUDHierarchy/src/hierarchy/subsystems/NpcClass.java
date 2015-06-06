@@ -18,24 +18,26 @@ public class NpcClass
 	private String[] Abilities;
 	private Map<Integer,Object >savesAndBonus  = new HashMap<Integer, Object>();
 	
-	
-	
 	public NpcClass(){}	// empty constructor
 	
 	public NpcClass(String fileName)
 	{
 		//fileName = "ClassOutline.json"; //For testing
 		JSONParser parser = new JSONParser();
-		try {
+		
+		try
+		{	
 			JSONObject JsonFile = (JSONObject)(parser.parse(new FileReader("res/classes/"+fileName)));
 			NpcClassName=(String) JsonFile.get("Name");
 			BaseMana= (int)(long) JsonFile.get("BaseMana");
 			MPPLevel = (int)(long) JsonFile.get("ManaPerLevel");
 			BaseHP = (int)(long) JsonFile.get("BaseHp");
 			HitDie = (int)(long) JsonFile.get("HitDie");
+			
 			//Saves and Bonus map
 			JSONArray JsonArray=(JSONArray)JsonFile.get("Levels");
 			Iterator iter = JsonArray.iterator();
+			
 			int x = 1;
 			while(iter.hasNext())
 			{
@@ -46,26 +48,27 @@ public class NpcClass
 			//ADD SPELLS
 			//ADD ABILITES
 			
-			
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+		}
+		catch (FileNotFoundException e)
+		{
 			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		}
+		catch (IOException e)
+		{
 			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+		}
+		catch (ParseException e)
+		{
 			e.printStackTrace();
 		}
 		
-
 	}
 	
 	public String getNpcClassName()
 	{
 		return NpcClassName;
 	}
+	
 	public int getBaseMana()
 	{
 		return BaseMana;
@@ -80,30 +83,32 @@ public class NpcClass
 	{
 		return Spells;
 	}
+	
 	public int getBAB(int level)
 	{
-		return  (int) ((JSONObject)(savesAndBonus.get(level))).get("BaseAttackBonus");
-		
+		return (int) ((JSONObject)(savesAndBonus.get(level))).get("BaseAttackBonus");
 	}
+	
 	public int getFortSave(int level)
 	{
-		return  (int) ((JSONObject)(savesAndBonus.get(level))).get("FortitudeSave");
-		
+		return (int) ((JSONObject)(savesAndBonus.get(level))).get("FortitudeSave");
 	}
+	
 	public int getRefxSave(int level)
 	{
-		return  (int) ((JSONObject)(savesAndBonus.get(level))).get("ReflexSave");
-		
+		return (int) ((JSONObject)(savesAndBonus.get(level))).get("ReflexSave");
 	}
+	
 	public int getWillSave(int level)
 	{
-		return  (int) ((JSONObject)(savesAndBonus.get(level))).get("WillSave");
-		
+		return (int) ((JSONObject)(savesAndBonus.get(level))).get("WillSave");
 	}
+	
 	public int getBaseHp()
 	{
 		return BaseHP;
 	}
+	
 	public int getHPpLevel()
 	{
 		return HitDie;
