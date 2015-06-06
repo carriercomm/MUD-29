@@ -26,14 +26,14 @@ public class NpcStats
 	
 	public NpcStats(NpcClass npcclass, JSONArray BaseStats, int Level)
 	{
-		level=Level;
+		level = Level;
 		//Base Stats
-		baseStats.put("Strength",(Integer)(((JSONObject)(BaseStats.get(0))).get("Strength")));
-		baseStats.put("Dexterity",(Integer)(((JSONObject)(BaseStats.get(0))).get("Dexterity")));
-		baseStats.put("Constitution",(Integer)(((JSONObject)(BaseStats.get(0))).get("Constitution")));
-		baseStats.put("Wisdom",(Integer)(((JSONObject)(BaseStats.get(0))).get("Wisdom")));
-		baseStats.put("Intellegence",(Integer)(((JSONObject)(BaseStats.get(0))).get("Intellegence")));
-		baseStats.put("Charisma",(Integer)(((JSONObject)(BaseStats.get(0))).get("Charisma")));
+		baseStats.put("Strength",(int)(long)(((JSONObject)(BaseStats.get(0))).get("Strength")));
+		baseStats.put("Dexterity",(int)(long)(((JSONObject)(BaseStats.get(1))).get("Dexterity")));
+		baseStats.put("Constitution",(int)(long)(((JSONObject)(BaseStats.get(2))).get("Constitution")));
+		baseStats.put("Wisdom",(int)(long)(((JSONObject)(BaseStats.get(3))).get("Wisdom")));
+		baseStats.put("Intellegence",(int)(long)(((JSONObject)(BaseStats.get(4))).get("Intellegence")));
+		baseStats.put("Charisma",(int)(long)(((JSONObject)(BaseStats.get(5))).get("Charisma")));
 		//Base Stats Bonus
 		baseStats.put("StrengthMod", (baseStats.get("Strength")/2)-5);
 		baseStats.put("DexterityMod", (baseStats.get("Dexterity")/2)-5);
@@ -98,10 +98,10 @@ public class NpcStats
 	public String printStats()
 	{
 		return	"STR: "+baseStats.get("Strength")+" : "+baseStats.get("StrengthMod")+"\nDEX: "+baseStats.get("Dexterity")+" : "+baseStats.get("DexterityMod")+"\nCON: "+baseStats.get("Constitution")+" : "+baseStats.get("ConstitutionMod")+
-				"\nWIS: "+baseStats.get("Wisdom")+" : "+baseStats.get("WisdomMod")+"\nINI: "+baseStats.get("Intellegence")+" : "+baseStats.get("IntellegenceMod")+"\nCHA: "+baseStats.get("Charisma")+" : "+baseStats.get("CharismaMod");	
+				"\nWIS: "+baseStats.get("Wisdom")+" : "+baseStats.get("WisdomMod")+"\nINT: "+baseStats.get("Intellegence")+" : "+baseStats.get("IntellegenceMod")+"\nCHA: "+baseStats.get("Charisma")+" : "+baseStats.get("CharismaMod");	
 	}
 	public String print()
 	{
-		return printStats()+"\nLevel: "+level+"\nBase Attack Bonus: "+bab+"\nFort Save: "+fort+"\nRef Save: "+ref+"\nWill Save: "+will+"\nMax mana: "+mana+"\nCurrent Mana: "+currMana+"Max HP: "+hp+"\nCurrent HP: "+currHP;
+		return printStats()+"\nLevel: "+level+"\nBase Attack Bonus: "+bab+"\nFort Save: "+fort+"\nRef Save: "+ref+"\nWill Save: "+will+"\nMax mana: "+mana+"\nCurrent Mana: "+currMana+"\nMax HP: "+hp+"\nCurrent HP: "+currHP;
 	}
 }

@@ -30,12 +30,12 @@ public class Npc
 		this.name = (String) NpcOutline.get("Name");
 		this.className = (String) NpcOutline.get("Class");
 		this.raceName = (String) NpcOutline.get("Race");
-		this.level = (int) NpcOutline.get("Level");
+		this.level = Integer.parseInt((String) NpcOutline.get("Level"));
 		this.baseStats = (JSONArray) NpcOutline.get("BaseStats");
 		this.description = (String) NpcOutline.get("Description");
 		
 		stats = new NpcStats(new NpcClass(className), baseStats, level);
-		ai = new AI((String)NpcOutline.get("AiName"));
+		ai = new AI((String)NpcOutline.get("Ai"));
 	}
 
 	public String getDescription()

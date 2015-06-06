@@ -1,7 +1,7 @@
 {
 	"Alertness":0,
-	"Moblility":0,
-	"Agressivness":0,
+	"Mobility":0,
+	"Aggressiveness":0,
 	"HostileTo":[
 	{"Name":"Default"}
 	],

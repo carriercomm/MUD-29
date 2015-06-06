@@ -3,9 +3,9 @@
 "Description":"Default",
 "Ai":"AiOutline.json",	
 "Race":"Default",
-"Class":"ClassOutline",
+"Class":"ClassOutline.json",
 "Level":"1",
-"BaseStat":[
+"BaseStats":[
 	{"Strength":0},
 	{"Dexterity":0},
 	{"Constitution":0},

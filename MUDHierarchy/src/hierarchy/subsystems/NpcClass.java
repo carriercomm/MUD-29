@@ -86,22 +86,22 @@ public class NpcClass
 	
 	public int getBAB(int level)
 	{
-		return (int) ((JSONObject)(savesAndBonus.get(level))).get("BaseAttackBonus");
+		return (int)(long) ((JSONObject)(savesAndBonus.get(level))).get("BaseAttackBonus");
 	}
 	
 	public int getFortSave(int level)
 	{
-		return (int) ((JSONObject)(savesAndBonus.get(level))).get("FortitudeSave");
+		return (int)(long) ((JSONObject)(savesAndBonus.get(level))).get("FortitudeSave");
 	}
 	
 	public int getRefxSave(int level)
 	{
-		return (int) ((JSONObject)(savesAndBonus.get(level))).get("ReflexSave");
+		return (int)(long) ((JSONObject)(savesAndBonus.get(level))).get("ReflexSave");
 	}
 	
 	public int getWillSave(int level)
 	{
-		return (int) ((JSONObject)(savesAndBonus.get(level))).get("WillSave");
+		return (int)(long) ((JSONObject)(savesAndBonus.get(level))).get("WillSave");
 	}
 	
 	public int getBaseHp()

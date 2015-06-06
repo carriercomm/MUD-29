@@ -22,11 +22,11 @@ public class AI
 	public AI(String fileName) throws Exception
 	{
 		JSONParser parser = new JSONParser();
-		JSONObject AiOutline = new JSONObject((JSONObject) parser.parse(new FileReader("res/ai/" + fileName)));
+		JSONObject AiOutline = new JSONObject((JSONObject) parser.parse(new FileReader("res/ais/" + fileName)));
 		
-		this.alertness = (int) AiOutline.get("Alertness");
-		this.mobility = (int) AiOutline.get("Mobility");
-		this.aggressiveness = (int) AiOutline.get("Aggressiveness");
+		this.alertness = (int)(long) AiOutline.get("Alertness");
+		this.mobility = (int)(long) AiOutline.get("Mobility");
+		this.aggressiveness = (int)(long) AiOutline.get("Aggressiveness");
 		this.hostileTo = (ArrayList) AiOutline.get("HostileTo");
 		this.neutralTo = (ArrayList) AiOutline.get("NeutralTo");
 		this.friendlyTo = (ArrayList) AiOutline.get("FriendlyTo");
@@ -65,6 +65,6 @@ public class AI
 	
 	public String print()
 	{
-		return "alertness: " + alertness + ", mobility: " + mobility + ", aggressiveness: " + aggressiveness + "\n" + hostileTo.toString() + "\n" + neutralTo.toString() + "\n" + "friendlyTo" + "\n";
+		return "alertness: " + alertness + ", mobility: " + mobility + ", aggressiveness: " + aggressiveness + "\nhostileTo: " + hostileTo.toString() + "\nneutralTo: " + neutralTo.toString() + "\nfriendlyTo: " + friendlyTo.toString();
 	}
 }
