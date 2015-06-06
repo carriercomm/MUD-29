@@ -13,6 +13,15 @@ public class npcTestMain {
 
 	public static void main(String[] args) {
 		String fileName = "ClassOutline.json"; //For testing
+		for(int x = 1; x<25; x++)
+		{
+			System.out.println(x/2+(-5));
+		}
+		
+		
+		
+		
+		
 		Map<Integer,Object >savesAndBonus  = new HashMap<Integer, Object>();
 		JSONParser parser = new JSONParser();
 			try {

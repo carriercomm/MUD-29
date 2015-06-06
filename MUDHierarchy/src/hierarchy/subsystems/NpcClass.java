@@ -66,27 +66,6 @@ public class NpcClass
 	{
 		return NpcClassName;
 	}
-	
-	public int[] getBABTable()
-	{
-		return BABTable;
-	}
-	
-	public int[] getFortTable()
-	{
-		return FortTable;
-	}
-	
-	public int[] getRefTable()
-	{
-		return RefTable;
-	}
-	
-	public int[] getWillTable()
-	{
-		return WillTable;
-	}
-	
 	public int getBaseMana()
 	{
 		return BaseMana;
@@ -97,34 +76,37 @@ public class NpcClass
 		return MPPLevel;
 	}
 	
-	public int getHDpLevel()
-	{
-		return HDPLevel;
-	}
-	
-	public String[] getWeaponProf()
-	{
-		return WeaponProf;
-	}
-	
-	public String[] getArmorProf()
-	{
-		return ArmorProf;
-	}
-	
-	public String[] getShieldProf()
-	{
-		return ShieldProf;
-	}
-	
-	public String[] getSpecialAbilities()
-	{
-		return SpecialAbilities;
-	}
-	
 	public String[] getSpells()
 	{
 		return Spells;
+	}
+	public int getBAB(int level)
+	{
+		return  (int) ((JSONObject)(savesAndBonus.get(level))).get("BaseAttackBonus");
+		
+	}
+	public int getFortSave(int level)
+	{
+		return  (int) ((JSONObject)(savesAndBonus.get(level))).get("FortitudeSave");
+		
+	}
+	public int getRefxSave(int level)
+	{
+		return  (int) ((JSONObject)(savesAndBonus.get(level))).get("ReflexSave");
+		
+	}
+	public int getWillSave(int level)
+	{
+		return  (int) ((JSONObject)(savesAndBonus.get(level))).get("WillSave");
+		
+	}
+	public int getBaseHp()
+	{
+		return BaseHP;
+	}
+	public int getHPpLevel()
+	{
+		return HitDie;
 	}
 	
 }
