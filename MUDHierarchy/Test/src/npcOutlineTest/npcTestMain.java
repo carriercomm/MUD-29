@@ -23,9 +23,10 @@ public class npcTestMain {
 		
 		try {
 			JSONArray NpcTest = new JSONArray();
-			NpcTest.add(parser.parse(new FileReader("D:/Users/Bennett/Documents/Workspace/MUDHierarchy/res/creatures/NpcOutline.json")));
+			NpcTest.add(parser.parse(new FileReader("res/creatures/NPCOutline.json")));
 			JSONObject NpcClass =(JSONObject) NpcTest.get(0);
-			System.out.print(NpcClass.get("Name"));
+			System.out.print(((JSONArray)(NpcClass.get("BaseStat"))).get(0));
+			
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

@@ -1,0 +1,7 @@
+#General AI setting that determine how the creature moves
+1    #Alertness value (0-3)  0 - sleeping,   1 - awake, 2 - alert, 3 - high alert
+1    #Mobility value (0-3)   0 - can't move, 1 - can move but stationary, 2 - wandering, 3 - searching
+2    #General Agressiveness  0 - friendly,   1 - neutral, 2 - hostile except for same, 3 - hostile all
+all  #Hostile to
+none #Friendly to
+Orc  #Neutral to

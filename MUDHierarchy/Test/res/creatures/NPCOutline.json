@@ -1,0 +1,16 @@
+{
+"Name":"Default",
+"Description":"Default",
+"Ai":"AiOutline.json",	
+"Stats":"StatsOutline.json",
+"Race":"Default",
+"Class":"ClassOutline",
+"BaseStat":[
+	{"Strength":0},
+	{"Dexterity":0},
+	{"Constitution":0},
+	{"Wisdom":0},
+	{"Intellegence":0},
+	{"Charisma":0}
+]
+}
