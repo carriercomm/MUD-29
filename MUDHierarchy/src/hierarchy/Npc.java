@@ -21,7 +21,7 @@ public class Npc
 	private String className;
 	private String raceName;
 	private int level;
-	private int[] baseStats;
+	private JSONArray baseStats;
 	
 	public Npc(String fileName) throws IOException
 	{
@@ -32,7 +32,7 @@ public class Npc
 		this.className = (String) NpcOutline.get("Class");
 		this.raceName = (String) NpcOutline.get("Race");
 		this.level = (int) NpcOutline.get("Level");
-		this.baseStats = (int[]) NpcOutline.get("BaseStats");
+		this.baseStats = (JSONArray) NpcOutline.get("BaseStats");
 		this.description = (String) NpcOutline.get("Description");
 		
 		stats = new NpcStats(new NpcClass(className), baseStats, level);
