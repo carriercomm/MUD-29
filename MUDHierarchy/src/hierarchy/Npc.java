@@ -2,6 +2,8 @@ package hierarchy;
 
 import hierarchy.subsystems.AI;
 import hierarchy.subsystems.NpcStats;
+import org.json.simple.parser.JSONParser;
+import java.io.FileReader;
 
 public class Npc
 {
@@ -12,11 +14,18 @@ public class Npc
 	private String className;
 	private String raceName;
 	
-	public Npc(String className, String raceName)
+	public Npc(String className, String raceName, int level)
 	{
 		this.className = className;
 		this.raceName = raceName;
-		JSONParser parser = new JSONParser();
+		
+		try{
+			JSONParser parser = new JSONParser();
+			FileReader reader = new FileReader("res\");
+			JSONArray NpcArray = new JSONArray(reader);
+			JSONObject obj = new JSONObject();
+			obj.
+		}
 		
 	}
 
