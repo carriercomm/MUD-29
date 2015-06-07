@@ -2,6 +2,7 @@ package hierarchy.subsystems;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -26,6 +27,7 @@ public class NpcStats
 	
 	public NpcStats(NpcClass npcclass, JSONArray BaseStats, int Level)
 	{
+		Random rand = new Random();
 		level = Level;
 		//Base Stats
 		baseStats.put("Strength",(int)(long)(((JSONObject)(BaseStats.get(0))).get("Strength")));
@@ -47,6 +49,22 @@ public class NpcStats
 		ref=npcclass.getRefxSave(level);
 		will=npcclass.getWillSave(level);
 		//HP AND MANA
+		for(int x  = 0; x<level;x++)
+		{
+			if(x==0)
+			{
+				mana = npcclass.getBaseMana();
+				hp = npcclass.getBaseHp();
+			}
+			else
+			{
+				hp +=(rand.nextInt(npcclass.getHPpLevel())+1);
+				if(npcclass.getMPpLevel()!=0)
+				{
+					mana+= (rand.nextInt(npcclass.getMPpLevel())+1);
+				}
+			}
+		}
 		mana = npcclass.getBaseMana()+(npcclass.getMPpLevel()*(level-1));
 		hp = npcclass.getBaseHp()+(npcclass.getHPpLevel()*(level-1));
 		currHP=hp;
@@ -167,3 +185,4 @@ public class NpcStats
 		return printStats()+"\nLevel: "+level+"\nBase Attack Bonus: "+bab+"\nFort Save: "+fort+"\nRef Save: "+ref+"\nWill Save: "+will+"\nMax mana: "+mana+"\nCurrent Mana: "+currMana+"\nMax HP: "+hp+"\nCurrent HP: "+currHP;
 	}
 }
+//TODO: giant moth
