@@ -24,28 +24,20 @@ public class Npc
 	private int level;
 	private JSONArray baseStats;
 	
-	public Npc(String fileName) throws Exception
+	public Npc(String fileName, int level) throws Exception
 	{
 		JSONParser parser = new JSONParser();
 		JSONObject NpcOutline = new JSONObject((JSONObject) parser.parse(new FileReader("res/creatures/" + fileName)));
 		
+		this.level = level;
 		this.name = (String) NpcOutline.get("Name");
 		this.className = (String) NpcOutline.get("Class");
 		this.raceName = (String) NpcOutline.get("Race");
-		this.level = Integer.parseInt((String) NpcOutline.get("Level"));
 		this.baseStats = (JSONArray) NpcOutline.get("BaseStats");
 		this.description = (String) NpcOutline.get("Description");
 		
-<<<<<<< HEAD
-		stats = new NpcStats(new NpcClass(className), baseStats, level);
-=======
-<<<<<<< HEAD
-		npcclass = new NpcClass (className);
+		npcclass = new NpcClass (className + ".json");
 		stats = new NpcStats(npcclass, baseStats, level);
-=======
-		stats = new NpcStats(new NpcClass(className + ".json"), baseStats, level);
->>>>>>> origin/master
->>>>>>> origin/master
 		ai = new AI((String)NpcOutline.get("Ai"));
 	}
 	
@@ -53,10 +45,17 @@ public class Npc
 	{
 		Random random = new Random();
 		stats.setLevel(stats.getLevel() + 1);
+		this.level = stats.getLevel();
+		
+		if(npcclass.getMPpLevel() != 0)
+		{
+			stats.setMana(stats.getMana() + random.nextInt(npcclass.getMPpLevel()) + 1);
+			stats.setCurrMana(stats.getMana());
+		}
+		
 		stats.setHP(stats.getHP() + random.nextInt(npcclass.getHPpLevel()) + 1);
-		stats.setCurrHp(stats.getCurrHp());
-		stats.setMana(stats.getMana() + random.nextInt(npcclass.getMPpLevel()) + 1);
-		stats.setCurrMana(stats.getMana());
+		stats.setCurrHp(stats.getHP());
+		
 		stats.setBAB(npcclass.getBAB(stats.getLevel()));
 		stats.setFortSave(npcclass.getFortSave(stats.getLevel()));
 		stats.setRefSave(npcclass.getRefxSave(stats.getLevel()));

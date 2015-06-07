@@ -11,7 +11,7 @@ public class NpcClass
 {
 	private String NpcClassName;
 	private int BaseMana;
-	private int MPPLevel;
+	private int MPpLevel;
 	private int BaseHP;
 	private int HitDie;
 	private String[] Spells;
@@ -30,7 +30,7 @@ public class NpcClass
 			JSONObject JsonFile = (JSONObject)(parser.parse(new FileReader("res/classes/"+fileName)));
 			NpcClassName=(String) JsonFile.get("Name");
 			BaseMana= (int)(long) JsonFile.get("BaseMana");
-			MPPLevel = (int)(long) JsonFile.get("ManaPerLevel");
+			MPpLevel = (int)(long) JsonFile.get("ManaPerLevel");
 			BaseHP = (int)(long) JsonFile.get("BaseHp");
 			HitDie = (int)(long) JsonFile.get("HitDie");
 			
@@ -76,7 +76,7 @@ public class NpcClass
 	
 	public int getMPpLevel()
 	{
-		return MPPLevel;
+		return MPpLevel;
 	}
 	
 	public String[] getSpells()
