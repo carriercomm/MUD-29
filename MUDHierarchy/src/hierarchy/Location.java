@@ -1,7 +1,6 @@
 package hierarchy;
 
 import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -59,23 +58,27 @@ public class Location
 		
 		descr += "\nThere are " + items.size() + " items in this room.\n";
 		
-		for(Item i : (ArrayList<Item>) items)
+		Iterator<?> iter = items.entrySet().iterator();
+		while(iter.hasNext())
 		{
-			descr += (i.getDescription() + "\n");
+			Map.Entry<?,?> pair = (Map.Entry<?,?>)iter.next();
+			descr += ((Item) pair.getValue()).getDescription();
 		}
 		
 		descr += "\nThere are " + npcs.size() + " NPCs in this room.\n";
-		
-		for(Npc n : (ArrayList<Npc>) npcs)
+		iter = npcs.entrySet().iterator();
+		while(iter.hasNext())
 		{
-			descr += (n.getDescription() + "\n");
+			Map.Entry<?,?> pair = (Map.Entry<?,?>)iter.next();
+			descr += ((Npc) pair.getValue()).getDescription();
 		}
 		
 		descr += "\nThere are " + portals.size() + " exits in this room.\n";
-		
-		for(Portal p : (ArrayList<Portal>) portals)
+		iter = portals.entrySet().iterator();
+		while(iter.hasNext())
 		{
-			descr += (p.getDescription() + "\n");
+			Map.Entry<?,?> pair = (Map.Entry<?,?>)iter.next();
+			descr += ((Portal) pair.getValue()).getDescription();
 		}
 		
 		return descr;
