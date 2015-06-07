@@ -13,7 +13,7 @@ public class Portal
 	//private String[] tokens;
 	private String name;
 	private String description;
-	private String sliceKey;
+	private int	   sliceKey;
 	private String locationKey;
 	private String key;
 	private boolean canUse;
@@ -21,15 +21,15 @@ public class Portal
 	public Portal(String fileName) throws FileNotFoundException, IOException, ParseException
 	{
 		JSONParser parser = new JSONParser();
-		JSONObject jsonFile = new JSONObject((JSONObject) parser.parse(new FileReader("res/Portal/" + fileName)));
+		JSONObject jsonFile = new JSONObject((JSONObject) parser.parse(new FileReader("res/portals/" + fileName)));
 		this.name =			(String)	jsonFile.get("Name");
 		this.description=	(String) 	jsonFile.get("Description");
-		this.sliceKey=		(String)	jsonFile.get("SliceKey");
+		this.sliceKey=		(int)(long) jsonFile.get("SliceKey");
 		this.locationKey=	(String)	jsonFile.get("LocationKey");
 		this.key=			(String)	jsonFile.get("Key");
-		this.canUse= 		(boolean)	jsonFile.get("CanUse:");
+		this.canUse= 		(boolean)	jsonFile.get("CanUse");
 	}
-	public String getSliceKey()
+	public int getSliceKey()
 	{
 		return sliceKey;
 	}

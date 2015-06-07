@@ -3,6 +3,6 @@
 		{"Key":0}
 	],
 	"Slices":[
-		{"Key":0,"FileName":"res/slices/slice0","ForwardLocation":"225.225.225.0"}
+		{"Key":0,"FileName":"slice0.json","ForwardLocation":"225.225.225.0"}
 	]
 }

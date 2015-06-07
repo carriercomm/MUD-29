@@ -1,7 +1,12 @@
 {
 	"Key":0,
 	"Locations":[
-		{"FileName":"Default"}
+		{"FileName":"TheAbandonedKeep/Entrance.json"},
+		{"FileName":"TheAbandonedKeep/Hallway.json"},
+		{"FileName":"TheAbandonedKeep/Audience_Chamber.json"},
+		{"FileName":"TheAbandonedKeep/Suit_Hallway.json"},
+		{"FileName":"TheAbandonedKeep/Dining_Room.json"},
+		{"FileName":"TheAbandonedKeep/Library.json"}
 	]
 
 }

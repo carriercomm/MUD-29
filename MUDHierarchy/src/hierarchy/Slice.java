@@ -17,9 +17,9 @@ public class Slice
 	public Slice(String fileName) throws Exception
 	{
 		JSONParser parser = new JSONParser();
-		JSONObject slice = (JSONObject) parser.parse(new FileReader("fileName"));
+		JSONObject slice = (JSONObject) parser.parse(new FileReader("res/locations/slices/" + fileName));
 		
-		this.key = (int) slice.get("Key");
+		this.key = (int) (long) slice.get("Key");
 		
 		Iterator<?> iter = ((JSONArray) slice.get("Locations")).iterator();
 		while(iter.hasNext())
