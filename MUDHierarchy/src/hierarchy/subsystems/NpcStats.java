@@ -26,7 +26,7 @@ public class NpcStats
 	
 	public NpcStats(NpcClass npcclass, JSONArray BaseStats, int Level)
 	{
-<<<<<<< HEAD
+		Random rand = new Random();
 		this.level = Level;
 		
 		//Base Stats
@@ -52,34 +52,6 @@ public class NpcStats
 		this.will = npcclass.getWillSave(level);
 		
 		//Hp and Mana
-		this.mana = npcclass.getBaseMana()+(npcclass.getMPpLevel()*(level-1));
-		this.hp = npcclass.getBaseHp()+(npcclass.getHPpLevel()*(level-1));
-		this.currHP = hp;
-		this.currMana = mana;
-		//TODO: Add Abilities and Spells
-=======
-		Random rand = new Random();
-		level = Level;
-		//Base Stats
-		baseStats.put("Strength",(int)(long)(((JSONObject)(BaseStats.get(0))).get("Strength")));
-		baseStats.put("Dexterity",(int)(long)(((JSONObject)(BaseStats.get(1))).get("Dexterity")));
-		baseStats.put("Constitution",(int)(long)(((JSONObject)(BaseStats.get(2))).get("Constitution")));
-		baseStats.put("Wisdom",(int)(long)(((JSONObject)(BaseStats.get(3))).get("Wisdom")));
-		baseStats.put("Intellegence",(int)(long)(((JSONObject)(BaseStats.get(4))).get("Intellegence")));
-		baseStats.put("Charisma",(int)(long)(((JSONObject)(BaseStats.get(5))).get("Charisma")));
-		//Base Stats Bonus
-		baseStats.put("StrengthMod", (baseStats.get("Strength")/2)-5);
-		baseStats.put("DexterityMod", (baseStats.get("Dexterity")/2)-5);
-		baseStats.put("ConstitutionMod", (baseStats.get("Constitution")/2)-5);
-		baseStats.put("WisdomMod", (baseStats.get("Wisdom")/2)-5);
-		baseStats.put("IntellegenceMod", (baseStats.get("Intellegence")/2)-5);
-		baseStats.put("CharismaMod", (baseStats.get("Charisma")/2)-5);
-		//Saves&Base attack Bonus
-		bab=npcclass.getBAB(level);
-		fort=npcclass.getFortSave(level);
-		ref=npcclass.getRefxSave(level);
-		will=npcclass.getWillSave(level);
-		//HP AND MANA
 		for(int x  = 0; x<level;x++)
 		{
 			if(x==0)
@@ -87,7 +59,7 @@ public class NpcStats
 				mana = npcclass.getBaseMana();
 				hp = npcclass.getBaseHp();
 			}
-			else
+			else	// randomly generate mana and hp levels based on class level
 			{
 				hp +=(rand.nextInt(npcclass.getHPpLevel())+1);
 				if(npcclass.getMPpLevel()!=0)
@@ -96,14 +68,10 @@ public class NpcStats
 				}
 			}
 		}
-		mana = npcclass.getBaseMana()+(npcclass.getMPpLevel()*(level-1));
-		hp = npcclass.getBaseHp()+(npcclass.getHPpLevel()*(level-1));
-		currHP=hp;
-		currMana=mana;
-		//TODO
-		//ADD ABULITIES
-		//ADD SPELLS
->>>>>>> origin/master
+		
+		this.currHP = hp;
+		this.currMana = mana;
+		//TODO: Add Abilities and Spells
 	}
 	
 	public int getLevel()

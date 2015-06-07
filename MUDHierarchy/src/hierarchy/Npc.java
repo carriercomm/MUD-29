@@ -90,7 +90,7 @@ public class Npc
 	
 	public String print()
 	{
-		return "name: " + name + ", class name" + className + ", race name: " + raceName + ", level: " + level + "\n" + "description: " + description + "\n" + ai.print() + "\n" + stats.print();
+		return "name: " + name + ", class name" + className + ", race name: " + raceName + ", level: " + level + "\n" + "description: " + description + "\n" + ai.print() + "\n" + stats.print() + "\n";
 	}
 	
 	public String Interact(String[] args)
