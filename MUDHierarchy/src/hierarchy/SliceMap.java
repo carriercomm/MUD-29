@@ -26,4 +26,9 @@ public class SliceMap
 		}
 		
 	}
+	
+	public void getLocationDescription(int sliceKey, String locationKey)
+	{
+		System.out.println(slices.get(sliceKey).getLocation(locationKey).getDescription());
+	}
 }

@@ -34,4 +34,9 @@ public class Slice
 	{
 		return key;
 	}
+	
+	public Location getLocation(String key)
+	{
+		return locations.get(key);
+	}
 }
