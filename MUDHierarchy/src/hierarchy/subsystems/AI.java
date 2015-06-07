@@ -1,23 +1,20 @@
 package hierarchy.subsystems;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 public class AI
 {
+	private ArrayList<?> hostileTo;
+	private ArrayList<?> neutralTo;
+	private ArrayList<?> friendlyTo;
+	
 	private int alertness;
 	private int mobility;
 	private int aggressiveness;
-	private ArrayList hostileTo;
-	private ArrayList neutralTo;
-	private ArrayList friendlyTo;
 	
 	public AI(String fileName) throws Exception
 	{
@@ -27,9 +24,9 @@ public class AI
 		this.alertness = (int)(long) AiOutline.get("Alertness");
 		this.mobility = (int)(long) AiOutline.get("Mobility");
 		this.aggressiveness = (int)(long) AiOutline.get("Aggressiveness");
-		this.hostileTo = (ArrayList) AiOutline.get("HostileTo");
-		this.neutralTo = (ArrayList) AiOutline.get("NeutralTo");
-		this.friendlyTo = (ArrayList) AiOutline.get("FriendlyTo");
+		this.hostileTo = (ArrayList<?>) AiOutline.get("HostileTo");
+		this.neutralTo = (ArrayList<?>) AiOutline.get("NeutralTo");
+		this.friendlyTo = (ArrayList<?>) AiOutline.get("FriendlyTo");
 		
 	}
 	
@@ -48,17 +45,17 @@ public class AI
 		return aggressiveness;
 	}
 	
-	public ArrayList getHostileTo()
+	public ArrayList<?> getHostileTo()
 	{
 		return hostileTo;
 	}
 	
-	public ArrayList getNeutralTo()
+	public ArrayList<?> getNeutralTo()
 	{
 		return neutralTo;
 	}
 	
-	public ArrayList getFriendlyTo()
+	public ArrayList<?> getFriendlyTo()
 	{
 		return friendlyTo;
 	}

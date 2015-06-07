@@ -19,41 +19,42 @@ public class NpcStats
 	private int hp;			//Base HP
 	private int currHP;		//Current HP
 	private int currMana;	//Current Mana
-	private String[] sAbilities;
-	private String[] spells;
 	
-	public NpcStats(){}	// empty constructor
+	//private String[] sAbilities;
+	//private String[] spells;
 	
 	public NpcStats(NpcClass npcclass, JSONArray BaseStats, int Level)
 	{
-		level = Level;
+		this.level = Level;
+		
 		//Base Stats
-		baseStats.put("Strength",(int)(long)(((JSONObject)(BaseStats.get(0))).get("Strength")));
-		baseStats.put("Dexterity",(int)(long)(((JSONObject)(BaseStats.get(1))).get("Dexterity")));
-		baseStats.put("Constitution",(int)(long)(((JSONObject)(BaseStats.get(2))).get("Constitution")));
-		baseStats.put("Wisdom",(int)(long)(((JSONObject)(BaseStats.get(3))).get("Wisdom")));
-		baseStats.put("Intellegence",(int)(long)(((JSONObject)(BaseStats.get(4))).get("Intellegence")));
-		baseStats.put("Charisma",(int)(long)(((JSONObject)(BaseStats.get(5))).get("Charisma")));
-		//Base Stats Bonus
-		baseStats.put("StrengthMod", (baseStats.get("Strength")/2)-5);
-		baseStats.put("DexterityMod", (baseStats.get("Dexterity")/2)-5);
-		baseStats.put("ConstitutionMod", (baseStats.get("Constitution")/2)-5);
-		baseStats.put("WisdomMod", (baseStats.get("Wisdom")/2)-5);
-		baseStats.put("IntellegenceMod", (baseStats.get("Intellegence")/2)-5);
-		baseStats.put("CharismaMod", (baseStats.get("Charisma")/2)-5);
-		//Saves&Base attack Bonus
-		bab=npcclass.getBAB(level);
-		fort=npcclass.getFortSave(level);
-		ref=npcclass.getRefxSave(level);
-		will=npcclass.getWillSave(level);
-		//HP AND MANA
-		mana = npcclass.getBaseMana()+(npcclass.getMPpLevel()*(level-1));
-		hp = npcclass.getBaseHp()+(npcclass.getHPpLevel()*(level-1));
-		currHP=hp;
-		currMana=mana;
-		//TODO
-		//ADD ABULITIES
-		//ADD SPELLS
+		this.baseStats.put("Strength",		(int)(long)	(((JSONObject)(BaseStats.get(0))).get("Strength")));
+		this.baseStats.put("Dexterity",		(int)(long)	(((JSONObject)(BaseStats.get(1))).get("Dexterity")));
+		this.baseStats.put("Constitution",	(int)(long)	(((JSONObject)(BaseStats.get(2))).get("Constitution")));
+		this.baseStats.put("Wisdom",		(int)(long)	(((JSONObject)(BaseStats.get(3))).get("Wisdom")));
+		this.baseStats.put("Intellegence",	(int)(long)	(((JSONObject)(BaseStats.get(4))).get("Intellegence")));
+		this.baseStats.put("Charisma",		(int)(long)	(((JSONObject)(BaseStats.get(5))).get("Charisma")));
+		
+		//Base Stats Modifiers
+		this.baseStats.put("StrengthMod",		(baseStats.get("Strength")/2)-5);
+		this.baseStats.put("DexterityMod",		(baseStats.get("Dexterity")/2)-5);	//set ability modifiers based on formula
+		this.baseStats.put("ConstitutionMod",	(baseStats.get("Constitution")/2)-5);
+		this.baseStats.put("WisdomMod",			(baseStats.get("Wisdom")/2)-5);
+		this.baseStats.put("IntellegenceMod",	(baseStats.get("Intellegence")/2)-5);
+		this.baseStats.put("CharismaMod",		(baseStats.get("Charisma")/2)-5);
+		
+		//Saves & Base Attack Bonus
+		this.bab = npcclass.getBAB(level);
+		this.fort = npcclass.getFortSave(level);
+		this.ref = npcclass.getRefxSave(level);
+		this.will = npcclass.getWillSave(level);
+		
+		//Hp and Mana
+		this.mana = npcclass.getBaseMana()+(npcclass.getMPpLevel()*(level-1));
+		this.hp = npcclass.getBaseHp()+(npcclass.getHPpLevel()*(level-1));
+		this.currHP = hp;
+		this.currMana = mana;
+		//TODO: Add Abilities and Spells
 	}
 	
 	public int getLevel()

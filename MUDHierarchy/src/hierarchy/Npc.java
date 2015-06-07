@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class Npc
 {
-	private String[] tokens = {"",""};	//TODO: fill in this
+	//private String[] tokens = {"",""};	//TODO: fill in this
 	private AI ai;
 	private NpcStats stats;
 	private NpcClass npcclass;
@@ -29,16 +29,17 @@ public class Npc
 		JSONParser parser = new JSONParser();
 		JSONObject NpcOutline = new JSONObject((JSONObject) parser.parse(new FileReader("res/creatures/" + fileName)));
 		
-		this.level = level;
-		this.name = (String) NpcOutline.get("Name");
-		this.className = (String) NpcOutline.get("Class");
-		this.raceName = (String) NpcOutline.get("Race");
-		this.baseStats = (JSONArray) NpcOutline.get("BaseStats");
-		this.description = (String) NpcOutline.get("Description");
+		this.baseStats = 	(JSONArray) NpcOutline.get("BaseStats");
 		
-		npcclass = new NpcClass (className + ".json");
-		stats = new NpcStats(npcclass, baseStats, level);
-		ai = new AI((String)NpcOutline.get("Ai"));
+		this.level = level;
+		this.name = 		(String) NpcOutline.get("Name");
+		this.className = 	(String) NpcOutline.get("Class");
+		this.raceName = 	(String) NpcOutline.get("Race");
+		this.description = 	(String) NpcOutline.get("Description");
+		
+		this.npcclass = new NpcClass (className + ".json");
+		this.stats = 	new NpcStats(npcclass, baseStats, level);
+		this.ai = 		new AI((String)NpcOutline.get("Ai"));
 	}
 	
 	public void levelUp()

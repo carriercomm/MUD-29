@@ -2,7 +2,7 @@ package hierarchy;
 
 public abstract class Portal
 {
-	private String[] tokens;
+	//private String[] tokens;
 	
 	private int linkID;
 	private String type;
@@ -13,7 +13,7 @@ public abstract class Portal
 		this.setDescription(description);
 		this.setLinkID(id);
 		this.setType(type);
-		this.setTokens(tokens);
+		//this.setTokens(tokens);
 	}
 
 	public int getLinkID()
@@ -46,10 +46,10 @@ public abstract class Portal
 		this.type = type;
 	}
 	
-	private void setTokens(String[] tokens)
+/*	private void setTokens(String[] tokens)
 	{
 		this.tokens = tokens;
-	}
+	}*/
 	
 	public abstract String Interact(String[] args);
 }
