@@ -2,68 +2,50 @@ package hierarchy;
 
 import hierarchy.subsystems.ItemStats;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
-public abstract class Item
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+public class Item
 {
-	private ArrayList<Item> subItems;
-	//private ItemStats stats;
-	//private String[] tokens;	// used in Interact() to determine if user input is valid
-								// first token is the item type
-	private String type;
-	private String description;
+	private String Description;
+	private String Name;
+	private String Key;
+	private Map<String, Item>SubItems = new HashMap<String, Item>();
+	private Map<String, String>InteractionToken = new HashMap<String, String>();
+	
+	
 
-	public Item(String descr, String type, String[] tokens, ArrayList<Item> subItems, ItemStats stats)
+	public Item(String fileName) throws FileNotFoundException, IOException, ParseException
 	{
-		this.setDescription("\n" + descr + "\n");
-		this.setType(type);
-		//this.setTokens(tokens);
-		this.setSubItems(subItems);
-		//this.setItemStats(stats);
-	}
-
-	public String getDescription()
-	{
-		String descr = "";
-		descr += this.description;
+		JSONParser parser = new JSONParser();
+		JSONObject JsonFile = (JSONObject)(parser.parse(new FileReader("res/items/"+fileName)));
 		
-		for(Item i : subItems)
+		this.Description=	(String)	JsonFile.get("Description");
+		this.Name=			(String)	JsonFile.get("Name");
+		this.Key= 			(String)	JsonFile.get("Key");
+		JSONArray jsonArray = (JSONArray)JsonFile.get("SubItems");
+		Iterator<?> iter = jsonArray.iterator();
+		while(iter.hasNext())
 		{
-			descr += i.description;
+			Item tempItem = new Item((String)((JSONObject)(iter.next())).get("FileName"));
+			SubItems.put(tempItem.getKey(), tempItem);
 		}
+	}
 		
-		return descr;
+		
+		
+	public String getKey()
+	{
+		return Key;
 	}
-	
-	private void setDescription(String descr)
-	{
-		this.description = descr;
-	}
-
-	public String getType()
-	{
-		return type;
-	}
-
-	private void setType(String type)
-	{
-		this.type = type;
-	}
-	
-/*	private void setTokens(String[] tokens)
-	{
-		this.tokens = tokens;
-	}*/
-	
-	private void setSubItems(ArrayList<Item> subItems)
-	{
-		this.subItems = subItems;
-	}
-	
-/*	private void setItemStats(ItemStats stats)
-	{
-		this.stats = stats;
-	}*/
-	
-	public abstract String Interact(String[] args);
 }
