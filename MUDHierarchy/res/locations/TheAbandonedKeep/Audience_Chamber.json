@@ -6,7 +6,7 @@
 	
 	],
 	"Npcs":[
-
+		{"FileName":"GoblinScout.json"},
 	],
 	"Portals":[
 		{"FileName":"TheAbandonedKeep/Audience_Chamber_East_Door.json"},
