@@ -1,14 +1,15 @@
 {
-	"Name":"GrandHallway",
-	"Key":"grandhallway",
-	"Description":"The Grand Hallway. It splits into two other smaller hallways followed by two closed doors facing eachother",
+	"Name":"Grand Hallway",
+	"Key":"grand_hallway",
+	"Description":"The Grand Hallway. It splits into two other smaller hallways followed by two closed doors facing eachother, At both ends there are large double doors. ",
 	"Items":[
-		{"FileName":"Default"}
+		
 	],
 	"Npcs":[
-		{"FileName":"Default"}
+		
 	],
 	"Portals":[
-		{"FileName":"Slice/FileName.json"}
+		{"FileName":"TheAbandonedKeep/Grand_Hallway_Entrance_Door.json"},
+		{"FileName":"TheAbandonedKeep/Grand_Hallway_North_Door.json"}
 	]
 }

@@ -1,14 +1,16 @@
 {
 	"Name":"Audience Chamber",
 	"Key":"audience_chamber",
-	"Description":"A once fine Audience chamber, the room is now destroyed and deserted. There are doors on the far right and left walls.",
+	"Description":"A once fine Audience chamber, the room is now destroyed and deserted. There are doors on the far right and left walls with a grand door facing where the throne would have stood . ",
 	"Items":[
-		{"FileName":"Default"}
+	
 	],
 	"Npcs":[
-		{"FileName":"Default"}
+
 	],
 	"Portals":[
-		{"FileName":"Slice/FileName.json"}
+		{"FileName":"TheAbandonedKeep/Audience_Chamber_East_Door.json"},
+		{"FileName":"TheAbandonedKeep/Audience_Chamber_West_Door.json"},
+		{"FileName":"TheAbandonedKeep/Audience_Chamber_Entrance_Door.json"}
 	]
 }

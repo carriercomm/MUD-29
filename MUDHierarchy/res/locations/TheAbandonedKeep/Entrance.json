@@ -1,7 +1,7 @@
 {
 	"Name":"Entrance",
 	"Key":"entrance",
-	"Description":"A large entryway.",
+	"Description":"A large entryway. ",
 	"Items":[
 		
 	],
@@ -9,6 +9,6 @@
 		
 	],
 	"Portals":[
-		
+		{"FileName":"TheAbandonedKeep/Entrance_Door.json"}
 	]
 }

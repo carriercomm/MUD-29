@@ -1,7 +1,7 @@
 {
 	"Name":"HallWay",
 	"Key":"suite_hallway",
-	"Description":"A large hallway doors leading to personal chambers",
+	"Description":"A large hallway doors leading to personal chambers. ",
 	"Items":[
 		
 	],
@@ -9,6 +9,7 @@
 		
 	],
 	"Portals":[
-		
+		{"FileName":"TheAbandonedKeep/Suite_Hallway_East_Door.json"},
+		{"FileName":"TheAbandonedKeep/Suite_Hallway_West_Door.json"}
 	]
 }
