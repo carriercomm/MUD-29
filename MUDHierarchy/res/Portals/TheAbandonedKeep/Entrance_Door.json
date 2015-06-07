@@ -1,0 +1,8 @@
+{
+	"Name":"Entrance Door",
+	"Key":"entrance_door",
+	"Description":"A large Oak double door is against the north wall.",
+	"CanUse": true,
+	"SliceKey":0,
+	"LocationKey":"grand_hallway"
+}

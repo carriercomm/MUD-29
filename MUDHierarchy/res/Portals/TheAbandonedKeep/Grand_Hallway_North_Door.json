@@ -1,0 +1,8 @@
+{
+	"Name":"Grand Hallway North Door",
+	"Key":"grand_hallway_north_door",
+	"Description":"A large Oak double door is against the north wall.",
+	"CanUse": true,
+	"SliceKey":0,
+	"LocationKey":"audience_chamber"
+}

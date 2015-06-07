@@ -1,0 +1,8 @@
+{
+	"Name":"Audience Chamber West Door",
+	"Key":"audience_chamber_west_door",
+	"Description":"A large Oak double door is against the west wall.",
+	"CanUse": true,
+	"SliceKey":0,
+	"LocationKey":"suite_hallway"
+}

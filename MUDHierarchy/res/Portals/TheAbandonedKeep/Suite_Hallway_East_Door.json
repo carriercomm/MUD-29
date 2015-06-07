@@ -1,0 +1,8 @@
+{
+	"Name":"Suite Hallway East Door",
+	"Key":"suite_hallway_east_door",
+	"Description":"A large Oak double door is against the east wall.",
+	"CanUse": true,
+	"SliceKey":0,
+	"LocationKey":"audience_chamber"
+}

@@ -1,0 +1,8 @@
+{
+	"Name":"Suite Hallway West Door",
+	"Key":"suite_hallway_west_door",
+	"Description":"A large Oak double door is against the west wall.",
+	"CanUse": true,
+	"SliceKey":0,
+	"LocationKey":"library"
+}
