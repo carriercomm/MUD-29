@@ -1,8 +1,6 @@
 package hierarchy;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -11,7 +9,6 @@ import java.util.Map;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 public class Location
 {
@@ -36,11 +33,10 @@ public class Location
 		JSONArray portalArray = (JSONArray) location.get("Portals");
 		
 		Iterator<?> iter = itemArray.iterator();
-		JSONObject o;
 		while(iter.hasNext())
 		{
 			Item i = new Item((String) ((JSONObject) iter.next()).get("FileName"));
-			items.put(i.getKey(), i));
+			items.put(i.getKey(), i);
 		}
 		iter = npcArray.iterator();
 		while(iter.hasNext())
@@ -117,30 +113,6 @@ public class Location
 		return false;
 	}
 	
-	public String Interact(String[] args)
-	{
-		for(Item i : (ArrayList<Item>) items)
-		{
-			if(args[0].equals(i.getType()))
-			{
-				return i.Interact(args);
-			}
-		}
-		for(Npc n : (ArrayList<Npc>) npcs)
-		{
-			if(args[0].equals(n.getRace()))
-			{
-				return n.Interact(args);
-			}
-		}
-		for(Portal p : (ArrayList<Portal>) portals)
-		{
-			if(args[0].equals(p.getType()))
-			{
-				return p.Interact(args);
-			}
-		}
-		return "What are you trying to interact with?";
-	}
+	//public String Interact(String[] args)
 	
 }
