@@ -8,12 +8,14 @@ import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 
 import java.io.FileReader;
+import java.util.Random;
 
 public class Npc
 {
 	private String[] tokens = {"",""};	//TODO: fill in this
 	private AI ai;
 	private NpcStats stats;
+	private NpcClass npcclass;
 	
 	private String name;
 	private String description;
@@ -34,8 +36,23 @@ public class Npc
 		this.baseStats = (JSONArray) NpcOutline.get("BaseStats");
 		this.description = (String) NpcOutline.get("Description");
 		
-		stats = new NpcStats(new NpcClass(className), baseStats, level);
+		npcclass = new NpcClass (className);
+		stats = new NpcStats(npcclass, baseStats, level);
 		ai = new AI((String)NpcOutline.get("Ai"));
+	}
+	
+	public void levelUp()
+	{
+		Random random = new Random();
+		stats.setLevel(stats.getLevel() + 1);
+		stats.setHP(stats.getHP() + random.nextInt(npcclass.getHPpLevel()) + 1);
+		stats.setCurrHp(stats.getCurrHp());
+		stats.setMana(stats.getMana() + random.nextInt(npcclass.getMPpLevel()) + 1);
+		stats.setCurrMana(stats.getMana());
+		stats.setBAB(npcclass.getBAB(stats.getLevel()));
+		stats.setFortSave(npcclass.getFortSave(stats.getLevel()));
+		stats.setRefSave(npcclass.getRefxSave(stats.getLevel()));
+		stats.setWillSave(npcclass.getWillSave(stats.getLevel()));
 	}
 
 	public String getDescription()

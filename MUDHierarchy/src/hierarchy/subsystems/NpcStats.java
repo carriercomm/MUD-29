@@ -55,51 +55,113 @@ public class NpcStats
 		//ADD ABULITIES
 		//ADD SPELLS
 	}
+	
 	public int getLevel()
 	{
 		return level;
 	}
+	
 	public int getBAB()
 	{
 		return bab;
 	}
+	
 	public int getFortSave()
 	{
 		return fort;
 	}
+	
 	public int getRefSave()
 	{
 		return ref;
 	}
+	
 	public int getWillSave()
 	{
 		return will;
 	}
+	
 	public int getCurrMana()
 	{
 		return currMana;
 	}
+	
 	public int getMana()
 	{
 		return mana;
 	}
+	
 	public int getCurrHp()
 	{
 		return currHP;
 	}
+	
 	public int getHP()
 	{
 		return hp;
 	}
+	
+	public void setLevel(int newLevel)
+	{
+		level = newLevel;
+	}
+	
+	public void setBAB(int newBab)
+	{
+		bab = newBab;
+	}
+	
+	public void setFortSave(int newFort)
+	{
+		fort = newFort;
+	}
+	
+	public void setRefSave(int newRef)
+	{
+		ref = newRef;
+	}
+	
+	public void setWillSave(int newWill)
+	{
+		will = newWill;
+	}
+	
+	public void setCurrMana(int newCurrMana)
+	{
+		currMana = newCurrMana;
+	}
+	
+	public void setMana(int newMana)
+	{
+		mana = newMana;
+	}
+	
+	public void setCurrHp(int newCurrHp)
+	{
+		currHP = newCurrHp;
+	}
+	
+	public void setHP(int newHp)
+	{
+		hp = newHp;
+	}
+	
+	public void setStat(String key, int value)
+	{
+		baseStats.put(key, value);
+	}
+	
 	public int getStat(String key)
 	{
 		return baseStats.get(key);
 	}
+	
 	public String printStats()
 	{
 		return	"STR: "+baseStats.get("Strength")+" : "+baseStats.get("StrengthMod")+"\nDEX: "+baseStats.get("Dexterity")+" : "+baseStats.get("DexterityMod")+"\nCON: "+baseStats.get("Constitution")+" : "+baseStats.get("ConstitutionMod")+
 				"\nWIS: "+baseStats.get("Wisdom")+" : "+baseStats.get("WisdomMod")+"\nINT: "+baseStats.get("Intellegence")+" : "+baseStats.get("IntellegenceMod")+"\nCHA: "+baseStats.get("Charisma")+" : "+baseStats.get("CharismaMod");	
 	}
+	
 	public String print()
 	{
 		return printStats()+"\nLevel: "+level+"\nBase Attack Bonus: "+bab+"\nFort Save: "+fort+"\nRef Save: "+ref+"\nWill Save: "+will+"\nMax mana: "+mana+"\nCurrent Mana: "+currMana+"\nMax HP: "+hp+"\nCurrent HP: "+currHP;
