@@ -1,0 +1,14 @@
+{
+	"Name":"GrandHallway",
+	"Key":"grandhallway",
+	"Description":"The Grand Hallway. It splits into two other smaller hallways followed by two closed doors facing eachother",
+	"Items":[
+		{"FileName":"Default"}
+	],
+	"Npcs":[
+		{"FileName":"Default"}
+	],
+	"Portals":[
+		{"FileName":"Slice/FileName.json"}
+	]
+}

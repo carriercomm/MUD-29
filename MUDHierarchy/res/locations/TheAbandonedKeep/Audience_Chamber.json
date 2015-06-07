@@ -1,0 +1,14 @@
+{
+	"Name":"Audience Chamber",
+	"Key":"audience_chamber",
+	"Description":"A once fine Audience chamber, the room is now destroyed and deserted. There are doors on the far right and left walls.",
+	"Items":[
+		{"FileName":"Default"}
+	],
+	"Npcs":[
+		{"FileName":"Default"}
+	],
+	"Portals":[
+		{"FileName":"Slice/FileName.json"}
+	]
+}
