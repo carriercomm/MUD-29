@@ -1,55 +1,44 @@
 package hierarchy;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
-public abstract class Portal
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+public class Portal
 {
 	//private String[] tokens;
-	
-	private int linkID;
-	private String type;
-	private String description;
-	
-	public Portal(String description, int id, String type, String[] tokens)
-	{
-		this.setDescription(description);
-		this.setLinkID(id);
-		this.setType(type);
-		//this.setTokens(tokens);
-	}
+	private String Name;
+	private String Description;
+	private String SliceKey;
+	private String LocationKey;
+	private String Key;
+	private boolean CanUse;
 
-	public int getLinkID()
+	public Portal(String fileName) throws FileNotFoundException, IOException, ParseException
 	{
-		return linkID;
+		JSONParser parser = new JSONParser();
+		JSONObject jsonFile = new JSONObject((JSONObject) parser.parse(new FileReader("res/Portal/" + fileName)));
+		this.Name =			(String)	jsonFile.get("Name");
+		this.Description=	(String) 	jsonFile.get("Description");
+		this.SliceKey=		(String)	jsonFile.get("SliceKey");
+		this.LocationKey=	(String)	jsonFile.get("LocationKey");
+		this.Key=			(String)	jsonFile.get("Key");
+		this.CanUse= 		(boolean)	jsonFile.get("CanUse:");
 	}
-
-	private void setLinkID(int linkID)
+	public String getSliceKey()
 	{
-		this.linkID = linkID;
+		return SliceKey;
 	}
-
-	public String getDescription()
+	public String getLocationKey()
 	{
-		return description;
+		return LocationKey;
 	}
-
-	private void setDescription(String description)
+	public String getKey()
 	{
-		this.description = description;
+		return Key;
 	}
 	
-	public String getType()
-	{
-		return type;
-	}
-
-	private void setType(String type)
-	{
-		this.type = type;
-	}
-	
-/*	private void setTokens(String[] tokens)
-	{
-		this.tokens = tokens;
-	}*/
-	
-	public abstract String Interact(String[] args);
 }

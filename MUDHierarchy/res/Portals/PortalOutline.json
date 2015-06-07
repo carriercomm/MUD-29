@@ -3,5 +3,6 @@
 	"Description":"Default",
 	"CanUse":true,
 	"SliceKey":"Default",
-	"LocationKey":"Default"
+	"LocationKey":"Default",
+	"Key":"Default"
 }
