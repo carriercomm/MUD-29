@@ -1,23 +1,59 @@
 package hierarchy;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
-public abstract class Location
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+public class Location
 {
-	private ArrayList<Item> items = new ArrayList<Item>();
-	private ArrayList<Npc> npcs = new ArrayList<Npc>();
-	private ArrayList<Portal> portals = new ArrayList<Portal>();
+	private Map<String,Object> items  = new HashMap<String, Object>();
+	private Map<String,Object> npcs  = new HashMap<String, Object>();
+	private Map<String,Object> portals  = new HashMap<String, Object>();
 
 	private String description;
-	private int ID;
+	private String key;
+	private String name;
 	
-	public Location(String descr, ArrayList<Item> item, ArrayList<Npc> npc, ArrayList<Portal> portal, short id)
+	public Location(String fileName) throws Exception
 	{
-		this.setDescription("\n" + descr + "\n");
-		this.setItems(item);
-		this.setNpcs(npc);
-		this.setPortals(portal);
-		this.setID(id);
+		JSONParser parser = new JSONParser();
+		JSONObject location = new JSONObject((JSONObject) parser.parse(new FileReader("res/locations/" + fileName)));
+		
+		this.description = (String) location.get("Description");
+		this.key = (String) location.get("Key");
+		this.name = (String) location.get("Name");
+		JSONArray itemArray = (JSONArray) location.get("Items");
+		JSONArray npcArray = (JSONArray) location.get("Npcs");
+		JSONArray portalArray = (JSONArray) location.get("Portals");
+		
+		Iterator<?> iter = itemArray.iterator();
+		JSONObject o;
+		while(iter.hasNext())
+		{
+			Item i = new Item((String) ((JSONObject) iter.next()).get("FileName"));
+			items.put(i.getKey(), i));
+		}
+		iter = npcArray.iterator();
+		while(iter.hasNext())
+		{
+			Npc n = new Npc((String) ((JSONObject) iter.next()).get("FileName"));
+			npcs.put(n.getKey(), n);
+		}
+		iter = portalArray.iterator();
+		while(iter.hasNext())
+		{
+			Portal p = new Portal((String) ((JSONObject) iter.next()).get("FileName"));
+			portals.put(p.getKey(), p);
+		}
 	}
 	
 	public String getDescription()	// Generates a description of the room containing all items, npcs, and portals
@@ -27,21 +63,21 @@ public abstract class Location
 		
 		descr += "\nThere are " + items.size() + " items in this room.\n";
 		
-		for(Item i : items)
+		for(Item i : (ArrayList<Item>) items)
 		{
 			descr += (i.getDescription() + "\n");
 		}
 		
 		descr += "\nThere are " + npcs.size() + " NPCs in this room.\n";
 		
-		for(Npc n : npcs)
+		for(Npc n : (ArrayList<Npc>) npcs)
 		{
 			descr += (n.getDescription() + "\n");
 		}
 		
 		descr += "\nThere are " + portals.size() + " exits in this room.\n";
 		
-		for(Portal p : portals)
+		for(Portal p : (ArrayList<Portal>) portals)
 		{
 			descr += (p.getDescription() + "\n");
 		}
@@ -49,89 +85,55 @@ public abstract class Location
 		return descr;
 	}
 	
-	private void setDescription(String description)
+	public String getKey()
 	{
-		this.description = description;
+		return key;
 	}
 	
-	public int getID()
+	public boolean hasPortal(String key)
 	{
-		return ID;
-	}
-	
-	private void setID(int id)
-	{
-		this.ID = id;
-	}
-	
-	private void setItems(ArrayList<Item> items)
-	{
-		this.items = items;
-	}
-	
-	private void setNpcs(ArrayList<Npc> npcs)
-	{
-		this.npcs = npcs;
-	}
-	
-	private void setPortals(ArrayList<Portal> portals)
-	{
-		this.portals = portals;
-	}
-	
-	public boolean hasPortal(Portal portal)
-	{
-		for(Portal p : portals)
+		if(portals.containsKey(key))
 		{
-			if(p.equals(portal))
-			{
-				return true;
-			}
+			return true;
 		}
 		return false;
 	}
 	
 	public boolean hasItem(Item item)
 	{
-		for(Item i : items)
+		if(items.containsKey(key))
 		{
-			if(i.equals(item))
-			{
-				return true;
-			}
+			return true;
 		}
 		return false;
 	}
 	
 	public boolean hasNpc(Npc npc)
 	{
-		for(Npc n : npcs)
+		if(npcs.containsKey(key))
 		{
-			if(n.equals(npc))
-			{
-				return true;
-			}
+			return true;
 		}
 		return false;
 	}
 	
 	public String Interact(String[] args)
 	{
-		for(Item i : items)
+		for(Item i : (ArrayList<Item>) items)
 		{
 			if(args[0].equals(i.getType()))
 			{
 				return i.Interact(args);
 			}
 		}
-		for(Npc n : npcs)
+		for(Npc n : (ArrayList<Npc>) npcs)
 		{
 			if(args[0].equals(n.getRace()))
 			{
 				return n.Interact(args);
 			}
 		}
-		for(Portal p : portals)
+		for(Portal p : (ArrayList<Portal>) portals)
 		{
 			if(args[0].equals(p.getType()))
 			{

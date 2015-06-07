@@ -4,7 +4,7 @@
 "Ai":"AiOutline.json",	
 "Race":"Default",
 "Class":"ClassOutline.json",
-"Level":"1",
+"Level":1,
 "BaseStats":[
 	{"Strength":0},
 	{"Dexterity":0},

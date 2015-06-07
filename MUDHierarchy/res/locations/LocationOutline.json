@@ -1,0 +1,14 @@
+{
+	"Name":"Default",
+	"Key":"Default",
+	"Description":"A room",
+	"Items":[
+		{"FileName":"Default"}
+	],
+	"Npcs":[
+		{"FileName":"Default"}
+	],
+	"Portals":[
+		{"FileName":"Slice/FileName.json"}
+	]
+}
