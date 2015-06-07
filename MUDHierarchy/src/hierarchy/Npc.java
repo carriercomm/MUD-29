@@ -53,7 +53,7 @@ public class Npc
 		
 		this.baseStats = 	(JSONArray) NpcOutline.get("BaseStats");
 		
-		this.level =		(int) NpcOutline.get("Level");
+		this.level =		(int)(long) NpcOutline.get("Level");
 		this.name = 		(String) NpcOutline.get("Name");
 		this.className = 	(String) NpcOutline.get("Class");
 		this.raceName = 	(String) NpcOutline.get("Race");

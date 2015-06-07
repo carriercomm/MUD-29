@@ -4,7 +4,7 @@
 "Ai":"GoblinAi.json",
 "Race":"Goblin",
 "Class":"Warrior",
-"Level":0,
+"Level":1,
 "BaseStats":[
 	{"Strength":13},
 	{"Dexterity":18},
