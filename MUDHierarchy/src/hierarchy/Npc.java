@@ -22,19 +22,19 @@ public class Npc
 	private int level;
 	private JSONArray baseStats;
 	
-	public Npc(String fileName) throws Exception
+	public Npc(String fileName, int level) throws Exception
 	{
 		JSONParser parser = new JSONParser();
 		JSONObject NpcOutline = new JSONObject((JSONObject) parser.parse(new FileReader("res/creatures/" + fileName)));
 		
+		this.level = level;
 		this.name = (String) NpcOutline.get("Name");
 		this.className = (String) NpcOutline.get("Class");
 		this.raceName = (String) NpcOutline.get("Race");
-		this.level = Integer.parseInt((String) NpcOutline.get("Level"));
 		this.baseStats = (JSONArray) NpcOutline.get("BaseStats");
 		this.description = (String) NpcOutline.get("Description");
 		
-		stats = new NpcStats(new NpcClass(className), baseStats, level);
+		stats = new NpcStats(new NpcClass(className + ".json"), baseStats, level);
 		ai = new AI((String)NpcOutline.get("Ai"));
 	}
 
@@ -65,7 +65,7 @@ public class Npc
 	
 	public String print()
 	{
-		return "name: " + name + ", class name" + className + ", race name: " + raceName + ", level: " + level + "\n" + "description: " + description + "\n" + ai.print() + "\n" + stats.print();
+		return "name: " + name + ", className: " + className + ", raceName: " + raceName + ", level: " + level + "\n" + "description: " + description + "\n" + ai.print() + "\n" + stats.print();
 	}
 	
 	public String Interact(String[] args)

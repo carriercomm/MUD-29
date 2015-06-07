@@ -1,9 +1,9 @@
 {
 "Name":"Goblin Scout",
 "Description":"This creature stands barely three feet tall, its scrawny, humanoid body dwarfed by its wide, ungainly head",
-"Ai":"AiOutline.json",
+"Ai":"GoblinAi.json",
 "Race":"Goblin",
-"Class":"Warrior.json",
+"Class":"Warrior",
 "Level":"1",
 "BaseStats":[
 	{"Strength":13},
