@@ -1,12 +1,15 @@
 {
+	"Name":"Default",
 	"Attribute":"AttributeOutline.json",
 	"Description":"Default",
-	"SubItems":[
+	
+	"SubItems":
+	[
 		{"Filename":"Default"}
-	],
-	"Name":"Default",	
-	"InteratctionToken":[
-
-	],
-	"Key":"Default"
+	],	
+	
+	"InteratctionToken":
+	[
+		{"FileName":"Default"}
+	]
 }

@@ -2,13 +2,19 @@
 	"Name":"Default",
 	"Key":"Default",
 	"Description":"A room",
-	"Items":[
+
+	"Items":
+	[
 		{"FileName":"Default"}
 	],
-	"Npcs":[
+
+	"Npcs":
+	[
 		{"FileName":"Default"}
 	],
-	"Portals":[
+
+	"Portals":
+	[
 		{"FileName":"Slice/FileName.json"}
 	]
 }

@@ -1,6 +1,5 @@
 {
 	"Name":"Audience Chamber East Door",
-	"Key":"audience_chamber_east_door",
 	"Description":"A large Oak double door is against the east wall.",
 	"CanUse": true,
 	"SliceKey":0,

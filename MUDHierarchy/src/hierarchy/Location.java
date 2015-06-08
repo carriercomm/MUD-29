@@ -1,9 +1,7 @@
 package hierarchy;
 
 import java.io.FileReader;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.ArrayList;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -11,9 +9,9 @@ import org.json.simple.parser.JSONParser;
 
 public class Location
 {
-	private Map<String,Object> items  = new HashMap<String, Object>();
-	private Map<String,Object> npcs  = new HashMap<String, Object>();
-	private Map<String,Object> portals  = new HashMap<String, Object>();
+	private ArrayList<Item> items  = new ArrayList<Item>();
+	private ArrayList<Npc> npcs  = new ArrayList<Npc>();
+	private ArrayList<Portal> portals  = new ArrayList<Portal>();
 
 	private String description;
 	private String key;
@@ -31,55 +29,33 @@ public class Location
 		JSONArray npcArray = (JSONArray) location.get("Npcs");
 		JSONArray portalArray = (JSONArray) location.get("Portals");
 		
-		Iterator<?> iter = itemArray.iterator();
-		while(iter.hasNext())
-		{
-			Item i = new Item((String) ((JSONObject) iter.next()).get("FileName"));
-			items.put(i.getKey(), i);
-		}
-		iter = npcArray.iterator();
-		while(iter.hasNext())
-		{
-			Npc n = new Npc((String) ((JSONObject) iter.next()).get("FileName"));
-			npcs.put(n.getKey(), n);
-		}
-		iter = portalArray.iterator();
-		while(iter.hasNext())
-		{
-			Portal p = new Portal((String) ((JSONObject) iter.next()).get("FileName"));
-			portals.put(p.getKey(), p);
-		}
+		for(Object o : itemArray)
+			items.add(new Item((String)((JSONObject) o).get("FileName")));
+		for(Object o : npcArray)
+			npcs.add(new Npc((String)((JSONObject) o).get("FileName")));
+		for(Object o : portalArray)
+			portals.add(new Portal((String)((JSONObject) o).get("FileName")));
 	}
 	
 	public String getDescription()	// Generates a description of the room containing all items, npcs, and portals
 	{
 		String descr = "";
-		descr += this.description;
+		descr += this.name + "\n";
+		descr += this.description + "\n";
 		
 		descr += "\nThere are " + items.size() + " items in this room.\n";
+		for(Item i : items)
+			descr += i.getDescription();
 		
-		Iterator<?> iter = items.entrySet().iterator();
-		while(iter.hasNext())
-		{
-			Map.Entry<?,?> pair = (Map.Entry<?,?>)iter.next();
-			descr += ((Item) pair.getValue()).getDescription();
-		}
+		descr += "\nThere are " + npcs.size() + " npcs in this room.\n";
+		for(Npc n : npcs)
+			descr += n.getDescription();
 		
-		descr += "\nThere are " + npcs.size() + " NPCs in this room.\n";
-		iter = npcs.entrySet().iterator();
-		while(iter.hasNext())
-		{
-			Map.Entry<?,?> pair = (Map.Entry<?,?>)iter.next();
-			descr += ((Npc) pair.getValue()).getDescription();
-		}
+		descr += "\nThere are " + portals.size() + " exit(s) in this room.\n";
+		for(Portal p : portals)
+			descr += p.getDescription();
 		
-		descr += "\nThere are " + portals.size() + " exits in this room.\n";
-		iter = portals.entrySet().iterator();
-		while(iter.hasNext())
-		{
-			Map.Entry<?,?> pair = (Map.Entry<?,?>)iter.next();
-			descr += ((Portal) pair.getValue()).getDescription();
-		}
+		descr += "==============================================================================================";
 		
 		return descr;
 	}
@@ -89,29 +65,43 @@ public class Location
 		return key;
 	}
 	
-	public boolean hasPortal(String key)
+	public String getName()
 	{
-		if(portals.containsKey(key))
+		return name;
+	}
+	
+	public boolean hasPortal(Portal p)
+	{
+		for(Portal portal : portals)
 		{
-			return true;
+			if(p.equals(portal))
+			{
+				return true;
+			}
 		}
 		return false;
 	}
 	
-	public boolean hasItem(Item item)
+	public boolean hasItem(Item i)
 	{
-		if(items.containsKey(key))
+		for(Item item : items)
 		{
-			return true;
+			if(i.equals(item))
+			{
+				return true;
+			}
 		}
 		return false;
 	}
 	
-	public boolean hasNpc(Npc npc)
+	public boolean hasNpc(Npc n)
 	{
-		if(npcs.containsKey(key))
+		for(Npc npc : npcs)
 		{
-			return true;
+			if(n.equals(npc))
+			{
+				return true;
+			}
 		}
 		return false;
 	}

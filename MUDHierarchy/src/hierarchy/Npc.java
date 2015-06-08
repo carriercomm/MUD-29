@@ -10,8 +10,6 @@ import java.util.Random;
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 
-
-
 public class Npc
 {
 	//private String[] tokens = {"",""};	//TODO: fill in this
@@ -20,7 +18,6 @@ public class Npc
 	private NpcClass npcclass;
 	
 	private String name;
-	private String key;
 	private String description;
 	private String className;
 	private String raceName;
@@ -39,7 +36,6 @@ public class Npc
 		this.className = 	(String) NpcOutline.get("Class");
 		this.raceName = 	(String) NpcOutline.get("Race");
 		this.description = 	(String) NpcOutline.get("Description");
-		this.key = 			(String) NpcOutline.get("Key");
 		
 		this.npcclass = new NpcClass (className + ".json");
 		this.stats = 	new NpcStats(npcclass, baseStats, level);
@@ -58,7 +54,6 @@ public class Npc
 		this.className = 	(String) NpcOutline.get("Class");
 		this.raceName = 	(String) NpcOutline.get("Race");
 		this.description = 	(String) NpcOutline.get("Description");
-		this.key = 			(String) NpcOutline.get("Key");
 		
 		this.npcclass = new NpcClass (className + ".json");
 		this.stats = 	new NpcStats(npcclass, baseStats, level);
@@ -88,7 +83,7 @@ public class Npc
 
 	public String getDescription()
 	{
-		return description;
+		return description + "\n";
 	}
 	
 	public String getClassName()
@@ -109,11 +104,6 @@ public class Npc
 	public int getLevel()
 	{
 		return level;
-	}
-	
-	public String getKey()
-	{
-		return key;
 	}
 	
 	public String print()

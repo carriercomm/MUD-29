@@ -8,10 +8,10 @@ public class TestCase
 	{
 		try
 		{
-/*			Npc Goblin1 = new Npc("GoblinScout.json",1);
+			Npc Goblin1 = new Npc("GoblinScout.json",1);
 			System.out.println(Goblin1.print());
 			Goblin1.levelUp();
-			System.out.println(Goblin1.print());*/
+			System.out.println(Goblin1.print());
 			
 			SliceMap slicemap = new SliceMap("slicemap.json");
 			slicemap.getLocationDescription(0, "entrance");

@@ -4,13 +4,19 @@
 	"ManaPerLevel":0,
 	"BaseHp":10,
 	"HitDie":10,
-	"SpellList":[
+
+	"SpellList":
+	[
 		{"Name":"default"}
 	],
-	"AbilityList":[
+
+	"AbilityList":
+	[
 		{"Name":"default"}
 	],
-	"Levels":[
+
+	"Levels":
+	[
 		{ "BaseAttackBonus":1, "FortitudeSave":2, "ReflexSave":0, "WillSave":0},
 		{ "BaseAttackBonus":2, "FortitudeSave":3, "ReflexSave":0, "WillSave":0},
 		{ "BaseAttackBonus":3, "FortitudeSave":3, "ReflexSave":1, "WillSave":1},

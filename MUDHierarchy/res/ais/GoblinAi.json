@@ -2,13 +2,19 @@
 	"Alertness":1,
 	"Mobility":3,
 	"Aggressiveness":0,
-	"HostileTo":[
-	{"Name":"Default"}
+
+	"HostileTo":
+	[
+		{"Name":"Default"}
 	],
-	"NeutralTo":[
-	{"Name":"Default"}
+
+	"NeutralTo":
+	[
+		{"Name":"Default"}
 	],
-	"FriendlyTo":[
-	{"Name":"Default"}
+
+	"FriendlyTo":
+	[
+		{"Name":"Default"}
 	]
 }

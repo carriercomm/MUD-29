@@ -2,13 +2,19 @@
 	"Name":"Entrance",
 	"Key":"entrance",
 	"Description":"A large entryway. ",
-	"Items":[
+	
+	"Items":
+	[
 		
 	],
-	"Npcs":[
+	
+	"Npcs":
+	[
 		
 	],
-	"Portals":[
+
+	"Portals":
+	[
 		{"FileName":"TheAbandonedKeep/Entrance_Door.json"}
 	]
 }

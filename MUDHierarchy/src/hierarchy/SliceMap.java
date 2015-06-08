@@ -16,7 +16,7 @@ public class SliceMap
 	public SliceMap(String fileName) throws Exception
 	{
 		JSONParser parser = new JSONParser();
-		JSONObject slicemap = (JSONObject) parser.parse(new FileReader("res/locations/" + fileName));
+		JSONObject slicemap = (JSONObject) parser.parse(new FileReader("res/" + fileName));
 		
 		Iterator<?> iter = ((JSONArray) slicemap.get("Slices")).iterator();
 		while(iter.hasNext())

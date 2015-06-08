@@ -1,6 +1,8 @@
 {
 	"Key":0,
-	"Locations":[
+	
+	"Locations":
+	[
 		{"FileName":"TheAbandonedKeep/Entrance.json"},
 		{"FileName":"TheAbandonedKeep/Hallway.json"},
 		{"FileName":"TheAbandonedKeep/Audience_Chamber.json"},

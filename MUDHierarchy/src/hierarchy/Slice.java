@@ -17,7 +17,7 @@ public class Slice
 	public Slice(String fileName) throws Exception
 	{
 		JSONParser parser = new JSONParser();
-		JSONObject slice = (JSONObject) parser.parse(new FileReader("res/locations/slices/" + fileName));
+		JSONObject slice = (JSONObject) parser.parse(new FileReader("res/slices/" + fileName));
 		
 		this.key = (int) (long) slice.get("Key");
 		

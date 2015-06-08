@@ -2,13 +2,19 @@
 	"Name":"Grand Dining Room",
 	"Key":"dining_room",
 	"Description":"A Large Dining room, a decayed table sits in the middle with doors centered on each of the 4 walls. ",
-	"Items":[
+
+	"Items":
+	[
 		
 	],
-	"Npcs":[
+
+	"Npcs":
+	[
 		
 	],
-	"Portals":[
+
+	"Portals":
+	[
 		{"FileName":"TheAbandonedKeep/Dining_Room_West_Door.json"}
 	]
 }

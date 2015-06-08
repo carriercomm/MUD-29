@@ -1,8 +1,11 @@
 {
-	"OwnedSlices":[
+	"OwnedSlices":
+	[
 		{"Key":0}
 	],
-	"Slices":[
+
+	"Slices":
+	[
 		{"Key":0,"FileName":"slice0.json","ForwardLocation":"225.225.225.0"}
 	]
 }
