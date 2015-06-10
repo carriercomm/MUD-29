@@ -1,22 +1,34 @@
 package parsers;
+import java.io.FileReader;
 import java.util.ArrayList;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 public class Parser
 {
 	
-	String[] verb = {"open","close","pick","eat","drink","use","turn","push","pull","open", "go", "pickup", "walk", "head", "attack", "stab", "fight", "swing", "grab", "say", "talk", "look", "throw", "gothrough", "put", "get"};
-	String[] subject = {"i","me","my"};
-	String[] dirObject = {"dog", "door", "sword", "table", "inventory", "chest", "key", "him", "her", "androgynous elf", "anthropomorphic legum", "arthritic ankheg", "room", "ring", "potato"};
-	String[] adjective = {"green", "blue", "red", "yellow", "shiny", "magical", "adjectivy", "north", "south", "east", "west"};
-	String[] adverb = {"fiercely", "swiftly", "deftly", "expertly", "quickly", "clumsily", "accidentally", "purposfully", "north", "south", "east", "west", "through"};
-	String[] conjunction = {"and", "then"};
-	String[] misc = {"the", "a", "to", "at", "on", "onto", "in", "into", ""};
-	String[] terminator = {"."};	// Would it be better to store these in external text files then grab them at run time?
-									// Probably. TODO: ^That^
+	String[] verb, subject, dirObject, adjective, adverb, conjunction, misc, terminator;
 	ArrayList<String> tokens;
+	
 	String input;
 	String token;
 	int currentToken = 0;
+	
+	public Parser(String fileName) throws Exception
+	{
+		JSONParser parser = new JSONParser();
+		JSONObject libArray = new JSONObject((JSONObject) parser.parse(new FileReader("res/" + fileName)));
+		
+		verb 		= 	(String[]) libArray.get("verb");
+		subject 	= 	(String[]) libArray.get("subject");
+		dirObject 	=	(String[]) libArray.get("dirObject");
+		adjective 	= 	(String[]) libArray.get("adjective");
+		adverb 		= 	(String[]) libArray.get("adverb");
+		conjunction = 	(String[]) libArray.get("conjunction");
+		misc 		= 	(String[]) libArray.get("misc");
+		terminator 	= 	(String[]) libArray.get("terminator");
+	}
 	
 	private void sanatize()	// converts input to trimmed lower case with white spaces converged
 	{

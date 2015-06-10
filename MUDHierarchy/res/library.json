@@ -1,0 +1,23 @@
+{
+	"verb" : 		[	"open","close","pick","eat","drink", "use","turn","push","pull","open", "go",
+						"pickup", "walk", "head", "attack", "stab", "fight", "swing", "grab", "say",
+						"talk", "look", "throw", "gothrough", "put", "get"	],
+
+	"subject" : 	[	"i","me","my"	],
+
+	"dirObject" : 	[	"dog", "door", "sword", "table", "inventory", "chest", "key", "him", "her",
+						"androgynous elf", "anthropomorphic legum", "arthritic ankheg", "room", "ring",
+						"potato"	],
+
+	"adjective" :	[	"green", "blue", "red", "yellow", "shiny", "magical", "adjectivy", "north",
+						"south", "east", "west"	],
+
+	"adverb" :		[	"fiercely", "swiftly", "deftly", "expertly", "quickly", "clumsily", "accidentally",
+						"purposfully", "north", "south", "east", "west", "through"	],
+
+	"conjunction" :	[	"and", "then"	],
+
+	"misc" :		[	"the", "a", "to", "at", "on", "onto", "in", "into"	],
+	
+	"terminator" : 	[	"."	]
+}
