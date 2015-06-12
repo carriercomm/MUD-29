@@ -1,147 +1,103 @@
 package parsers;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 
 public class Parser
 {
 	
-	String[] verb, subject, dirObject, adjective, adverb, conjunction, misc, terminator;
-	ArrayList<String> tokens;
+	ArrayList<String> verb, subject, dirObject, adjective, adverb, conjunction, misc, terminator;
+	Tokenizer tokenizer = new Tokenizer(false);
 	
 	String input;
-	String token;
-	int currentToken = 0;
 	
+	@SuppressWarnings("unchecked")
 	public Parser(String fileName) throws Exception
 	{
 		JSONParser parser = new JSONParser();
-		JSONObject libArray = new JSONObject((JSONObject) parser.parse(new FileReader("res/" + fileName)));
-		
-		verb 		= 	(String[]) libArray.get("verb");
-		subject 	= 	(String[]) libArray.get("subject");
-		dirObject 	=	(String[]) libArray.get("dirObject");
-		adjective 	= 	(String[]) libArray.get("adjective");
-		adverb 		= 	(String[]) libArray.get("adverb");
-		conjunction = 	(String[]) libArray.get("conjunction");
-		misc 		= 	(String[]) libArray.get("misc");
-		terminator 	= 	(String[]) libArray.get("terminator");
+		JSONObject lib = new JSONObject((JSONObject) parser.parse(new FileReader("res/" + fileName)));
+
+		verb 		= (ArrayList<String>) ((JSONArray)lib.get("verb")).stream().collect(Collectors.toList());
+		subject 	= (ArrayList<String>) ((JSONArray)lib.get("subject")).stream().collect(Collectors.toList());
+		dirObject 	= (ArrayList<String>) ((JSONArray)lib.get("dirObject")).stream().collect(Collectors.toList());
+		adjective 	= (ArrayList<String>) ((JSONArray)lib.get("adjective")).stream().collect(Collectors.toList());
+		adverb 		= (ArrayList<String>) ((JSONArray)lib.get("adverb")).stream().collect(Collectors.toList());
+		conjunction = (ArrayList<String>) ((JSONArray)lib.get("conjunction")).stream().collect(Collectors.toList());
+		misc 		= (ArrayList<String>) ((JSONArray)lib.get("misc")).stream().collect(Collectors.toList());
+		terminator 	= (ArrayList<String>) ((JSONArray)lib.get("terminator")).stream().collect(Collectors.toList());
 	}
 	
-	private void sanatize()	// converts input to trimmed lower case with white spaces converged
+	private boolean accept(ArrayList<String> t)	// looks for the token to match a category
 	{
-		input = input.toLowerCase().trim().replaceAll("\\s+", " ");
-	}
-	
-	private void generateTokens()	// creates an array list of tokens extracted from the user input
-	{	
-		int size = input.length() - input.replace(" ", "").length() + 1;	// gets the number of words in the input
-		tokens = new ArrayList<String>(size);
-		
-		int previousPos = 0;
-		int position = input.indexOf(" ", 0);
-		for(int i = 0; i < size; i++)
+		String token = tokenizer.get();
+		boolean match = t.stream().anyMatch((s) -> s.equals(token));
+		if(t.equals(adjective) && match)
 		{
-			tokens.add(input.substring(previousPos, position));	// grabs all of the words with spaces separating them
-			previousPos = position + 1;
-			
-			if(i != (size - 2))
-			{
-				position = input.indexOf(" ", previousPos);
-			}
-			else
-			{
-				position = input.length();
-			}
+			System.out.println("adjective: " + token);
 		}
-		
-		tokens.add(".");	// add the termination token to the end of the list
-		
-		token = tokens.get(0);	// set initial value of the token
-	}
-	
-	private void next()	// increments currentToken and retrieves the next token
-	{
-		if((currentToken + 1) < tokens.size())
+		if(t.equals(verb) && match)
 		{
-			currentToken++;
-			token = tokens.get(currentToken);
-			System.out.println("++token is now: " + token);
+			System.out.println("verb: " + token);
 		}
-	}
-	
-	private void previous()	// decrements currentToken and retrieves previous token
-	{
-		if((currentToken - 1) > 0)
+		if(t.equals(dirObject) && match)
 		{
-			currentToken--;
-			token = tokens.get(currentToken);
-			System.out.println("--token is now: " + token);
+			System.out.println("dirObject: " + token);
 		}
-	}
-	
-	private void reset()	// resets current token and token counter
-	{
-		currentToken = 0;
-		token = tokens.get(currentToken);
-	}
-	
-	private boolean accept(String[] t)	// looks for the token to match a category
-	{
-		for(int i = 0; i < t.length; i++)
+		if(match)
 		{
-			if(t[i].equals(token))
-			{
-				System.out.println("valid. " + token + " = " + t[i]);
-				next();
-				return true;
-			}
+			tokenizer.next();
+			return true;
 		}
 		return false;
 	}
-	
+
 	private boolean accept(String t)	// looks for the token to match a specific word
 	{
-		if(token.equals(t))
+		boolean match = tokenizer.get().equals(t);
+		if(match)
 		{
-			next();
+			tokenizer.next();
 			return true;
 		}
 		return false;
+			
 	}
 	
-	private boolean expect(String[] t)	// looks for the token to match a category
+	private boolean expect(ArrayList<String> t)	// looks for the token to match a category
 	{									// acts as a shell for the accept(String[] t) method
 		if(accept(t))					// not really needed, but it helps understand the grammars
-		{
 			return true;
-		}
 		return false;
 	}
 	
 	private boolean expect(String t)	// looks for the token to match a specific word
 	{									// acts as a shell for the accept(String t) method
 		if(accept(t))					// not really needed, but it helps understand the grammars
-		{
 			return true;
-		}
 		return false;
 	}
 	
 	private boolean block()	// organizes grammar structures
 	{
 		if(statement())
-		{
 			return true;
-		}
 		if(command())
-		{
 			return true;
-		}
+		
 		Error("Invalid command format.");
 		return false;
+	}
+	
+	private void skipMisc()	// Skip all of the misc words in the way
+	{
+		while(accept(misc))
+		{
+			expect(misc);
+		}
 	}
 	
 	private boolean command()	// grammar definitions for commands
@@ -167,11 +123,11 @@ public class Parser
 						{
 							return true;
 						}
-						previous();
+						tokenizer.previous();
 					}
-					previous();
+					tokenizer.previous();
 				}
-				previous();
+				tokenizer.previous();
 			}
 			if(accept(adverb))
 			{
@@ -182,13 +138,13 @@ public class Parser
 					{
 						return true;
 					}
-					previous();
+					tokenizer.previous();
 				}
 				if(accept(terminator))	// e.g. "go north"
 				{
 					return true;
 				}
-				previous();
+				tokenizer.previous();
 			}
 			if(accept(adjective))
 			{
@@ -198,11 +154,11 @@ public class Parser
 					{
 						return true;	// e.g. "go to the north door"
 					}
-					previous();
+					tokenizer.previous();
 				}
-				previous();
+				tokenizer.previous();
 			}
-			previous();
+			tokenizer.previous();
 		}
 		if(accept(dirObject))	// e.g. "inventory", "ankheg" -- gives info about dirObject
 		{
@@ -212,7 +168,7 @@ public class Parser
 			}
 			//previous();
 		}
-		reset();
+		tokenizer.resetToken();
 		return false;
 	}
 	
@@ -231,9 +187,9 @@ public class Parser
 						{
 							return true;
 						}
-						previous();
+						tokenizer.previous();
 					}
-					previous();
+					tokenizer.previous();
 				}
 				if(accept(adverb))
 				{
@@ -246,9 +202,9 @@ public class Parser
 							{
 								return true;
 							}
-							previous();
+							tokenizer.previous();
 						}
-						previous();
+						tokenizer.previous();
 					}
 					if(accept(dirObject))	// e.g. "I go to the door"
 					{
@@ -265,23 +221,14 @@ public class Parser
 				}
 			}
 		}
-		reset();
+		tokenizer.resetToken();
 		return false;
 	}
 	
-	private void skipMisc()	// Skip all of the misc words in the way
-	{
-		while(accept(misc))
-		{
-			expect(misc);
-		}
-	}
-	
-	public void parse(String input)	// cleans and converts the input, then checks if the user input is valid
+	public void parse(String input)
 	{
 		this.input = input;
-		sanatize();
-		generateTokens();
+		tokenizer.addTokens(input);
 		if(block())
 		{
 			System.out.println("Success!!");	
