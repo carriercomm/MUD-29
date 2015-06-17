@@ -3,13 +3,21 @@
 	"Attribute":"AttributeOutline.json",
 	"Description":"Default",
 	
+	"IsHidden":false,
+	"Weight":0.1,
+	"Damage":0,
+	"DamageType":"none",
+	"CritMultiplier":0,
+	"AcBonus":0,
+
 	"SubItems":
 	[
-		{"Filename":"Default"}
-	],	
-	
-	"InteratctionToken":
+		{"FileName":"Default"}
+	],
+
+	"Abilities":
 	[
 		{"FileName":"Default"}
 	]
+
 }

@@ -29,8 +29,8 @@ public class Location
 		JSONArray npcArray = (JSONArray) location.get("Npcs");
 		JSONArray portalArray = (JSONArray) location.get("Portals");
 		
-		for(Object o : itemArray)
-			items.add(new Item((String)((JSONObject) o).get("FileName")));
+		//for(Object o : itemArray)
+			//items.add(new Item((String)((JSONObject) o).get("FileName")));
 		for(Object o : npcArray)
 			npcs.add(new Npc((String)((JSONObject) o).get("FileName")));
 		for(Object o : portalArray)

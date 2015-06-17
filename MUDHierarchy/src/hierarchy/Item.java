@@ -1,49 +1,61 @@
 package hierarchy;
 
-import java.io.FileNotFoundException;
+import hierarchy.subsystems.Ability;
+
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.stream.Collectors;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-public class Item
+public abstract class Item
 {
-	private String description;
 	private String name;
-	private ArrayList<Item> subItems = new ArrayList<Item>();
-	//private Map<String, String> interactionToken = new HashMap<String, String>();
+	private String description;	
+	private boolean isHidden;
+	private double weight;
 	
-	public Item(String fileName) throws FileNotFoundException, IOException, ParseException
+	private ArrayList<Ability> abilities = new ArrayList<Ability>();
+	
+	@SuppressWarnings("unchecked")
+	public Item(String fileName) throws Exception
 	{
 		JSONParser parser = new JSONParser();
 		JSONObject JsonFile = (JSONObject)(parser.parse(new FileReader("res/items/"+fileName)));
 		
-		this.description =	(String)	JsonFile.get("Description");
-		this.name =			(String)	JsonFile.get("Name");
+		this.description = (String)	 JsonFile.get("Description");
+		this.name 		 = (String)	 JsonFile.get("Name");
+		this.isHidden 	 = (Boolean) JsonFile.get("IsHidden");
+		this.weight		 = (Double)  JsonFile.get("Weight");
 		
-		JSONArray jsonArray = (JSONArray)JsonFile.get("SubItems");
-		Iterator<?> iter = jsonArray.iterator();
-		
-		while(iter.hasNext())
-		{
-			Item tempItem = new Item((String)((JSONObject)(iter.next())).get("FileName"));
-			subItems.add(tempItem);
-		}
+		abilities = (ArrayList<Ability>) ((JSONArray)JsonFile.get("Abilities")).stream().map(a -> new Ability((String) a)).collect(Collectors.toList());
 	}
 	
 	public String getDescription()
 	{
-		return description;
+		return description +"\n"+ abilities.get(0).toString();
 	}
 	
 	public String getName()
 	{
 		return name;
+	}
+	
+	public Boolean getIsHidden()
+	{
+		return isHidden;
+	}
+	
+	public Double getWeight()
+	{
+		return weight;
+	}
+	
+	public ArrayList<Ability> getAbilities()
+	{
+		return abilities;
 	}
 }
 	

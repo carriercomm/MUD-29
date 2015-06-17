@@ -8,7 +8,7 @@ import org.json.simple.parser.ParseException;
 
 //import javax.json;
 
-public class npcTestMain {
+public class NpcTestMain {
 
 	public static void main(String[] args)
 	{
