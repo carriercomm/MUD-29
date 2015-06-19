@@ -1,7 +1,10 @@
 package hierarchy;
 
+import hierarchy.subsystems.ItemBuilder;
+
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -17,24 +20,19 @@ public class Location
 	private String key;
 	private String name;
 	
+	@SuppressWarnings({ "unchecked"})
 	public Location(String fileName) throws Exception
 	{
 		JSONParser parser = new JSONParser();
-		JSONObject location = new JSONObject((JSONObject) parser.parse(new FileReader("res/locations/" + fileName)));
+		JSONObject JsonFile = new JSONObject((JSONObject) parser.parse(new FileReader("res/locations/" + fileName)));
 		
-		this.description = (String) location.get("Description");
-		this.key = (String) location.get("Key");
-		this.name = (String) location.get("Name");
-		JSONArray itemArray = (JSONArray) location.get("Items");
-		JSONArray npcArray = (JSONArray) location.get("Npcs");
-		JSONArray portalArray = (JSONArray) location.get("Portals");
+		this.description 	= (String) JsonFile.get("Description");
+		this.key 			= (String) JsonFile.get("Key");
+		this.name 			= (String) JsonFile.get("Name");
 		
-		//for(Object o : itemArray)
-			//items.add(new Item((String)((JSONObject) o).get("FileName")));
-		for(Object o : npcArray)
-			npcs.add(new Npc((String)((JSONObject) o).get("FileName")));
-		for(Object o : portalArray)
-			portals.add(new Portal((String)((JSONObject) o).get("FileName")));
+		items 	= (ArrayList<Item>) ((JSONArray)JsonFile.get("Items")).stream().map(i -> new ItemBuilder((String)((JSONObject) i).get("FileName")).getItem()).collect(Collectors.toList());
+		npcs  	= (ArrayList<Npc>) ((JSONArray)JsonFile.get("Npcs")).stream().map(n -> new Npc((String)((JSONObject) n).get("FileName"))).collect(Collectors.toList());
+		portals = (ArrayList<Portal>) ((JSONArray)JsonFile.get("Portals")).stream().map(p -> new Portal((String)((JSONObject) p).get("FileName"))).collect(Collectors.toList());
 	}
 	
 	public String getDescription()	// Generates a description of the room containing all items, npcs, and portals
@@ -44,16 +42,22 @@ public class Location
 		descr += this.description + "\n";
 		
 		descr += "\nThere are " + items.size() + " items in this room.\n";
-		for(Item i : items)
-			descr += i.getDescription();
+		//for(Item i : items)
+		//	descr += i.getDescription();
+		
+		descr += items.stream().map(i -> i.getDescription()).reduce((s,t) -> s + t).orElse("");
 		
 		descr += "\nThere are " + npcs.size() + " npcs in this room.\n";
-		for(Npc n : npcs)
-			descr += n.getDescription();
+		//for(Npc n : npcs)
+		//	descr += n.getDescription();
+		
+		descr += npcs.stream().map(n -> n.getDescription()).reduce((s,t) -> s + t).orElse("");
 		
 		descr += "\nThere are " + portals.size() + " exit(s) in this room.\n";
-		for(Portal p : portals)
-			descr += p.getDescription();
+		//for(Portal p : portals)
+		//	descr += p.getDescription();
+		
+		descr += portals.stream().map(p -> p.getDescription()).reduce((s,t) -> s + t).orElse("");
 		
 		descr += "==============================================================================================";
 		
@@ -70,42 +74,29 @@ public class Location
 		return name;
 	}
 	
+	public ArrayList<Item> getItems()
+	{
+		return items;
+	}
+	
 	public boolean hasPortal(Portal p)
 	{
-		for(Portal portal : portals)
-		{
-			if(p.equals(portal))
-			{
-				return true;
-			}
-		}
-		return false;
+		return portals.stream().anyMatch(t -> t.equals(p));
 	}
 	
 	public boolean hasItem(Item i)
 	{
-		for(Item item : items)
-		{
-			if(i.equals(item))
-			{
-				return true;
-			}
-		}
-		return false;
+		return items.stream().anyMatch(t -> t.equals(i));
 	}
 	
 	public boolean hasNpc(Npc n)
 	{
-		for(Npc npc : npcs)
-		{
-			if(n.equals(npc))
-			{
-				return true;
-			}
-		}
-		return false;
+		return portals.stream().anyMatch(t -> t.equals(n));
 	}
 	
-	//public String Interact(String[] args)
+	public String interact()
+	{
+		return null;
+	}
 	
 }

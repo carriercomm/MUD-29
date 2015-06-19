@@ -18,12 +18,13 @@ public abstract class Item
 	private double weight;
 	
 	private ArrayList<Ability> abilities = new ArrayList<Ability>();
+	protected JSONObject JsonFile;
 	
 	@SuppressWarnings("unchecked")
 	public Item(String fileName) throws Exception
 	{
 		JSONParser parser = new JSONParser();
-		JSONObject JsonFile = (JSONObject)(parser.parse(new FileReader("res/items/"+fileName)));
+		JsonFile = (JSONObject)(parser.parse(new FileReader("res/items/"+fileName)));
 		
 		this.description = (String)	 JsonFile.get("Description");
 		this.name 		 = (String)	 JsonFile.get("Name");
@@ -57,5 +58,7 @@ public abstract class Item
 	{
 		return abilities;
 	}
+	
+	public abstract String interact();
 }
 	

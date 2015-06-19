@@ -24,40 +24,54 @@ public class Npc
 	private int level;
 	private JSONArray baseStats;
 	
-	public Npc(String fileName, int level) throws Exception
+	public Npc(String fileName, int level)
 	{
-		JSONParser parser = new JSONParser();
-		JSONObject NpcOutline = new JSONObject((JSONObject) parser.parse(new FileReader("res/creatures/" + fileName)));
-		
-		this.baseStats = 	(JSONArray) NpcOutline.get("BaseStats");
-		
-		this.level = level;
-		this.name = 		(String) NpcOutline.get("Name");
-		this.className = 	(String) NpcOutline.get("Class");
-		this.raceName = 	(String) NpcOutline.get("Race");
-		this.description = 	(String) NpcOutline.get("Description");
-		
-		this.npcclass = new NpcClass (className + ".json");
-		this.stats = 	new NpcStats(npcclass, baseStats, level);
-		this.ai = 		new AI((String)NpcOutline.get("Ai"));
+		try
+		{
+			JSONParser parser = new JSONParser();
+			JSONObject NpcOutline = new JSONObject((JSONObject) parser.parse(new FileReader("res/creatures/" + fileName)));
+			
+			this.baseStats = 	(JSONArray) NpcOutline.get("BaseStats");
+			
+			this.level = level;
+			this.name = 		(String) NpcOutline.get("Name");
+			this.className = 	(String) NpcOutline.get("Class");
+			this.raceName = 	(String) NpcOutline.get("Race");
+			this.description = 	(String) NpcOutline.get("Description");
+			
+			this.npcclass = new NpcClass (className + ".json");
+			this.stats = 	new NpcStats(npcclass, baseStats, level);
+			this.ai = 		new AI((String)NpcOutline.get("Ai"));
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
-	public Npc(String fileName) throws Exception
+	public Npc(String fileName)
 	{
-		JSONParser parser = new JSONParser();
-		JSONObject NpcOutline = new JSONObject((JSONObject) parser.parse(new FileReader("res/creatures/" + fileName)));
-		
-		this.baseStats = 	(JSONArray) NpcOutline.get("BaseStats");
-		
-		this.level =		(int)(long) NpcOutline.get("Level");
-		this.name = 		(String) NpcOutline.get("Name");
-		this.className = 	(String) NpcOutline.get("Class");
-		this.raceName = 	(String) NpcOutline.get("Race");
-		this.description = 	(String) NpcOutline.get("Description");
-		
-		this.npcclass = new NpcClass (className + ".json");
-		this.stats = 	new NpcStats(npcclass, baseStats, level);
-		this.ai = 		new AI((String)NpcOutline.get("Ai"));
+		try
+		{
+			JSONParser parser = new JSONParser();
+			JSONObject NpcOutline = new JSONObject((JSONObject) parser.parse(new FileReader("res/creatures/" + fileName)));
+			
+			this.baseStats = 	(JSONArray) NpcOutline.get("BaseStats");
+			
+			this.level =		(int)(long) NpcOutline.get("Level");
+			this.name = 		(String) NpcOutline.get("Name");
+			this.className = 	(String) NpcOutline.get("Class");
+			this.raceName = 	(String) NpcOutline.get("Race");
+			this.description = 	(String) NpcOutline.get("Description");
+			
+			this.npcclass = new NpcClass (className + ".json");
+			this.stats = 	new NpcStats(npcclass, baseStats, level);
+			this.ai = 		new AI((String)NpcOutline.get("Ai"));
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	public void levelUp()
@@ -111,7 +125,7 @@ public class Npc
 		return "name: " + name + ", class name" + className + ", race name: " + raceName + ", level: " + level + "\n" + "description: " + description + "\n" + ai.print() + "\n" + stats.print() + "\n";
 	}
 	
-	public String Interact(String[] args)
+	public String interact()
 	{
 		return null;
 	}

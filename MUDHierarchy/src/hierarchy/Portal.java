@@ -1,12 +1,8 @@
 package hierarchy;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 public class Portal
 {
@@ -17,16 +13,23 @@ public class Portal
 	private String locationKey;
 	private boolean canUse;
 
-	public Portal(String fileName) throws FileNotFoundException, IOException, ParseException
+	public Portal(String fileName)
 	{
-		JSONParser parser = new JSONParser();
-		JSONObject jsonFile = new JSONObject((JSONObject) parser.parse(new FileReader("res/portals/" + fileName)));
-		
-		this.name =			(String)	jsonFile.get("Name");
-		this.description=	(String) 	jsonFile.get("Description");
-		this.sliceKey=		(int)(long) jsonFile.get("SliceKey");
-		this.locationKey=	(String)	jsonFile.get("LocationKey");
-		this.canUse= 		(boolean)	jsonFile.get("CanUse");
+		try
+		{
+			JSONParser parser = new JSONParser();
+			JSONObject jsonFile = new JSONObject((JSONObject) parser.parse(new FileReader("res/portals/" + fileName)));
+			
+			this.name =			(String)	jsonFile.get("Name");
+			this.description=	(String) 	jsonFile.get("Description");
+			this.sliceKey=		(int)(long) jsonFile.get("SliceKey");
+			this.locationKey=	(String)	jsonFile.get("LocationKey");
+			this.canUse= 		(boolean)	jsonFile.get("CanUse");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 	public int getSliceKey()
 	{
@@ -52,4 +55,8 @@ public class Portal
 		return canUse;
 	}
 	
+	public String interact()
+	{
+		return null;
+	}
 }
