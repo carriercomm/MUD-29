@@ -30,9 +30,9 @@ public class Location
 		this.key 			= (String) JsonFile.get("Key");
 		this.name 			= (String) JsonFile.get("Name");
 		
-		items 	= (ArrayList<Item>) ((JSONArray)JsonFile.get("Items")).stream().map(i -> new ItemBuilder((String)((JSONObject) i).get("FileName")).getItem()).collect(Collectors.toList());
-		npcs  	= (ArrayList<Npc>) ((JSONArray)JsonFile.get("Npcs")).stream().map(n -> new Npc((String)((JSONObject) n).get("FileName"))).collect(Collectors.toList());
-		portals = (ArrayList<Portal>) ((JSONArray)JsonFile.get("Portals")).stream().map(p -> new Portal((String)((JSONObject) p).get("FileName"))).collect(Collectors.toList());
+		items 	= (ArrayList<Item>) 	((JSONArray)JsonFile.get("Items"))	.stream().map(i -> new ItemBuilder(	(String)((JSONObject) i).get("FileName")).getItem()).collect(Collectors.toList());
+		npcs  	= (ArrayList<Npc>) 		((JSONArray)JsonFile.get("Npcs"))	.stream().map(n -> new Npc(			(String)((JSONObject) n).get("FileName")))			.collect(Collectors.toList());
+		portals = (ArrayList<Portal>) 	((JSONArray)JsonFile.get("Portals")).stream().map(p -> new Portal(		(String)((JSONObject) p).get("FileName")))			.collect(Collectors.toList());
 	}
 	
 	public String getDescription()	// Generates a description of the room containing all items, npcs, and portals
@@ -42,21 +42,12 @@ public class Location
 		descr += this.description + "\n";
 		
 		descr += "\nThere are " + items.size() + " items in this room.\n";
-		//for(Item i : items)
-		//	descr += i.getDescription();
-		
 		descr += items.stream().map(i -> i.getDescription()).reduce((s,t) -> s + t).orElse("");
 		
 		descr += "\nThere are " + npcs.size() + " npcs in this room.\n";
-		//for(Npc n : npcs)
-		//	descr += n.getDescription();
-		
 		descr += npcs.stream().map(n -> n.getDescription()).reduce((s,t) -> s + t).orElse("");
 		
 		descr += "\nThere are " + portals.size() + " exit(s) in this room.\n";
-		//for(Portal p : portals)
-		//	descr += p.getDescription();
-		
 		descr += portals.stream().map(p -> p.getDescription()).reduce((s,t) -> s + t).orElse("");
 		
 		descr += "==============================================================================================";

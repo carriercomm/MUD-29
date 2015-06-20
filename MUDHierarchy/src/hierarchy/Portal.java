@@ -6,7 +6,6 @@ import org.json.simple.parser.JSONParser;
 
 public class Portal
 {
-	//private String[] tokens;
 	private String name;
 	private String description;
 	private int	   sliceKey;
@@ -30,6 +29,7 @@ public class Portal
 		{
 			e.printStackTrace();
 		}
+		
 	}
 	public int getSliceKey()
 	{

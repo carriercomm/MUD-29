@@ -27,18 +27,19 @@ public class ItemBuilder
 			JSONObject item = (JSONObject)(parser.parse(new FileReader("res/items/"+fileName)));
 			switch((String)item.get("Type"))
 			{
-			case "Consumable":
-				return new Consumable(fileName);
-			case "Container":
-				return new Container(fileName);
-			case "Equipable":
-				return new Equipable(fileName);
+				case "Consumable":
+					return new Consumable(fileName);
+				case "Container":
+					return new Container(fileName);
+				case "Equipable":
+					return new Equipable(fileName);
 			}
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
+		
 		return null;
 	}
 }
