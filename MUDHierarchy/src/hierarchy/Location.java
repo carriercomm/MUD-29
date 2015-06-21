@@ -41,11 +41,11 @@ public class Location
 		descr += this.name + "\n";
 		descr += this.description + "\n";
 		
-		descr += "\nThere are " + items.size() + " items in this room.\n";
-		descr += items.stream().map(i -> i.getDescription(1)).filter(s -> s != null).reduce((s,t) -> s +"\t"+  t).orElse("");
-		
 		descr += "\nThere are " + npcs.size() + " npcs in this room.\n";
 		descr += "\t" + npcs.stream().map(Npc::getDescription).filter(s -> s != null).reduce((s,t) -> s +"\t"+  t).orElse("");
+		
+		descr += "\nThere are " + items.size() + " items in this room.\n";
+		descr += items.stream().map(i -> i.getDescription(1)).filter(s -> s != null).reduce((s,t) -> s +"\t"+  t).orElse("");
 		
 		descr += "\nThere are " + portals.size() + " exit(s) in this room.\n";
 		descr += "\t" + portals.stream().map(Portal::getDescription).filter(s -> s != null).reduce((s,t) -> s +"\t"+  t).orElse("");

@@ -1,23 +1,121 @@
 {
-	"verb" : 		[	"open","close","pick","eat","drink", "use","turn","push","pull","open", "go",
-						"pickup", "walk", "head", "attack", "stab", "fight", "swing", "grab", "say",
-						"talk", "look", "throw", "gothrough", "put", "get"	],
+	"verb" :
+	[
+		{"Word":"open", 	"Value":"use"},
+		{"Word":"close", 	"Value":"use"},
+		{"Word":"pick", 	"Value":"take"},
+		{"Word":"eat", 		"Value":"use"},
+		{"Word":"drink",	"Value":"use"},
+		{"Word":"use", 		"Value":"use"},
+		{"Word":"turn", 	"Value":"use"},
+		{"Word":"push", 	"Value":"use"},
+		{"Word":"pull", 	"Value":"use"},
+		{"Word":"open", 	"Value":"use"},
+		{"Word":"go", 		"Value":"go"},
+		{"Word":"pickup", 	"Value":"take"},
+		{"Word":"walk",	 	"Value":"go"},
+		{"Word":"head", 	"Value":"go"},
+		{"Word":"attack", 	"Value":"attack"},
+		{"Word":"stab", 	"Value":"attack"},
+		{"Word":"fight", 	"Value":"attack"},
+		{"Word":"swing", 	"Value":"attack"},
+		{"Word":"grab", 	"Value":"take"},
+		{"Word":"say", 		"Value":"talk"},
+		{"Word":"trade", 	"Value":"talk"},
+		{"Word":"look", 	"Value":"examine"},
+		{"Word":"throw", 	"Value":"drop"},
+		{"Word":"gothrough","Value":"go"},
+		{"Word":"putdown", 	"Value":"drop"},
+		{"Word":"get", 		"Value":"take"},
+		{"Word":"examine",	"Value":"examine"},
+		{"Word":"unequip",	"Value":"unequip"},
+		{"Word":"putaway",	"Value":"unequip"},
+		{"Word":"wield",	"Value":"equip"},
+		{"Word":"equip",	"Value":"equip"},
+		{"Word":"drop",		"Value":"drop"},
+		{"Word":"take",		"Value":"take"},
+		{"Word":"interact",	"Value":"talk"},
+		{"Word":"trade",	"Value":"trade"},
+		{"Word":"barter",	"Value":"trade"},
+	],
 
-	"subject" : 	[	"i","me","my"	],
+	"dirObject" : 
+	[
+		"dog",
+		"door",
+		"sword",
+		"table",
+		"inventory",
+		"chest",
+		"key",
+		"him",
+		"her",
+		"room",
+		"ring",
+		"potato"
+	],
 
-	"dirObject" : 	[	"dog", "door", "sword", "table", "inventory", "chest", "key", "him", "her",
-						"androgynous elf", "anthropomorphic legum", "arthritic ankheg", "room", "ring",
-						"potato"	],
+	"adjective" :
+	[
+		"green",
+		"blue",
+		"red",
+		"yellow",
+		"shiny",
+		"magical",
+		"adjectivy",
+		"north",
+		"south",
+		"east",
+		"west"
+	],
 
-	"adjective" :	[	"green", "blue", "red", "yellow", "shiny", "magical", "adjectivy", "north",
-						"south", "east", "west"	],
+	"adverb" :	
+	[
+		"fiercely",
+		"swiftly",
+		"deftly", 
+		"expertly",
+		"quickly",
+		"clumsily",
+		"accidentally",
+		"purposfully",
+		"north",
+		"south",
+		"east",
+		"west", 
+		"through",
+		"down",
+		"up"
+	],
 
-	"adverb" :		[	"fiercely", "swiftly", "deftly", "expertly", "quickly", "clumsily", "accidentally",
-						"purposfully", "north", "south", "east", "west", "through"	],
-
-	"conjunction" :	[	"and", "then"	],
-
-	"misc" :		[	"the", "a", "to", "at", "on", "onto", "in", "into"	],
+	"misc" :		
+	[	
+		"the", 
+		"a", 
+		"to", 
+		"at", 
+		"on", 
+		"onto", 
+		"in", 
+		"into"	
+	],
 	
-	"terminator" : 	[	"."	]
+	"subject" :
+	[
+		"i",
+		"me",
+		"my"
+	],
+
+	"conjunction" :	
+	[
+		"and", 
+		"then"	
+	],
+
+	"terminator" : 	
+	[
+		"."
+	]
 }

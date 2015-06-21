@@ -46,6 +46,16 @@ public class Pc
 		}
 	}
 	
+	public int getSliceKey()
+	{
+		return sliceKey;
+	}
+	
+	public String getLocationKey()
+	{
+		return locationKey;
+	}
+	
 	public String getClassName()
 	{
 		return className;

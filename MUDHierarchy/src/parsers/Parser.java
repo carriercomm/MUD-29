@@ -7,21 +7,35 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 
+import parsers.tokens.Action;
+
 public class Parser
 {
 	
 	ArrayList<String> verb, subject, dirObject, adjective, adverb, conjunction, misc, terminator;
+	ArrayList<JSONObject> verbObjs;	//	used to keep track of the actions associated with different verbs
+	ArrayList<Action> verbValues;	//
+	
 	Tokenizer tokenizer = new Tokenizer(false);
 	
 	String input;
+	
+	Action action;	//	passed back to the hierarchy to perform action
+	String target;	//
+	
+	String verbWord, dirObjectWord, adverbWord, adjectiveWord;
 	
 	@SuppressWarnings("unchecked")
 	public Parser(String fileName) throws Exception
 	{
 		JSONParser parser = new JSONParser();
 		JSONObject lib = new JSONObject((JSONObject) parser.parse(new FileReader("res/" + fileName)));
-
-		verb 		= (ArrayList<String>) ((JSONArray)lib.get("verb")).stream().collect(Collectors.toList());
+		
+		verbObjs = (ArrayList<JSONObject>)((JSONArray)lib.get("verb")).stream().collect(Collectors.toList());
+		verbValues = (ArrayList<Action>) (verbObjs.stream().map(j -> Action.valueOf((String)j.get("Value")))).collect(Collectors.toCollection(ArrayList<Action>::new));
+		//System.out.println(verbValues.toString());
+		
+		verb 		= (ArrayList<String>) (verbObjs.stream().map(j -> (String)j.get("Word"))).collect(Collectors.toCollection(ArrayList<String>::new));
 		subject 	= (ArrayList<String>) ((JSONArray)lib.get("subject")).stream().collect(Collectors.toList());
 		dirObject 	= (ArrayList<String>) ((JSONArray)lib.get("dirObject")).stream().collect(Collectors.toList());
 		adjective 	= (ArrayList<String>) ((JSONArray)lib.get("adjective")).stream().collect(Collectors.toList());
