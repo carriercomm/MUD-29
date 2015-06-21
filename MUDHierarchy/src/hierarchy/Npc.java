@@ -5,8 +5,6 @@ import hierarchy.subsystems.NpcClass;
 import hierarchy.subsystems.NpcStats;
 
 import java.io.FileReader;
-import java.util.Random;
-
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 
@@ -21,14 +19,16 @@ public class Npc
 	private String className;
 	private String raceName;
 	private int level;
+	private boolean isInteractable;
+	private boolean isAttackable;
 	private JSONArray baseStats;
 	
 	public Npc(String fileName, int level)
 	{
 		try
 		{
-			superNpc(fileName, false);
 			this.level = level;
+			superNpc(fileName, false);
 		}
 		catch(Exception e)
 		{
@@ -56,21 +56,22 @@ public class Npc
 			
 		this.baseStats = 	(JSONArray) NpcOutline.get("BaseStats");
 
-		this.name = 		(String) NpcOutline.get("Name");
-		this.className = 	(String) NpcOutline.get("Class");
-		this.raceName = 	(String) NpcOutline.get("Race");
-		this.description = 	(String) NpcOutline.get("Description");
+		this.name 			= 	(String) NpcOutline.get("Name");
+		this.className 		= 	(String) NpcOutline.get("Class");
+		this.raceName 		= 	(String) NpcOutline.get("Race");
+		this.description 	=	(String) NpcOutline.get("Description");
+		this.isInteractable = 	(boolean) NpcOutline.get("IsInteractable");
+		this.isAttackable	= 	(boolean) NpcOutline.get("IsAttackable");
 			
-		this.npcclass = new NpcClass (className + ".json");
-		this.stats = 	new NpcStats(npcclass, baseStats, level);
-		this.ai = 		new AI((String)NpcOutline.get("Ai"));
-		
 		if(levelByFile)
 			this.level = (int)(long) NpcOutline.get("Level");
-
+		
+		this.npcclass 	= new NpcClass (className + ".json");
+		this.stats 		= new NpcStats(npcclass, baseStats, level);
+		this.ai 		= new AI((String)NpcOutline.get("Ai"));
 	}
 	
-	public void levelUp()
+/*	public void levelUp()		// needs to be abstracted to an external utility
 	{
 		Random random = new Random();
 		stats.setLevel(stats.getLevel() + 1);
@@ -89,7 +90,7 @@ public class Npc
 		stats.setFortSave(npcclass.getFortSave(stats.getLevel()));
 		stats.setRefSave(npcclass.getRefxSave(stats.getLevel()));
 		stats.setWillSave(npcclass.getWillSave(stats.getLevel()));
-	}
+	}*/
 
 	public String getDescription()
 	{
@@ -116,12 +117,22 @@ public class Npc
 		return level;
 	}
 	
+	public boolean getIsInteractable()
+	{
+		return isInteractable;
+	}
+	
+	public boolean getIsAttackable()
+	{
+		return isAttackable;
+	}
+	
 	public String print()
 	{
 		return "name: " + name + ", class name" + className + ", race name: " + raceName + ", level: " + level + "\n" + "description: " + description + "\n" + ai.print() + "\n" + stats.print() + "\n";
 	}
 	
-	public String interact()
+	public String interact()	// ises isAttackable and isInteractable to resolve interactions & such
 	{
 		return null;
 	}

@@ -5,6 +5,8 @@
 	"Race":"Default",
 	"Class":"ClassOutline.json",
 	"Level":1,
+	"IsInteractable":false,
+	"IsAttackable":true,
 
 	"BaseStats":
 	[

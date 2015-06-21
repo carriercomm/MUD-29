@@ -1,10 +1,12 @@
 {
-	"Type":"None",
+	"Type":"Consumable",
 	"Name":"Default",
 	"Description":"Default",
 	
 	"IsHidden":false,
 	"Weight":0.1,
+	"UsesTotal":0,
+	"UsesCurrent":0,
 
 	"Abilities":
 	[

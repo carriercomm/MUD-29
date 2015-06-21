@@ -1,8 +1,11 @@
 package hierarchy;
 
 import java.io.FileReader;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+
+import parsers.tokens.Action;
 
 public class Portal
 {
@@ -55,8 +58,17 @@ public class Portal
 		return canUse;
 	}
 	
-	public String interact()
+	public String interact(Action a, Pc p)
 	{
-		return null;
+		if(a == Action.go && canUse)
+		{
+			p.movePc(sliceKey, locationKey);
+			return "You head through the unlocked door.";
+		}
+		else if(a == Action.go && !canUse)
+		{
+			return "The door is locked.";
+		}
+		return "What are you trying to do?";
 	}
 }

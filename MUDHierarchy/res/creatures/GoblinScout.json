@@ -5,6 +5,8 @@
 	"Race":"Goblin",
 	"Class":"Warrior",
 	"Level":1,
+	"IsInteractable":false,
+	"IsAttackable":true,
 
 	"BaseStats":
 	[

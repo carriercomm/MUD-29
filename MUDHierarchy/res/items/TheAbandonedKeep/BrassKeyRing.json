@@ -1,0 +1,15 @@
+{
+	"Type":"Equipable",
+	"Name":"Brass Key Ring",
+	"Description":"An old tarnished key ring, holding inumerable keys of varying sizes",
+	
+	"IsHidden":false,
+	"Weight":0.1,
+	"IsEquiped":false,
+
+	"Abilities":
+	[
+
+	]
+
+}

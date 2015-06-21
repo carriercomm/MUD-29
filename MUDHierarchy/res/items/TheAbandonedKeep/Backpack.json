@@ -1,0 +1,21 @@
+{
+	"Type":"Container",
+	"Name":"Backpack",
+	"Description":"A worn leather backpack covered in pockets and straps.",
+	
+	"IsHidden":false,
+	"Weight":0.1,
+	"IsStatic":false,
+
+	"SubItems":
+	[
+		{"FileName":"TheAbandonedKeep/BrassKeyRing.json"},
+		{"FileName":"TheAbandonedKeep/BrassKeyRing.json"}
+	],
+
+	"Abilities":
+	[
+
+	]
+
+}

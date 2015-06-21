@@ -1,0 +1,21 @@
+{
+	"Type":"Container",
+	"Name":"Desk",
+	"Description":"A sturdy oak desk with one large drawer",
+	
+	"IsHidden":false,
+	"Weight":0.1,
+	"IsStatic":true,
+
+	"SubItems":
+	[
+		{"FileName":"TheAbandonedKeep/Backpack.json"}
+		{"FileName":"TheAbandonedKeep/Backpack.json"}
+	],
+
+	"Abilities":
+	[
+
+	]
+
+}

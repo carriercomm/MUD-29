@@ -12,12 +12,12 @@ import org.json.simple.parser.JSONParser;
 
 public abstract class Item
 {
-	private String name;
-	private String description;	
-	private boolean isHidden;
-	private double weight;
+	protected String name;
+	protected String description;	
+	protected boolean isHidden;
+	protected double weight;
 	
-	private ArrayList<Ability> abilities = new ArrayList<Ability>();
+	protected ArrayList<Ability> abilities = new ArrayList<Ability>();
 	protected JSONObject JsonFile;
 	
 	@SuppressWarnings("unchecked")
@@ -34,10 +34,8 @@ public abstract class Item
 		abilities = (ArrayList<Ability>) ((JSONArray)JsonFile.get("Abilities")).stream().map(a -> new Ability((String) a)).collect(Collectors.toList());
 	}
 	
-	public String getDescription()
-	{
-		return description +"\n"+ abilities.get(0).toString();
-	}
+	public abstract String getDescription(int level);
+
 	
 	public String getName()
 	{
@@ -60,5 +58,6 @@ public abstract class Item
 	}
 	
 	public abstract String interact();
+	
 }
 	
