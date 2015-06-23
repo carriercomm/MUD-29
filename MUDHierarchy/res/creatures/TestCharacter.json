@@ -1,0 +1,19 @@
+{
+	"Name":"TestCharacter",
+	"Race":"Human",
+	"Class":"Warrior",
+	"Level":1,
+
+	"SliceKey":0,
+	"LocationKey":"entrance",
+
+	"BaseStats":
+	[
+		{"Strength":15},
+		{"Dexterity":12},
+		{"Constitution":14},
+		{"Wisdom":11},
+		{"Intellegence":10},
+		{"Charisma":12}
+	]
+}

@@ -1,4 +1,6 @@
 package parsers;
+import hierarchy.MapRoot;
+
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -17,16 +19,14 @@ public class Parser
 	ArrayList<Action> verbValues;	//
 	
 	Tokenizer tokenizer = new Tokenizer(false);
+	Interpreter parserbridge;
 	
 	String input;
-	
-	Action action;	//	passed back to the hierarchy to perform action
-	String target;	//
 	
 	String verbWord, dirObjectWord, adverbWord, adjectiveWord;
 	
 	@SuppressWarnings("unchecked")
-	public Parser(String fileName) throws Exception
+	public Parser(String fileName, MapRoot slicemap) throws Exception
 	{
 		JSONParser parser = new JSONParser();
 		JSONObject lib = new JSONObject((JSONObject) parser.parse(new FileReader("res/" + fileName)));
@@ -34,6 +34,8 @@ public class Parser
 		verbObjs = (ArrayList<JSONObject>)((JSONArray)lib.get("verb")).stream().collect(Collectors.toList());
 		verbValues = (ArrayList<Action>) (verbObjs.stream().map(j -> Action.valueOf((String)j.get("Value")))).collect(Collectors.toCollection(ArrayList<Action>::new));
 		//System.out.println(verbValues.toString());
+		
+		parserbridge = new Interpreter(slicemap, verbValues);
 		
 		verb 		= (ArrayList<String>) (verbObjs.stream().map(j -> (String)j.get("Word"))).collect(Collectors.toCollection(ArrayList<String>::new));
 		subject 	= (ArrayList<String>) ((JSONArray)lib.get("subject")).stream().collect(Collectors.toList());
@@ -241,11 +243,15 @@ public class Parser
 	
 	public void parse(String input)
 	{
-		this.input = input;
-		tokenizer.addTokens(input);
-		if(block())
+		if(input != null)
 		{
-			System.out.println("Success!!");	
+			this.input = input;
+			tokenizer.resetAll();
+			tokenizer.addTokens(input);
+			if(block())
+			{
+				System.out.println("Success!!");	
+			}
 		}
 	}
 	
@@ -253,6 +259,11 @@ public class Parser
 	{
 		System.out.println(error);
 		//System.exit(1);
+	}
+
+	public void close()
+	{
+		
 	}
 	
 	

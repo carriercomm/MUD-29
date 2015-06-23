@@ -1,5 +1,6 @@
+import game.OutputManager;
 import hierarchy.Npc;
-import hierarchy.SliceMap;
+import hierarchy.MapRoot;
 
 public class TestCase 
 {
@@ -9,11 +10,12 @@ public class TestCase
 		try
 		{
 			Npc Goblin1 = new Npc("GoblinScout.json",1);
+			OutputManager o = new OutputManager();
 			System.out.println(Goblin1.print());
 			//Goblin1.levelUp();
-			System.out.println(Goblin1.print());
+			//System.out.println(Goblin1.print());
 			
-			SliceMap slicemap = new SliceMap("slicemap.json");
+			MapRoot slicemap = new MapRoot("slicemap.json", o);
 			slicemap.getLocationDescription(0, "entrance");
 			slicemap.getLocationDescription(0, "grand_hallway");
 			slicemap.getLocationDescription(0, "audience_chamber");

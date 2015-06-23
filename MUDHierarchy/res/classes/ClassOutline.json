@@ -1,4 +1,5 @@
 {
+	"Type":"Npc",
 	"Name":"Default",
 	"BaseMana":0,
 	"ManaPerLevel":0,

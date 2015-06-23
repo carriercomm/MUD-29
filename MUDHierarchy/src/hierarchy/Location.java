@@ -50,7 +50,7 @@ public class Location
 		descr += "\nThere are " + portals.size() + " exit(s) in this room.\n";
 		descr += "\t" + portals.stream().map(Portal::getDescription).filter(s -> s != null).reduce((s,t) -> s +"\t"+  t).orElse("");
 		
-		descr += "==============================================================================================";
+		descr += "==============================================================================================\n";
 		
 		return descr;
 	}

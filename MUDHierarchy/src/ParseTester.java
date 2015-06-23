@@ -1,4 +1,4 @@
-import java.util.Scanner;
+/*import java.util.Scanner;
 
 import parsers.*;
 
@@ -28,4 +28,4 @@ public class ParseTester
 		}
 	}
 
-}
+}*/

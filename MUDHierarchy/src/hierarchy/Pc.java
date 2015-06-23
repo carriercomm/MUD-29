@@ -28,14 +28,16 @@ public class Pc
 		try
 		{
 			JSONParser parser = new JSONParser();
-			JSONObject PcOutline = new JSONObject((JSONObject) parser.parse(new FileReader("res/creatures/" + fileName)));
+			JSONObject PcOutline = new JSONObject((JSONObject) parser.parse(new FileReader(fileName)));
 				
 			this.baseStats = 	(JSONArray) PcOutline.get("BaseStats");
 	
 			this.name 			= 	(String) PcOutline.get("Name");
 			this.className 		= 	(String) PcOutline.get("Class");
 			this.raceName 		= 	(String) PcOutline.get("Race");
-			this.level = (int)(long) PcOutline.get("Level");
+			this.level			= 	(int)(long) PcOutline.get("Level");
+			this.sliceKey 		= 	(int)(long) PcOutline.get("SliceKey");
+			this.locationKey 	= 	(String) PcOutline.get("LocationKey");
 			
 			this.npcclass 	= new NpcClass (className + ".json");
 			this.stats 		= new NpcStats(npcclass, baseStats, level);

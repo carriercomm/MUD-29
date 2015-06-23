@@ -1,5 +1,12 @@
 package hierarchy.utilities;
 
-public class Conversation {
+import hierarchy.Npc;
+import hierarchy.Pc;
 
+public class Conversation
+{
+	public void talk(Pc pc, Npc npc)
+	{
+		
+	}
 }
