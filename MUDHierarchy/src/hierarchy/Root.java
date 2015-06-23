@@ -13,14 +13,14 @@ import org.json.simple.parser.JSONParser;
 
 import parsers.tokens.Action;
 
-public class MapRoot
+public class Root
 {
 	private Map<Integer, Slice> sliceMap = new HashMap<Integer, Slice>();
 	private Pc character;
 	
 	OutputManager o;
 	
-	public MapRoot(String fileName, OutputManager o) throws Exception
+	public Root(String fileName, OutputManager o) throws Exception
 	{
 		JSONParser parser = new JSONParser();
 		JSONObject slicemap = (JSONObject) parser.parse(new FileReader("res/" + fileName));

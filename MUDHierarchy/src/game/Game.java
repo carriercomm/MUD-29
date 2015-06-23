@@ -1,7 +1,7 @@
 package game;
 
 import parsers.Parser;
-import hierarchy.MapRoot;
+import hierarchy.Root;
 
 public class Game
 {
@@ -10,7 +10,7 @@ public class Game
 
 	SaveGame gamesaver = new SaveGame();
 	
-	MapRoot root;
+	Root root;
 	Parser parser;
 	
 	String path;
@@ -46,7 +46,7 @@ public class Game
 	{
 		try
 		{
-			this.root = new MapRoot(path + "slicemap.json", o);
+			this.root = new Root(path + "slicemap.json", o);
 			return true;
 		}
 		catch(Exception e)
@@ -60,7 +60,7 @@ public class Game
 	{
 		try
 		{
-			this.root = new MapRoot("res/slicemap.json", o);
+			this.root = new Root("res/slicemap.json", o);
 			return true;
 		}
 		catch(Exception e)

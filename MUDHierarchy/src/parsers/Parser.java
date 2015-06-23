@@ -1,5 +1,5 @@
 package parsers;
-import hierarchy.MapRoot;
+import hierarchy.Root;
 
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class Parser
 	String verbWord, dirObjectWord, adverbWord, adjectiveWord;
 	
 	@SuppressWarnings("unchecked")
-	public Parser(String fileName, MapRoot slicemap) throws Exception
+	public Parser(String fileName, Root slicemap) throws Exception
 	{
 		JSONParser parser = new JSONParser();
 		JSONObject lib = new JSONObject((JSONObject) parser.parse(new FileReader("res/" + fileName)));

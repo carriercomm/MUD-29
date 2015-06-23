@@ -1,6 +1,6 @@
 package parsers;
 
-import hierarchy.MapRoot;
+import hierarchy.Root;
 import hierarchy.utilities.Combat;
 import hierarchy.utilities.Conversation;
 import hierarchy.utilities.Store;
@@ -11,13 +11,13 @@ import parsers.tokens.Action;
 
 public class Interpreter
 {
-	private MapRoot root;
+	private Root root;
 	
 	Combat combat = new Combat();
 	Conversation conversation = new Conversation();
 	Store store = new Store();
 	
-	public Interpreter(MapRoot slicemap, ArrayList<Action> verbMappings)
+	public Interpreter(Root slicemap, ArrayList<Action> verbMappings)
 	{
 		this.root = slicemap;
 	}

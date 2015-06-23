@@ -1,10 +1,10 @@
 package game;
 
-import hierarchy.MapRoot;
+import hierarchy.Root;
 
 public class SaveGame {
 
-	public void save(MapRoot root, String path)
+	public void save(Root root, String path)
 	{
 		
 	}
