@@ -52,7 +52,11 @@
 		"her",
 		"room",
 		"ring",
-		"potato"
+		"potato",
+		"north",
+		"south",
+		"east",
+		"west"
 	],
 
 	"adjective" :
@@ -80,10 +84,6 @@
 		"clumsily",
 		"accidentally",
 		"purposfully",
-		"north",
-		"south",
-		"east",
-		"west", 
 		"through",
 		"down",
 		"up"

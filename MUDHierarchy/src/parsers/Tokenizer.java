@@ -33,21 +33,29 @@ public class Tokenizer
 	{	
 		int size = input.length() - input.replace(" ", "").length() + 1;	// gets the number of words in the input
 		
-		int previousPos = 0;
-		int position = input.indexOf(" ", 0);
-		
-		for(int i = 0; i < size; i++)
+		if(size > 1)
 		{
-			String temp = input.substring(previousPos, position);
-
-			tokens.add(temp);	// grabs all of the words with spaces separating them
-			previousPos = position + 1;
+			int previousPos = 0;
+			int position = input.indexOf(" ", 0);
 			
-			if(i != (size - 2))
-				position = input.indexOf(" ", previousPos);	// if this isn't the second to last word
-			else
-				position = input.length();	// if it is the second to last word
+			for(int i = 0; i < size; i++)
+			{
+				String temp = input.substring(previousPos, position);
+	
+				tokens.add(temp);	// grabs all of the words with spaces separating them
+				previousPos = position + 1;
+				
+				if(i != (size - 2))
+					position = input.indexOf(" ", previousPos);	// if this isn't the second to last word
+				else
+					position = input.length();	// if it is the second to last word
+			}
 		}
+		else
+		{
+			tokens.add(input);
+		}
+		
 		tokens.add("."); // terminator token
 	}
 	
@@ -89,5 +97,10 @@ public class Tokenizer
 	{
 		tokens = new ArrayList<String>();	//reset all
 		currentToken = 0;
+	}
+
+	public void close()
+	{
+		
 	}
 }

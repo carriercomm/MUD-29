@@ -5,8 +5,6 @@ import hierarchy.utilities.Combat;
 import hierarchy.utilities.Conversation;
 import hierarchy.utilities.Store;
 
-import java.util.ArrayList;
-
 import parsers.tokens.Action;
 
 public class Interpreter
@@ -17,9 +15,9 @@ public class Interpreter
 	Conversation conversation = new Conversation();
 	Store store = new Store();
 	
-	public Interpreter(Root slicemap, ArrayList<Action> verbMappings)
+	public Interpreter(Root root)
 	{
-		this.root = slicemap;
+		this.root = root;
 	}
 	
 	public void interpret(String dirObject, Action action)
@@ -36,27 +34,32 @@ public class Interpreter
 			store.trade(root.getCharacter(), root.getCreature(dirObject));
 		break;
 		case use:
-			root.interact(action, dirObject);
+			root.interact(dirObject, action);
 		break;
 		case take:
-			root.interact(action, dirObject);
+			root.interact(dirObject, action);
 		break;
 		case drop:
-			root.interact(action, dirObject);
+			root.interact(dirObject, action);
 		break;
 		case equip:
-			root.interact(action, dirObject);
+			root.interact(dirObject, action);
 		break;
 		case unequip:
-			root.interact(action, dirObject);
+			root.interact(dirObject, action);
 		break;
 		case examine:
-			root.interact(action, dirObject);
+			root.interact(dirObject, action);
 		break;
 		case go:
-			root.interact(action, dirObject);
+			root.interact(dirObject, action);
 		break;
 		}
+	}
+
+	public void close()
+	{
+		
 	}
 	
 }

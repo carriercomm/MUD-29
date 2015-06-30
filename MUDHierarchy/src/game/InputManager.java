@@ -68,9 +68,9 @@ public class InputManager implements Runnable
 		return exitKeyPressed;
 	}
 	
-/*	private void setExit(boolean b)
-	{
-		exitKeyPressed = b;
-	}*/
+	//private void setExit(boolean b)
+	//{
+	//	exitKeyPressed = b;				// need to add esc key press detection or something
+	//}
 	
 }

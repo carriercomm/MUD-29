@@ -26,8 +26,9 @@ public class Game
 	{
 		try
 		{
-			parser = new Parser("library.json",root);
+			parser = new Parser("library.json", root, o);
 			
+			root.getCharacterLocationDescription();
 			while(!i.getExit())
 			{
 				parser.parse(i.read());
@@ -36,7 +37,10 @@ public class Game
 		}
 		catch(Exception e)
 		{
-			o.write("!!!!!Parser failed to initalize!!!!!\n");
+			if(root == null)
+				o.write("!!!!!Game wasn't initialized!!!!!\n");
+			
+			o.write("!!!!!Parser failed!!!!!\n");
 			e.printStackTrace(o.getPrintWriter());
 			o.getPrintWriter().flush();
 		}

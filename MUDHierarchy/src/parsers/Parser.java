@@ -1,4 +1,5 @@
 package parsers;
+import game.OutputManager;
 import hierarchy.Root;
 
 import java.io.FileReader;
@@ -13,61 +14,74 @@ import parsers.tokens.Action;
 
 public class Parser
 {
+	OutputManager o;
 	
-	ArrayList<String> verb, subject, dirObject, adjective, adverb, conjunction, misc, terminator;
-	ArrayList<JSONObject> verbObjs;	//	used to keep track of the actions associated with different verbs
-	ArrayList<Action> verbValues;	//
+	Tokenizer tokenizer = new Tokenizer(false);	// tokenizer to extract words from text input
+	Interpreter interpreter;	// interpreter to execute actions based on text input
 	
-	Tokenizer tokenizer = new Tokenizer(false);
-	Interpreter parserbridge;
+	ArrayList<String> verb, subject, dirObject, adjective, adverb, conjunction, misc, terminator;	// lists of word types
+	ArrayList<JSONObject> verbObjs;	//	list of verb objects containing the verbs and their action mappings
+	ArrayList<Action> verbValues;	// 	extracted list of action mappings for the verbs
 	
-	String input;
-	
-	String verbWord, dirObjectWord, adverbWord, adjectiveWord;
+	String verbWord = "";		//	extracted words passed to the interpreter
+	String dirObjectWord = "";	//
+	Action action;				//	action from the verbValues list corresponding to the verb
 	
 	@SuppressWarnings("unchecked")
-	public Parser(String fileName, Root slicemap) throws Exception
+	public Parser(String fileName, Root root, OutputManager o) throws Exception
 	{
+		this.o = o;
+		
+		interpreter = new Interpreter(root);
+		
 		JSONParser parser = new JSONParser();
-		JSONObject lib = new JSONObject((JSONObject) parser.parse(new FileReader("res/" + fileName)));
+		JSONObject library = new JSONObject((JSONObject) parser.parse(new FileReader("res/" + fileName)));
 		
-		verbObjs = (ArrayList<JSONObject>)((JSONArray)lib.get("verb")).stream().collect(Collectors.toList());
+		verbObjs = (ArrayList<JSONObject>)((JSONArray)library.get("verb")).stream().collect(Collectors.toList());
 		verbValues = (ArrayList<Action>) (verbObjs.stream().map(j -> Action.valueOf((String)j.get("Value")))).collect(Collectors.toCollection(ArrayList<Action>::new));
-		//System.out.println(verbValues.toString());
-		
-		parserbridge = new Interpreter(slicemap, verbValues);
-		
 		verb 		= (ArrayList<String>) (verbObjs.stream().map(j -> (String)j.get("Word"))).collect(Collectors.toCollection(ArrayList<String>::new));
-		subject 	= (ArrayList<String>) ((JSONArray)lib.get("subject")).stream().collect(Collectors.toList());
-		dirObject 	= (ArrayList<String>) ((JSONArray)lib.get("dirObject")).stream().collect(Collectors.toList());
-		adjective 	= (ArrayList<String>) ((JSONArray)lib.get("adjective")).stream().collect(Collectors.toList());
-		adverb 		= (ArrayList<String>) ((JSONArray)lib.get("adverb")).stream().collect(Collectors.toList());
-		conjunction = (ArrayList<String>) ((JSONArray)lib.get("conjunction")).stream().collect(Collectors.toList());
-		misc 		= (ArrayList<String>) ((JSONArray)lib.get("misc")).stream().collect(Collectors.toList());
-		terminator 	= (ArrayList<String>) ((JSONArray)lib.get("terminator")).stream().collect(Collectors.toList());
+		
+		subject 	= (ArrayList<String>) ((JSONArray)library.get("subject")).stream().collect(Collectors.toList());
+		dirObject 	= (ArrayList<String>) ((JSONArray)library.get("dirObject")).stream().collect(Collectors.toList());
+		adjective 	= (ArrayList<String>) ((JSONArray)library.get("adjective")).stream().collect(Collectors.toList());
+		adverb 		= (ArrayList<String>) ((JSONArray)library.get("adverb")).stream().collect(Collectors.toList());
+		conjunction = (ArrayList<String>) ((JSONArray)library.get("conjunction")).stream().collect(Collectors.toList());
+		misc 		= (ArrayList<String>) ((JSONArray)library.get("misc")).stream().collect(Collectors.toList());
+		terminator 	= (ArrayList<String>) ((JSONArray)library.get("terminator")).stream().collect(Collectors.toList());
 	}
 	
-	private boolean accept(ArrayList<String> t)	// looks for the token to match a category
+	private boolean accept(ArrayList<String> t)
 	{
-		String token = tokenizer.get();
-		boolean match = t.stream().anyMatch((s) -> s.equals(token));
-		if(t.equals(adjective) && match)
+		String token = tokenizer.get();	// get the next available token
+		boolean match = t.stream().anyMatch((s) -> s.equals(token));	// check to see if the token is contained in the provided collection
+		
+		if(t.equals(adjective) && match)	// add the adjective to the dirObject being passed
 		{
-			System.out.println("adjective: " + token);
+			dirObjectWord = token + " " + dirObjectWord; 
+			o.write("Parser: adjective: " + token + "\n");
 		}
-		if(t.equals(verb) && match)
+		if(t.equals(adverb) && match)	//  add the adverb to the passed verb
 		{
-			System.out.println("verb: " + token);
+			verbWord = verbWord + token;
+			o.write("Parser: adverb: " + token + "\n");
 		}
-		if(t.equals(dirObject) && match)
+		if(t.equals(dirObject) && match)	// add the dirObject being passed
 		{
-			System.out.println("dirObject: " + token);
+			dirObjectWord += token;
+			o.write("Parser: dirObject: " + token + "\n");
 		}
-		if(match)
+		if(t.equals(verb) && match)	// add the verb being passed
+		{
+			verbWord += token;
+			o.write("Parser: verb: " + token + "\n");
+		}
+
+		if(match)	// if the token matched, increment the tokenizer and return true
 		{
 			tokenizer.next();
 			return true;
 		}
+		
 		return false;
 	}
 
@@ -76,7 +90,7 @@ public class Parser
 		boolean match = tokenizer.get().equals(t);
 		if(match)
 		{
-			tokenizer.next();
+			tokenizer.next();	// if the token matched, increment the tokenizer and return true
 			return true;
 		}
 		return false;
@@ -99,12 +113,19 @@ public class Parser
 	
 	private boolean block()	// organizes grammar structures
 	{
-		if(statement())
+		if(statement() || command())
+		{
+			o.write("Parser: |" + verbWord + "|\n");
+			
+			if(verb.indexOf(verbWord) != -1)
+				action = verbValues.get(verb.indexOf(verbWord));	// assign the proper action to pass to the interpreter
+			else
+				action = Action.examine;		// if no verb is given, it is assumed you want to examine the specified object
+			
 			return true;
-		if(command())
-			return true;
-		
-		Error("Invalid command format.");
+		}
+			
+		o.write("Parser: Invalid command format.\n");
 		return false;
 	}
 	
@@ -139,11 +160,11 @@ public class Parser
 						{
 							return true;
 						}
-						tokenizer.previous();
+						this.previous();
 					}
-					tokenizer.previous();
+					this.previous();
 				}
-				tokenizer.previous();
+				this.previous();
 			}
 			if(accept(adverb))
 			{
@@ -154,13 +175,13 @@ public class Parser
 					{
 						return true;
 					}
-					tokenizer.previous();
+					this.previous();
 				}
 				if(accept(terminator))	// e.g. "go north"
 				{
 					return true;
 				}
-				tokenizer.previous();
+				this.previous();
 			}
 			if(accept(adjective))
 			{
@@ -170,11 +191,11 @@ public class Parser
 					{
 						return true;	// e.g. "go to the north door"
 					}
-					tokenizer.previous();
+					this.previous();
 				}
-				tokenizer.previous();
+				this.previous();
 			}
-			tokenizer.previous();
+			this.previous();
 		}
 		if(accept(dirObject))	// e.g. "inventory", "ankheg" -- gives info about dirObject
 		{
@@ -182,9 +203,11 @@ public class Parser
 			{
 				return true;
 			}
-			//previous();
+			this.previous();
 		}
+		
 		tokenizer.resetToken();
+		this.resetWords();
 		return false;
 	}
 	
@@ -203,9 +226,9 @@ public class Parser
 						{
 							return true;
 						}
-						tokenizer.previous();
+						this.previous();
 					}
-					tokenizer.previous();
+					this.previous();
 				}
 				if(accept(adverb))
 				{
@@ -218,9 +241,9 @@ public class Parser
 							{
 								return true;
 							}
-							tokenizer.previous();
+							this.previous();
 						}
-						tokenizer.previous();
+						this.previous();
 					}
 					if(accept(dirObject))	// e.g. "I go to the door"
 					{
@@ -228,42 +251,76 @@ public class Parser
 						{
 							return true;
 						}
+						this.previous();
 					}
 					if(accept(terminator))	// e.g. "I go to the north"
 					{
 						return true;
 					}
-					//previous();
+					this.previous();
 				}
+				this.previous();
 			}
 		}
+		
 		tokenizer.resetToken();
+		this.resetWords();
 		return false;
 	}
 	
-	public void parse(String input)
+	public void parse(String input)	// parses input tokens
 	{
 		if(input != null)
 		{
-			this.input = input;
+			this.resetWords();
 			tokenizer.resetAll();
 			tokenizer.addTokens(input);
+			
 			if(block())
 			{
-				System.out.println("Success!!");	
+				o.write("Parser: Success!!\n");	
+				interpreter.interpret(dirObjectWord, action);
 			}
 		}
 	}
 	
-	private void Error(String error)	// method to print errors
+	private void previous()	// reverts to previous token, and resets parsed key words
 	{
-		System.out.println(error);
-		//System.exit(1);
+		tokenizer.previous();
+		this.resetWords();
+	}
+	
+	private void resetWords()	// resets key words and action
+	{
+		dirObjectWord = "";
+		verbWord = "";
+		//action = null;	// this gets written over each time it is passed to the interpreter -- no need to write over it every reset
 	}
 
-	public void close()
+	public void close()	// frees resources used by the parser
 	{
+		verbWord = null;
+		dirObjectWord = null;
+		action = null;
 		
+		verb = null;
+		subject = null;
+		dirObject = null;
+		adjective = null;
+		adverb = null;
+		conjunction = null;
+		misc = null;
+		terminator = null;
+		verbObjs = null;
+		verbValues = null;
+		
+		tokenizer.close();
+		interpreter.close();
+		
+		tokenizer = null;
+		interpreter= null;
+		
+		o = null;
 	}
 	
 	

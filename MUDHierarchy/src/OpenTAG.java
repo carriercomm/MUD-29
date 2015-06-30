@@ -12,6 +12,7 @@ public class OpenTAG
 			InputManager i = new InputManager(o);
 			Game g = new Game(o,i,"res/");
 			
+			g.newGame();
 			g.run();
 		}
 		catch(Exception e)
@@ -19,4 +20,4 @@ public class OpenTAG
 			e.printStackTrace();
 		}
 	}
-}
+} 

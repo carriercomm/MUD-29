@@ -20,10 +20,10 @@ public class Root
 	
 	OutputManager o;
 	
-	public Root(String fileName, OutputManager o) throws Exception
+	public Root(String nameAndPath, OutputManager o) throws Exception
 	{
 		JSONParser parser = new JSONParser();
-		JSONObject slicemap = (JSONObject) parser.parse(new FileReader("res/" + fileName));
+		JSONObject slicemap = (JSONObject) parser.parse(new FileReader(nameAndPath));
 		
 		this.o = o;
 		
@@ -55,9 +55,9 @@ public class Root
 		return character.getName();
 	}
 	
-	public String interact(Action action, String dirObject)
+	public void interact(String dirObject, Action action)
 	{
-		return null;
+		o.write("It worked\n");
 	}
 
 	public void getCharacterLocationDescription()
