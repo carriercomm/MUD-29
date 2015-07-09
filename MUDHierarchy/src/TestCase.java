@@ -15,7 +15,7 @@ public class TestCase
 			//Goblin1.levelUp();
 			//System.out.println(Goblin1.print());
 			
-			Root slicemap = new Root("slicemap.json", o);
+			Root slicemap = new Root("res/slicemap.json", o);
 			slicemap.getLocationDescription(0, "entrance");
 			slicemap.getLocationDescription(0, "grand_hallway");
 			slicemap.getLocationDescription(0, "audience_chamber");

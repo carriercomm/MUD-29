@@ -1,4 +1,4 @@
-package parsers;
+/*package parsers;
 import game.OutputManager;
 import hierarchy.Root;
 
@@ -12,7 +12,7 @@ import org.json.simple.parser.JSONParser;
 
 import parsers.tokens.Action;
 
-public class Parser
+public class Parser	// TODO: abstract away the word extraction to a private class? could help modularize this more
 {
 	OutputManager o;
 	
@@ -325,3 +325,4 @@ public class Parser
 	
 	
 }
+*/

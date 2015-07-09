@@ -2,6 +2,7 @@ package hierarchy;
 
 import game.OutputManager;
 import hierarchy.utilities.CharacterCreator;
+
 import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -57,7 +58,7 @@ public class Root
 	
 	public void interact(String dirObject, Action action)
 	{
-		o.write("It worked\n");
+		o.write("It worked\n");	// TODO: need to get rid of this
 	}
 
 	public void getCharacterLocationDescription()
@@ -70,18 +71,36 @@ public class Root
 		return character;
 	}
 	
-	public Npc getCreature(String name)
+	public Npc getCreature(String name)	// search all locations in the player's slice
 	{
-		return findCreature(name);
+		// TODO: fill this out
+		return null;
 	}
 	
-	private Npc findCreature(String name)
+	public Item getItem(String name)	// search all items in player's slice (including player's items)
 	{
+		// TODO: fill this out
 		return null;
 	}
 
 	public void close()
 	{
+		// TODO Auto-generated method stub
+	}
+
+	public Location getCharacterLocation()
+	{
+		return sliceMap.get(character.getSliceKey()).getLocation(character.getLocationKey());
+	}
+	
+	public Location getLocation(int sliceKey, String locationKey)
+	{
+		return sliceMap.get(sliceKey).getLocation(locationKey);
+	}
+
+	public void getTargetDescription(String target) 
+	{
+		// TODO Auto-generated method stub
 		
 	}
 }

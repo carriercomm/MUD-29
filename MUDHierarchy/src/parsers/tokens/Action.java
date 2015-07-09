@@ -11,5 +11,8 @@ public enum Action	// enum of the unique actions possible
 	equip,
 	unequip,
 	examine,
-	go;
+	go,
+	inventory,
+	rest,
+	cast;
 }

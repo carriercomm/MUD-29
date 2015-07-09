@@ -13,7 +13,7 @@ public class Portal
 	private String description;
 	private int	   sliceKey;
 	private String locationKey;
-	private boolean canUse;
+	private boolean isLocked;
 
 	public Portal(String fileName)
 	{
@@ -26,7 +26,7 @@ public class Portal
 			this.description=	(String) 	jsonFile.get("Description");
 			this.sliceKey=		(int)(long) jsonFile.get("SliceKey");
 			this.locationKey=	(String)	jsonFile.get("LocationKey");
-			this.canUse= 		(boolean)	jsonFile.get("CanUse");
+			this.isLocked= 		(boolean)	jsonFile.get("IsLocked");
 		}
 		catch(Exception e)
 		{
@@ -55,17 +55,17 @@ public class Portal
 	
 	public boolean canUse()
 	{
-		return canUse;
+		return isLocked;
 	}
 	
 	public String interact(Action a, Pc p)
 	{
-		if(a == Action.go && canUse)
+		if(a == Action.go && isLocked)
 		{
-			p.movePc(sliceKey, locationKey);
-			return "You head through the unlocked door.";
+			p.move(sliceKey, locationKey);
+			return "You go through the door.";
 		}
-		else if(a == Action.go && !canUse)
+		else if(a == Action.go && !isLocked)
 		{
 			return "The door is locked.";
 		}

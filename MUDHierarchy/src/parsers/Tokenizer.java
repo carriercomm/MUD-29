@@ -64,6 +64,11 @@ public class Tokenizer
 		return tokens.get(currentToken);
 	}
 	
+	public String get(int index)
+	{
+		return tokens.get(index);
+	}
+	
 	public void next()	// grab one token
 	{
 		if (hasNext())
@@ -86,6 +91,11 @@ public class Tokenizer
 	{
 		if((currentToken - 1) >= 0)
 			currentToken--;
+	}
+	
+	public int getNumTokens()
+	{
+		return tokens.size();
 	}
 	
 	public void resetToken()	//reset current token

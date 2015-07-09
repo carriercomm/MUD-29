@@ -5,6 +5,8 @@ import hierarchy.subsystems.NpcClass;
 import hierarchy.subsystems.NpcStats;
 
 import java.io.FileReader;
+import java.util.ArrayList;
+
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 
@@ -13,6 +15,8 @@ public class Npc
 	private AI ai;
 	private NpcStats stats;
 	private NpcClass npcclass;
+	
+	private ArrayList<Item> items;
 	
 	private String name;
 	private String description;
@@ -127,12 +131,18 @@ public class Npc
 		return isAttackable;
 	}
 	
+	public void addItem(Item item)
+	{
+		items.add(item);
+	}
+	
 	public String print()
 	{
 		return "name: " + name + ", class name" + className + ", race name: " + raceName + ", level: " + level + "\n" + "description: " + description + "\n" + ai.print() + "\n" + stats.print() + "\n";
 	}
 	
-	public String interact()	// ises isAttackable and isInteractable to resolve interactions & such
+	//TODO: do we need this?
+	public String interact()	// uses isAttackable and isInteractable to resolve interactions & such?
 	{
 		return null;
 	}

@@ -10,6 +10,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import parsers.tokens.Action;
+
 public abstract class Item
 {
 	protected String name;
@@ -58,6 +60,12 @@ public abstract class Item
 	}
 	
 	public abstract String interact();
+
+	public void interact(Action action)
+	{
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
 	

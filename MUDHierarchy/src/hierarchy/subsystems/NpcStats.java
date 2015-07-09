@@ -9,7 +9,7 @@ import org.json.simple.JSONObject;
 
 public class NpcStats
 {
-	private Map<String,Integer >baseStats  = new HashMap<String, Integer>();
+	private Map<String,Integer> baseStats  = new HashMap<String, Integer>();
 	
 	private int level;
 	private int bab;		//Base attack bonus

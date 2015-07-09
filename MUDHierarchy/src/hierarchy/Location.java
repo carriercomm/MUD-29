@@ -87,6 +87,30 @@ public class Location
 	
 	public String interact()
 	{
+		// TODO: get rid of this
+		return null;
+	}
+
+	public void addItem(Item item)
+	{
+		items.add(item);
+	}
+
+	public Item getItem(String dirObject)
+	{
+		// TODO: finish auto generated method
+		return null;
+	}
+
+	public void removeItem(Item item)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Portal getPortal(String target)
+	{
+		// TODO Auto-generated method stub
 		return null;
 	}
 	

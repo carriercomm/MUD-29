@@ -1,6 +1,6 @@
 package game;
 
-import parsers.Parser;
+import parsers.testParser;
 import hierarchy.Root;
 
 public class Game
@@ -11,7 +11,7 @@ public class Game
 	SaveGame gamesaver = new SaveGame();
 	
 	Root root;
-	Parser parser;
+	testParser parser;
 	
 	String path;
 	
@@ -26,7 +26,7 @@ public class Game
 	{
 		try
 		{
-			parser = new Parser("library.json", root, o);
+			parser = new testParser(root, o);
 			
 			root.getCharacterLocationDescription();
 			while(!i.getExit())
