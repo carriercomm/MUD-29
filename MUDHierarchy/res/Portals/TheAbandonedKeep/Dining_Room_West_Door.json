@@ -1,7 +1,7 @@
 {
 	"Name":"Dining Room West Door",
 	"Description":"A large Oak double door is against the west wall.",
-	"CanUse": true,
+	"IsLocked": false,
 	"SliceKey":0,
 	"LocationKey":"audience_chamber"
 }

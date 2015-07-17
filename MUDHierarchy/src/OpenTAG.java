@@ -10,7 +10,7 @@ public class OpenTAG
 		{
 			OutputManager o = new OutputManager();
 			InputManager i = new InputManager(o);
-			Game g = new Game(o,i,"res/");
+			Game g = new Game(o,i,"C:/Users/Colin/Documents/GitHub/MUD/MUDHierarchy/res");
 			
 			g.newGame();
 			g.run();

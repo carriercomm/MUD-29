@@ -1,7 +1,7 @@
 {
 	"Name":"Audience Chamber Entrance Door",
 	"Description":"A large Oak double door is against the south wall.",
-	"CanUse": true,
+	"IsLocked": false,
 	"SliceKey":0,
 	"LocationKey":"grand_hallway"
 }

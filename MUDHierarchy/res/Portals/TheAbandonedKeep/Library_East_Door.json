@@ -1,7 +1,7 @@
 {
 	"Name":"Library_East_Door",
 	"Description":"A large Oak double door is against the east wall.",
-	"CanUse": true,
+	"IsLocked": false,
 	"SliceKey":0,
 	"LocationKey":"suite_hallway"
 }
