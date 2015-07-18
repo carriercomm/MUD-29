@@ -55,7 +55,7 @@ public class Interpreter
 			case equip:
 			case unequip:
 			case inventory:	// deals with equipping, unequipping, and consumable usage
-				inventory.interact(a);
+				inventory.interact(a, target);
 			break;
 			case rest:	// checks to see if the current location is a valid resting spot
 				root.getCharacterLocation().getPortal(target).interact(Action.go, root.getCharacter());	// search location portals

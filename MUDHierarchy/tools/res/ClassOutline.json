@@ -1,0 +1,42 @@
+{
+	"Type":"Npc",
+	"Name":"Default",
+	"BaseMana":0,
+	"ManaPerLevel":0,
+	"BaseHp":1,
+	"HitDie":0,
+
+	"SpellList":
+	[
+		{"Name":"default"}
+	],
+
+	"AbilityList":
+	[
+		{"Name":"default"}
+	],
+
+	"Levels":
+	[
+		{ "BaseAttackBonus":0, "FortitudeSave":0, "ReflexSave":0, "WillSave":0},
+		{ "BaseAttackBonus":0, "FortitudeSave":0, "ReflexSave":0, "WillSave":0},
+		{ "BaseAttackBonus":0, "FortitudeSave":0, "ReflexSave":0, "WillSave":0},
+		{ "BaseAttackBonus":0, "FortitudeSave":0, "ReflexSave":0, "WillSave":0},
+		{ "BaseAttackBonus":0, "FortitudeSave":0, "ReflexSave":0, "WillSave":0},
+		{ "BaseAttackBonus":0, "FortitudeSave":0, "ReflexSave":0, "WillSave":0},
+		{ "BaseAttackBonus":0, "FortitudeSave":0, "ReflexSave":0, "WillSave":0},
+		{ "BaseAttackBonus":0, "FortitudeSave":0, "ReflexSave":0, "WillSave":0},
+		{ "BaseAttackBonus":0, "FortitudeSave":0, "ReflexSave":0, "WillSave":0},
+		{ "BaseAttackBonus":0, "FortitudeSave":0, "ReflexSave":0, "WillSave":0},
+		{ "BaseAttackBonus":0, "FortitudeSave":0, "ReflexSave":0, "WillSave":0},
+		{ "BaseAttackBonus":0, "FortitudeSave":0, "ReflexSave":0, "WillSave":0},
+		{ "BaseAttackBonus":0, "FortitudeSave":0, "ReflexSave":0, "WillSave":0},
+		{ "BaseAttackBonus":0, "FortitudeSave":0, "ReflexSave":0, "WillSave":0},
+		{ "BaseAttackBonus":0, "FortitudeSave":0, "ReflexSave":0, "WillSave":0},
+		{ "BaseAttackBonus":0, "FortitudeSave":0, "ReflexSave":0, "WillSave":0},
+		{ "BaseAttackBonus":0, "FortitudeSave":0, "ReflexSave":0, "WillSave":0},
+		{ "BaseAttackBonus":0, "FortitudeSave":0, "ReflexSave":0, "WillSave":0},
+		{ "BaseAttackBonus":0, "FortitudeSave":0, "ReflexSave":0, "WillSave":0},
+		{ "BaseAttackBonus":0, "FortitudeSave":0, "ReflexSave":0, "WillSave":0}
+	]
+}

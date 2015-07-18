@@ -1,0 +1,20 @@
+{
+	"Type":"Equipable",
+	"Name":"Default",
+	"Description":"Default",
+	
+	"IsHidden":false,
+	"Weight":0.1,
+	"IsEquiped":false,
+
+	"Damage":0,
+	"DamageType":"none",
+	"CritMultiplier":0,
+	"AcBonus":0,
+
+	"Abilities":
+	[
+		{"FileName":"Default"}
+	]
+
+}

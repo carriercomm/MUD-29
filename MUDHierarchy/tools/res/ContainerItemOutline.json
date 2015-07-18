@@ -1,0 +1,20 @@
+{
+	"Type":"Container",
+	"Name":"Default",
+	"Description":"Default",
+	
+	"IsHidden":false,
+	"Weight":0.1,
+	"IsStatic":true,
+
+	"SubItems":
+	[
+		{"FileName":"Default"}
+	],
+
+	"Abilities":
+	[
+		{"FileName":"Default"}
+	]
+
+}
