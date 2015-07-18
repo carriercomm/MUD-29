@@ -43,11 +43,12 @@ function compatabilityCheck()
 window.onload = function()
 {
 	compatabilityCheck();
-	for(var url in urlArr)
-	{
-		xmlhttp.open("GET", url, true);
+	//for(var url in urlArr)
+	//{
+		xmlhttp.open("GET", "PortalOutline.json", true);
 		xmlhttp.overrideMimeType("application/json");
 		xmlhttp.send();
 		document.getElementById("id01").innerHTML += "<p>XMLHttp ready...</p>";
-	}
+		
+	//}
 }
