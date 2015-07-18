@@ -16,9 +16,9 @@ urlArr =		["PortalOutline.json"];
 function myFunction(jobj)
 {
 	document.getElementById("id01").innerHTML += '<p>' + "XMLHttp sent..." + '</p>';
-	for(obj in jobj)
+	for(var member in jobj)
 	{
-		document.getElementById("id01").innerHTML += '<p>' + obj + ': ' + obj.value + '</p>';
+		document.getElementById("id01").innerHTML += '<p>' + member + ': ' + jobj[member] + '</p>';
 	}
 }
 
