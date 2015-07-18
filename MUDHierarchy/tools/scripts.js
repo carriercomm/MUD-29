@@ -18,7 +18,7 @@ function getJsonContents(jsonObj)
 	console.log("XMLHttp received...");
 	for(var member in jsonObj)
 	{
-		document.getElementById("id01").innerHTML += '<p>' + member + ': ' + jsonObj[member] + '</p>';
+		document.getElementById("content").innerHTML += '<p>' + member + ': ' + jsonObj[member] + '</p>';
 	}
 }
 
@@ -43,6 +43,7 @@ function recursiveLoad(currentFile)
 		xmlhttp.open("GET", urlArray[currentFile], true);
 		xmlhttp.overrideMimeType("application/json");
 		xmlhttp.send();
+		document.getElementById("content").innerHTML += "<h1>" + urlArray[currentFile].replace(/\.[^/.]+$/, "") +"</h1>"
 		console.log("XMLHttp sent...");
 	}
 }
