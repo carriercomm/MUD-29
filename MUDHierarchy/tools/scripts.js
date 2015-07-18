@@ -17,13 +17,13 @@ urlArr =		["http://localhost/PortalOutline.json"];
 //				 "res/PortalOutline.json",
 //				 "res/SliceOutline.json"];
 				 
-alert("done with the var initialization");
+document.getElementById("id01").innerHTML += '<p>' + "Var initialization done..." + '</p></br>';
 				 
 xmlhttp.onreadystatechange = function()
 {
 	if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
 	{
-		alert("xmlhttp ready");
+		document.getElementById("id01").innerHTML += '<p>' + "XMLHttp ready..." + '</p></br>';
 		var jarr = JSON.parse(xmlhttp.responseText);
 		myFunction(jarr);
 	}
@@ -39,8 +39,8 @@ for(var url in urlArr)
 
 function myFunction(arr)
 {
-	alert("done");
-	document.getElementById("id01").innerHTML = '<h1>' + arr[i] + '</h1><br>';
+	document.getElementById("id01").innerHTML += '<p>' + "XMLHttp sent..." + '</p></br>';
+	document.getElementById("id01").innerHTML += '<h1>' + arr[i] + '</h1></br>';
 }
 
 function compatabilityCheck()
