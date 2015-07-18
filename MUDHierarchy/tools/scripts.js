@@ -38,9 +38,9 @@ window.onload = function()
 
 function recursiveLoad(currentFile)
 {
-	if(currentFile < urlArr.length)
+	if(currentFile < urlArray.length)
 	{
-		xmlhttp.open("GET", urlArr[currentFile], true);
+		xmlhttp.open("GET", urlArray[currentFile], true);
 		xmlhttp.overrideMimeType("application/json");
 		xmlhttp.send();
 	}
