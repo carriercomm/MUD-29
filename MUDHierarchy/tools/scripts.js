@@ -16,7 +16,10 @@ urlArr =		["PortalOutline.json"];
 function myFunction(jobj)
 {
 	document.getElementById("id01").innerHTML += '<p>' + "XMLHttp sent..." + '</p>';
-	document.getElementById("id01").innerHTML += '<p>' + jobj.Name + '</p>';
+	for(obj in jobj)
+	{
+		document.getElementById("id01").innerHTML += '<p>' + obj + '</p>';
+	}
 }
 
 xmlhttp.onreadystatechange = function()
