@@ -15,14 +15,18 @@ urlArr =		["http://localhost/PortalOutline.json"];
 window.onload = function()
 {
 	compatabilityCheck();
-	
 	document.getElementById("id01").innerHTML += '<p>' + "Var initialization done..." + '</p></br>';
-	
-	for(var url in urlArr)
+}
+
+function compatabilityCheck()
+{
+	if (window.File && window.FileReader && window.FileList && window.Blob)
 	{
-		xmlhttp.open("GET", url, true);
-		xmlhttp.overrideMimeType("application/json");
-		xmlhttp.send();
+		document.getElementById("id01").innerHTML += "<p>Browser compatibility established...</p>";
+	}
+	else
+	{
+		alert('The File APIs are not fully supported in this browser.');
 	}
 }
 				 
@@ -31,8 +35,14 @@ xmlhttp.onreadystatechange = function()
 	if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
 	{
 		document.getElementById("id01").innerHTML += '<p>' + "XMLHttp ready..." + '</p></br>';
-		var jarr = JSON.parse(xmlhttp.responseText);
-		myFunction(jarr);
+		for(var url in urlArr)
+		{
+			xmlhttp.open("GET", url, true);
+			xmlhttp.overrideMimeType("application/json");
+			xmlhttp.send();
+			var jarr = JSON.parse(xmlhttp.responseText);
+			myFunction(jarr);
+		}
 	}
 }
 
@@ -40,16 +50,4 @@ function myFunction(arr)
 {
 	document.getElementById("id01").innerHTML += '<p>' + "XMLHttp sent..." + '</p></br>';
 	document.getElementById("id01").innerHTML += '<h1>' + arr[i] + '</h1></br>';
-}
-
-function compatabilityCheck()
-{
-	if (window.File && window.FileReader && window.FileList && window.Blob)
-	{
-		//document.getElementById("body").innerHTML += "<h1>Browser is compatable</h1>";
-	}
-	else
-	{
-		alert('The File APIs are not fully supported in this browser.');
-	}
 }
