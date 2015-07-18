@@ -1,8 +1,3 @@
-window.onload = function()
-{
-	compatabilityCheck();
-}
-		
 var xmlhttp = new XMLHttpRequest();
 var urlArr = 	[];
 urlArr =		["http://localhost/PortalOutline.json"];
@@ -16,8 +11,20 @@ urlArr =		["http://localhost/PortalOutline.json"];
 //				 "res/PcOutline.json",
 //				 "res/PortalOutline.json",
 //				 "res/SliceOutline.json"];
-				 
-document.getElementById("id01").innerHTML += '<p>' + "Var initialization done..." + '</p></br>';
+
+window.onload = function()
+{
+	compatabilityCheck();
+	
+	document.getElementById("id01").innerHTML += '<p>' + "Var initialization done..." + '</p></br>';
+	
+	for(var url in urlArr)
+	{
+		xmlhttp.open("GET", url, true);
+		xmlhttp.overrideMimeType("application/json");
+		xmlhttp.send();
+	}
+}
 				 
 xmlhttp.onreadystatechange = function()
 {
@@ -28,14 +35,6 @@ xmlhttp.onreadystatechange = function()
 		myFunction(jarr);
 	}
 }
-
-for(var url in urlArr)
-{
-	xmlhttp.open("GET", url, true);
-	xmlhttp.overrideMimeType("application/json");
-	xmlhttp.send();
-}
-
 
 function myFunction(arr)
 {
