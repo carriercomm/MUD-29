@@ -1,7 +1,7 @@
 var xmlhttp = new XMLHttpRequest();
 
 var urlArr = 	[];
-urlArr =		["res/PortalOutline.json"];
+urlArr =		["PortalOutline.json"];
 //urlArray =		["res/AiOutline.json",
 //				 "res/ClassOutline.json",
 //				 "res/ConsumableItemOutline.json",
