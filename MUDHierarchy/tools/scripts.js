@@ -1,7 +1,7 @@
 var xmlhttp = new XMLHttpRequest();
 
 var urlArr = 	[];
-urlArr =		["http://localhost/PortalOutline.json"];
+urlArr =		["res/PortalOutline.json"];
 //urlArray =		["res/AiOutline.json",
 //				 "res/ClassOutline.json",
 //				 "res/ConsumableItemOutline.json",
@@ -16,19 +16,15 @@ urlArr =		["http://localhost/PortalOutline.json"];
 function myFunction(arr)
 {
 	document.getElementById("id01").innerHTML += '<p>' + "XMLHttp sent..." + '</p>';
-	document.getElementById("id01").innerHTML += '<h1>' + arr[i] + '</h1>';
+	document.getElementById("id01").innerHTML += '<p>' + arr[i] + '</p>';
 }
 
 xmlhttp.onreadystatechange = function()
 {
 	if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
 	{
-		document.getElementById("id01").innerHTML += "<p>XMLHttp ready...</p>";
-		for(var url in urlArr)
-		{
-			var jarr = JSON.parse(xmlhttp.responseText);
-			myFunction(jarr);
-		}
+		var arr = JSON.parse(xmlhttp.responseText);
+		myFunction(arr);
 	}
 }
 
@@ -47,8 +43,11 @@ function compatabilityCheck()
 window.onload = function()
 {
 	compatabilityCheck();
-	document.getElementById("id01").innerHTML += '<p>' + "Var initialization done..." + '</p>';
-	xmlhttp.open("GET", url, true);
-	xmlhttp.overrideMimeType("application/json");
-	xmlhttp.send();
+	for(var url in urlArr)
+	{
+		xmlhttp.open("GET", url, true);
+		xmlhttp.overrideMimeType("application/json");
+		xmlhttp.send();
+		document.getElementById("id01").innerHTML += "<p>XMLHttp ready...</p>";
+	}
 }
