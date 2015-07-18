@@ -17,12 +17,13 @@ urlArr =		["http://localhost/PortalOutline.json"];
 //				 "res/PortalOutline.json",
 //				 "res/SliceOutline.json"];
 				 
-//alert("done with the var initialization");
+alert("done with the var initialization");
 				 
 xmlhttp.onreadystatechange = function()
 {
 	if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
 	{
+		alert("xmlhttp ready");
 		var jarr = JSON.parse(xmlhttp.responseText);
 		myFunction(jarr);
 	}
@@ -31,7 +32,7 @@ xmlhttp.onreadystatechange = function()
 for(var url in urlArr)
 {
 	xmlhttp.open("GET", url, true);
-	//xmlhttp.overrideMimeType("application/json");
+	xmlhttp.overrideMimeType("application/json");
 	xmlhttp.send();
 }
 
