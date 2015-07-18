@@ -15,7 +15,7 @@ urlArray =		["res/PortalOutline.json",
 
 function getJsonContents(jsonObj)
 {
-	Console.log("XMLHttp sent...");
+	console.log("XMLHttp received...");
 	for(var member in jsonObj)
 	{
 		document.getElementById("id01").innerHTML += '<p>' + member + ': ' + jsonObj[member] + '</p>';
@@ -43,5 +43,6 @@ function recursiveLoad(currentFile)
 		xmlhttp.open("GET", urlArray[currentFile], true);
 		xmlhttp.overrideMimeType("application/json");
 		xmlhttp.send();
+		console.log("XMLHttp sent...");
 	}
 }
