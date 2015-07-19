@@ -38,8 +38,9 @@ function indexJsonCallback()
 		document.getElementById("sidebar").innerHTML = '';
 		for(var member in fileIndex.FileTypes)
 		{
+			console.log("adding: " + member);
 			document.getElementById("sidebar").innerHTML += 
-			'<input id="index-button" type="button" value="' + member.Name + '" onclick="buttonCallback("' + member.Name + '");" />';
+			"<input id=\"index-button\" type=\"button\" value=\"" + member.Name + "\" onclick=\"buttonCallback(\"" + member.Name + ");\" />";
 		}
 	}
 }
