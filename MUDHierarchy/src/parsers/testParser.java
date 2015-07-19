@@ -28,7 +28,7 @@ public class testParser
 	
 	private void accept()
 	{
-		
+		 
 	}
 	
 	private void translate()

@@ -1,8 +1,8 @@
 {
 	"FileTypes" : [
 		{
-			"Name": "Pc",
-			"Path": "res/PcOutline.json"
+			"Name": "Portal",
+			"Path": "res/PortalOutline.json"
 		},
 		{
 			"Name": "Ai",

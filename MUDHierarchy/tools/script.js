@@ -4,14 +4,6 @@ var fileIndex = null;
 window.onload = function()
 {
 	jsonIndex = loadJson("index.json", "indexJson");
-	while(true)
-	{
-		if(fileIndex != null)
-		{
-			loadJson(fileIndex.FileTypes[0].Path, "pageJson");
-			break;
-		}
-	}
 }
 
 function loadJson(path, processAs)
@@ -41,11 +33,13 @@ function indexJsonCallback()
 	{
 		console.log("File Index XMLHttp content received...");
 		fileIndex = JSON.parse(xmlhttp.responseText);
+		loadJson(fileIndex.FileTypes[0].Path, "pageJson");	// load page contents
+		
 		document.getElementById("sidebar").innerHTML = '';
 		for(var member in fileIndex.FileTypes)
 		{
 			document.getElementById("sidebar").innerHTML += 
-			'<input id="index-button" type="button" value=' + member.Name + ' onclick="buttonCallback(' + member.Name + ');" />;'
+			'<input id="index-button" type="button" name=' + member.Name + ' onclick="buttonCallback(' + member.Name + ');" />;'
 		}
 	}
 }
@@ -70,7 +64,7 @@ function buttonCallback(name)
 	{
 		if(member.Name == name)
 		{
-			loadJson(member.Path, pageJson);
+			loadJson(member.Path, "pageJson");
 		}
 	}
 }

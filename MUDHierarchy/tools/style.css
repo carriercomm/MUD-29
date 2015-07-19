@@ -20,5 +20,8 @@
 }
 
 #index-button{
-	background:yellow;
+	width:100%;
+	text-align:center;
+	background:#FFFF99;
+	color:black;
 }
