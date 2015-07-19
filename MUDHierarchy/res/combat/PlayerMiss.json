@@ -1,0 +1,24 @@
+{
+	"MeleeDescriptionArray":
+	[
+	"The ground gives from under your foot, turning your mighty swing into wild flail."
+	"Your Attacker.Attack emits a surprising clang as it bounces harmlessly on the ground."
+	"The swipe you took with your Attacker.Attack was perfectly executed at the air next to the Defender.Name."
+	"The Defender.Name steps back, your Attacker.Attack waving uselessly in front of it."
+	],
+	"RangedDescriptionArray":
+	[
+	"You loose a shot. The Attacker.Ammo sails well above the head of the Defender.Name."
+	"You fail to load your Attacker.Attack correctly. The Attacker.Ammo falls away when you move to attack."
+	"The Defender.Name narrowly avoids being struck by your Attacker.Ammo."
+	"Your poorly aimed attack bounces off of a particularly defended piece of the Defender.Name"
+	],
+	"SpellDescriptionArray":
+	[
+	"Your Attacker.Spell fizzles away before you even finished casting it."
+	"You fail to put enough arcane power into your Attacker.Spell. The Defender.Name suffers no ill-effects."
+	"Botching the incantation, you conjure an underwhelming puff of smoke."
+	"The Defender.Name dodges out of the way of your Attacker.Spell."
+	],
+	
+}
