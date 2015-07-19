@@ -45,7 +45,7 @@ function indexJsonCallback()
 			button.setAttribute("type", "button");
 			button.setAttribute("id", "index-button");
 			button.setAttribute("onclick", "buttonCallback(\"" + name + "\")");
-			button.setAttribute("name", name);
+			button.setAttribute("value", name);
 			button.innerHTML = name;
 			document.getElementById("sidebar").appendChild(button);
 		}
