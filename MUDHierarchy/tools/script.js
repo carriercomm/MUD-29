@@ -43,8 +43,8 @@ function indexJsonCallback()
 			
 			var button = document.createElement("input");
 			button.setAttribute("type", "button");
-			element.setAttribute("name", name);
-			element.setAttribute("onclick", "buttonCallback()");
+			button.setAttribute("name", name);
+			button.setAttribute("onclick", "buttonCallback()");
 			document.getElementById("sidebar").appendChild(button);
 		}
 	}
