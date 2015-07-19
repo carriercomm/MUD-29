@@ -78,6 +78,15 @@ function buttonCallback(name)
 		{
 			loadJson(fileIndex.FileTypes[member].Path, "pageJson");
 			matched = true;
+			
+			for(var button in document.getElementById("index-button"))
+			{
+				if(button.getAttribute("value") == name)
+				{
+					button.setAttribute("style", "backgroundColor:white;");
+				}
+				button.setAttribute("style", "backgroundColor:blue;");
+			}
 		}
 	}
 	if(!matched)
