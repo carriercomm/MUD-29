@@ -3,26 +3,26 @@ var fileIndex = null;
 
 window.onload = function()
 {
-	jsonIndex = loadJson("index.json", "indexJson");
+	jsonIndex = loadJson("index.json", null, "indexJson");	// load the index
 }
 
-function loadJson(path, processAs)
+function loadJson(path, name, processAs)
 {
-	switch(processAs)
+	switch(processAs)	// change the processing callback for the json based on what is being loaded
 	{
 		case "indexJson":
 			xmlhttp.onreadystatechange = indexJsonCallback;
 		break;
 		case "pageJson":
-			xmlhttp.onreadystatechange = pageJsonCallback;
+			xmlhttp.onreadystatechange = pageJsonCallback(name);
 		break;
 		default:
 			console.log("Error: undefined processing flag");
 		break;
 	}
 
-	xmlhttp.open("GET", path, true);
-	xmlhttp.overrideMimeType("application/json");
+	xmlhttp.open("GET", path, true);	// send a xmlhttp request to retrieve the .json file from the server
+	xmlhttp.overrideMimeType("application/json");	// why isn't this php? 
 	xmlhttp.send();
 	console.log(path + " XMLHttp requested...");
 }
@@ -33,16 +33,12 @@ function indexJsonCallback()
 	{
 		console.log("File Index XMLHttp content received");
 		document.getElementById("sidebar").innerHTML = '';	// clear the sidebar contents
-		document.getElementById("content").innerHTML = '';	// clear the page contents
-		fileIndex = JSON.parse(xmlhttp.responseText);		// set the file Index vale for the page to use
-		loadJson(fileIndex.FileTypes[0].Path, "pageJson");	// load page contents .json
-		
-		var title = fileIndex.FileTypes[0].Name	// get page title
-		document.getElementById("content").innerHTML += '<h2>' + title + '</h2>';	// set page title
+		fileIndex = JSON.parse(xmlhttp.responseText);		// parse the index file
+		loadJson(fileIndex.FileTypes[0].Path, fileIndex.FileTypes[0].Name "pageJson");	// start the starting page load
 		
 		for(var member in fileIndex.FileTypes)	//  for each index file
 		{
-			var name = fileIndex.FileTypes[member].Name;	// get its name and a make a button out of it
+			var name = fileIndex.FileTypes[member].Name;	// get the name and a make a button out of it
 			console.log("adding: " + name);
 			
 			var button = document.createElement("input");
@@ -58,14 +54,16 @@ function indexJsonCallback()
 	}
 }
 
-function pageJsonCallback()
+function pageJsonCallback(name)
 {
 	if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
 	{
 		console.log("XMLHttp content received");
-		var jsonObj = JSON.parse(xmlhttp.responseText);
+		var jsonObj = JSON.parse(xmlhttp.responseText);	// parse page file
+		document.getElementById("content").innerHTML = '';	// clear current page
 		
-		for(var member in jsonObj)
+		document.getElementById("content").innerHTML += '<h2>' + name + '</h2>';	// set page title
+		for(var member in jsonObj)	// display page contents
 		{
 			document.getElementById("content").innerHTML += '<p>' + member + ': ' + jsonObj[member] + '</p>';
 		}
