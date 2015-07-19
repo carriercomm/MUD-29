@@ -32,7 +32,8 @@ function indexJsonCallback()
 	if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
 	{
 		console.log("File Index XMLHttp content received");
-		document.getElementById("sidebar").innerHTML = '';	// clear the page contents
+		document.getElementById("sidebar").innerHTML = '';	// clear the sidebar contents
+		document.getElementById("content").innerHTML = '';	// clear the page contents
 		fileIndex = JSON.parse(xmlhttp.responseText);		// set the file Index vale for the page to use
 		loadJson(fileIndex.FileTypes[0].Path, "pageJson");	// load page contents .json
 		
@@ -63,7 +64,6 @@ function pageJsonCallback()
 	{
 		console.log("XMLHttp content received");
 		var jsonObj = JSON.parse(xmlhttp.responseText);
-		document.getElementById("content").innerHTML = '';
 		
 		for(var member in jsonObj)
 		{
