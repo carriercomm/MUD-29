@@ -77,7 +77,7 @@ function buttonCallback(name)
 	{
 		if(fileIndex.FileTypes[member].Name == name)
 		{
-			loadJson(fileIndex.FileTypes[member].Path, "pageJson");
+			loadJson(fileIndex.FileTypes[member].Path, null, "pageJson");
 			matched = true;
 		}
 	}
