@@ -3,10 +3,10 @@ var fileIndex = null;
 
 window.onload = function()
 {
-	jsonIndex = loadJson("index.json", null, "indexJson");	// load the index
+	jsonIndex = loadJson("index.json", "indexJson");	// load the index
 }
 
-function loadJson(path, name, processAs)
+function loadJson(path, processAs)
 {
 	switch(processAs)	// change the processing callback for the json based on what is being loaded
 	{
@@ -14,8 +14,7 @@ function loadJson(path, name, processAs)
 			xmlhttp.onreadystatechange = indexJsonCallback;
 		break;
 		case "pageJson":
-			xmlhttp.onreadystatechange = pageJsonCallback(name);
-			console.log(name + " : " + path);
+			xmlhttp.onreadystatechange = pageJsonCallback;
 		break;
 		default:
 			console.log("Error: undefined processing flag");
@@ -35,7 +34,7 @@ function indexJsonCallback()
 		console.log("File Index XMLHttp content received");
 		document.getElementById("sidebar").innerHTML = '';	// clear the sidebar contents
 		fileIndex = JSON.parse(xmlhttp.responseText);		// parse the index file
-		loadJson(fileIndex.FileTypes[0].Path, fileIndex.FileTypes[0].Name, "pageJson");	// start the starting page load
+		loadJson(fileIndex.FileTypes[0].Path, "pageJson");	// start the starting page load
 		
 		for(var member in fileIndex.FileTypes)	//  for each index file
 		{
@@ -55,7 +54,7 @@ function indexJsonCallback()
 	}
 }
 
-function pageJsonCallback(name)
+function pageJsonCallback()
 {
 	if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
 	{
@@ -63,7 +62,6 @@ function pageJsonCallback(name)
 		var jsonObj = JSON.parse(xmlhttp.responseText);	// parse page file
 		document.getElementById("content").innerHTML = '';	// clear current page
 		
-		document.getElementById("content").innerHTML += '<h2>' + name + '</h2>';	// set page title
 		for(var member in jsonObj)	// display page contents
 		{
 			document.getElementById("content").innerHTML += '<p>' + member + ': ' + jsonObj[member] + '</p>';
@@ -78,7 +76,7 @@ function buttonCallback(name)
 	{
 		if(fileIndex.FileTypes[member].Name == name)
 		{
-			loadJson(fileIndex.FileTypes[member].Path, name, "pageJson");
+			loadJson(fileIndex.FileTypes[member].Path, "pageJson");
 			matched = true;
 		}
 	}
