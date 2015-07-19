@@ -31,7 +31,7 @@ function indexJsonCallback()
 {
 	if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
 	{
-		console.log("File Index XMLHttp content received...");
+		console.log("File Index XMLHttp content received");
 		fileIndex = JSON.parse(xmlhttp.responseText);
 		loadJson(fileIndex.FileTypes[0].Path, "pageJson");	// load page contents
 		
@@ -48,7 +48,7 @@ function pageJsonCallback()
 {
 	if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
 	{
-		console.log("XMLHttp content received...");
+		console.log("XMLHttp content received");
 		var jsonObj = JSON.parse(xmlhttp.responseText);
 		document.getElementById("content").innerHTML = '';
 		for(var member in jsonObj)
@@ -60,11 +60,17 @@ function pageJsonCallback()
 
 function buttonCallback(name)
 {
+	var matched = false;
 	for(var member in fileIndex.FileTypes)
 	{
 		if(member.Name == name)
 		{
 			loadJson(member.Path, "pageJson");
+			matched = true;
 		}
+	}
+	if(!matched)
+	{
+		console.log("No valid page to load");
 	}
 }
