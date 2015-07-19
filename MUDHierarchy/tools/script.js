@@ -42,7 +42,7 @@ function indexJsonCallback()
 		console.log("File Index XMLHttp content received...");
 		fileIndex = JSON.parse(xmlhttp.responseText);
 		document.getElementById("sidebar").innerHTML = '';
-		for(var mamber in fileIndex.FileTypes)
+		for(var member in fileIndex.FileTypes)
 		{
 			document.getElementById("sidebar").innerHTML += 
 			'<input id="index-button" type="button" value=' + member.Name + ' onclick="buttonCallback(' + member.Name + ');" />;'

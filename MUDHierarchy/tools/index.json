@@ -1,6 +1,10 @@
 {
 	"FileTypes" : [
 		{
+			"Name": "Pc",
+			"Path": "res/PcOutline.json"
+		},
+		{
 			"Name": "Ai",
 			"Path": "res/AiOutline.json"
 		},
