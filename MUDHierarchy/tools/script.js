@@ -33,13 +33,13 @@ function indexJsonCallback()
 	{
 		console.log("File Index XMLHttp content received...");
 		fileIndex = JSON.parse(xmlhttp.responseText);
-		loadJson(fileIndex.Path, "pageJson");	// load page contents
+		loadJson(fileIndex[0].Path, "pageJson");	// load page contents
 		
 		document.getElementById("sidebar").innerHTML = '';
 		for(var member in fileIndex)
 		{
 			document.getElementById("sidebar").innerHTML += 
-			'<input id="index-button" type="button" value=' + member.Name + ' onclick="buttonCallback(' + member.Name + ');" />';
+			'<input id="index-button" type="button" value="' + member.Name + '" onclick="buttonCallback("' + member.Name + '");" />';
 		}
 	}
 }
