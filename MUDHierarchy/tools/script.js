@@ -43,8 +43,8 @@ function indexJsonCallback()
 			
 			var button = document.createElement("input");
 			button.setAttribute("type", "button");
-			button.setAttribute("name", name);
 			button.setAttribute("onclick", "buttonCallback()");
+			button.innerHTML=name;
 			document.getElementById("sidebar").appendChild(button);
 		}
 	}
@@ -69,9 +69,9 @@ function buttonCallback(name)
 	var matched = false;
 	for(var member in fileIndex.FileTypes)
 	{
-		if(member.Name == name)
+		if(fileIndex.FileTypes[member].Name == name)
 		{
-			loadJson(member.Path, "pageJson");
+			loadJson(fileIndex.FileTypes[member].Path, "pageJson");
 			matched = true;
 		}
 	}
