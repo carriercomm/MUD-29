@@ -43,7 +43,7 @@ function indexJsonCallback()
 			
 			var button = document.createElement("input");
 			button.setAttribute("type", "button");
-			button.setAttribute("id", "index-button");
+			button.setAttribute("class", "index-button");
 			button.setAttribute("onclick", "buttonCallback(\"" + name + "\")");
 			button.setAttribute("value", name);
 			document.getElementById("sidebar").appendChild(button);	// add the button to the sidebar
@@ -79,7 +79,7 @@ function buttonCallback(name)
 			loadJson(fileIndex.FileTypes[member].Path, "pageJson");
 			matched = true;
 			
-			for(var button in document.getElementById("index-button"))
+			for(var button in document.getElementByClassName("index-button"))
 			{
 				if(button.getAttribute("value") == "name")
 				{
