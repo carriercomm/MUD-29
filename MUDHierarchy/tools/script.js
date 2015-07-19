@@ -3,12 +3,12 @@ var fileIndex = null;
 
 window.onload = function()
 {
-	jsonIndex = loadJson("index.json", indexJson);
+	jsonIndex = loadJson("index.json", "indexJson");
 	while(true)
 	{
 		if(fileIndex != null)
 		{
-			loadJson(fileIndex.FileTypes[0].Path, pageJson);
+			loadJson(fileIndex.FileTypes[0].Path, "pageJson");
 			break;
 		}
 	}
