@@ -81,7 +81,7 @@ function buttonCallback(name)
 			
 			for(var button in document.getElementById("index-button"))
 			{
-				if(button.getAttribute("value") == name)
+				if(button.getAttribute("value") == "name")
 				{
 					button.setAttribute("style", "backgroundColor:white;");
 				}
