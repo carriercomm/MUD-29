@@ -2,7 +2,7 @@ package parsers;
 
 import game.OutputManager;
 import hierarchy.Root;
-import parsers.tokens.Action;
+//import parsers.tokens.Action;
 
 public class testParser
 {
@@ -26,10 +26,10 @@ public class testParser
 		interpreter.interpret(action, ability, target);
 	}
 	
-	private void accept()
+/*	private void accept()
 	{
 		 
-	}
+	}*/
 	
 	private void translate()
 	{
