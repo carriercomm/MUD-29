@@ -18,10 +18,10 @@ function loadJson(path, processAs)
 {
 	switch(processAs)
 	{
-		case indexJson:
+		case "indexJson":
 			xmlhttp.onreadystatechange = indexJsonCallback;
 		break;
-		case pageJson:
+		case "pageJson":
 			xmlhttp.onreadystatechange = pageJsonCallback;
 		break;
 		default:
