@@ -1,0 +1,44 @@
+{
+	"FileTypes" : [
+		{
+			"Name": "Ai",
+			"Path": "res/AiOutline.json"
+		},
+		{
+			"Name": "Class",
+			"Path": "res/ClassOutline.json"
+		},
+		{
+			"Name": "Item; Consumable",
+			"Path": "res/ConsumableItemOutline.json"
+		},
+		{
+			"Name": "Item; Container",
+			"Path": "res/ContainerItemOutline.json"
+		},
+		{
+			"Name": "Item; Equipable",
+			"Path": "res/EquipableItemOutline.json"
+		},
+		{
+			"Name": "Location",
+			"Path": "res/LocationOutline.json"
+		},
+		{
+			"Name": "Npc",
+			"Path": "res/NpcOutline.json"
+		},
+		{
+			"Name": "Pc",
+			"Path": "res/PcOutline.json"
+		},
+		{
+			"Name": "Portal",
+			"Path": "res/PortalOutline.json"
+		},
+		{
+			"Name": "Slice",
+			"Path": "res/SliceOutline.json"
+		}
+	]
+}
