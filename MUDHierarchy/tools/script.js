@@ -40,7 +40,7 @@ function indexJsonCallback()
 		{
 			var name = fileIndex.FileTypes[member].Name;
 			console.log("adding: " + name);
-			document.getElementById("sidebar").innerHTML += '<button id="index-button" onclick="buttonCallback("' + name + '") />' + name + '</button>';
+			document.getElementById("sidebar").innerHTML += '<button id=\"index-button\" onclick=\"buttonCallback(\"' + name + '\") />' + name + '</button>';
 		}
 	}
 }
