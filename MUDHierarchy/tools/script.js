@@ -15,7 +15,7 @@ function loadJson(path, name, processAs)
 		break;
 		case "pageJson":
 			xmlhttp.onreadystatechange = pageJsonCallback(name);
-			console.log(name);
+			console.log(name + " : " + path);
 		break;
 		default:
 			console.log("Error: undefined processing flag");
