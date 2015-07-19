@@ -34,7 +34,7 @@ function indexJsonCallback()
 		console.log("File Index XMLHttp content received");
 		document.getElementById("sidebar").innerHTML = '';	// clear the sidebar contents
 		fileIndex = JSON.parse(xmlhttp.responseText);		// parse the index file
-		loadJson(fileIndex.FileTypes[0].Path, fileIndex.FileTypes[0].Name "pageJson");	// start the starting page load
+		loadJson(fileIndex.FileTypes[0].Path, fileIndex.FileTypes[0].Name, "pageJson");	// start the starting page load
 		
 		for(var member in fileIndex.FileTypes)	//  for each index file
 		{
