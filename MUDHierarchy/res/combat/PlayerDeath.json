@@ -1,12 +1,19 @@
 {
 	"MeleeDescriptionArray":
 	[
+	"With a mighty swing, you sever the head of the Defender.Name from the body. Blood drains from the head as it gracefully spirals away.",
+	"You bring your Attacker.Attack around, and burst open the torso of the Defender.Name. Viscera shower the surrounding area.",
+	"You lodge a great portion of your Attacker.Attack in the Defender.Name. As you yank it back out, organs of all varaieties follow suit."
 	],
 	"RangedDescriptionArray":
 	[
+	"You pierce the skull of the Defender.Name with your Attacker.Ammo.",
+	"The Defender.Name drops to the ground as you drill your Attacker.Ammo right into it's torso."
+	"You shoot the Defender.Name, crippling it. It lays on the floor, bleeding out for hours."
 	],
 	"SpellDescriptionArray":
 	[
+	"The Defender.Name lays mangled by the ferocity of your arcane onslaught."
 	],
 	
 }

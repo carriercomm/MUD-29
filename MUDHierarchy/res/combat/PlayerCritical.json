@@ -1,12 +1,15 @@
 {
 	"MeleeDescriptionArray":
 	[
+	"You smash the Defender.Name with your Attacker.Attack, taking a great deal of flesh with it."
 	],
 	"RangedDescriptionArray":
 	[
+	"You strike a severe blow to the torso of the Defender.Name, lodging your Attacker.Ammo irretrievably in it's organs."
 	],
 	"SpellDescriptionArray":
 	[
+	"in de butt"
 	],
 	
 }

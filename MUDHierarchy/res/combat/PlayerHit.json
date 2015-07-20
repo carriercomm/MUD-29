@@ -1,20 +1,22 @@
 {
 	"MeleeDescriptionArray":
 	[
-	"You bring your Attacker.Attack crashing into side of the Defender.Name."
-	"You catch the Defender.Name off-guard with an upward sweep of your Attacker.Name."
-	"You land a solid blow with your Attacker.Attack against the Defender.Name."
+	"You bring your Attacker.Attack crashing into side of the Defender.Name.",
+	"You catch the Defender.Name off-guard with an upward sweep of your Attacker.Name.",
+	"You land a solid blow with your Attacker.Attack against the Defender.Name.",
 	"You kick the Defender.Name back and thump them a good one with your Attacker.Attack."
 	],
 	"RangedDescriptionArray":
 	[
-	"As the Defender.Name advances upon you, you nail it with your Attacker.Attack."
-	"You loose a shot. The Defender.Name stumbles back from your direct hit."
+	"As the Defender.Name advances upon you, you nail it with your Attacker.Attack.",
+	"You loose a shot. The Defender.Name stumbles back from your direct hit.",
 	"You crack the Defender.Name upside the head with your Attacker.Ammo."
-	""
 	],
 	"SpellDescriptionArray":
 	[
+	"You complete your Attacker.Spell, striking your foe with great effect.",
+	"You summon the arcane power within you and mash the Defender.Name.",
+	"The Attacker.Spell that you have conjured slams into the Defender.Name."
 	],
 	
 }
