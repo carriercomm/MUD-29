@@ -71,4 +71,10 @@ public class Container extends Item
 		return "";
 	}
 
+	@Override
+	public String getDescription()
+	{
+		return super.description;
+	}
+	
 }

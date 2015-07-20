@@ -1,11 +1,10 @@
 package hierarchy.utilities;
 
-import hierarchy.Npc;
-import hierarchy.Pc;
+import parsers.tokens.Action;
 
 public class Combat
 {
-	public void fight(Pc pc, Npc npc)
+	public void fight(Action a, String ability, String target)
 	{
 		
 	}

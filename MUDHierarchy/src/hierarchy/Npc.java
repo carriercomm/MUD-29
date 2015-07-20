@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 
-public class Npc
+public class Npc extends rootObject
 {
 	private AI ai;
 	private NpcStats stats;

@@ -1,11 +1,10 @@
 package hierarchy.utilities;
 
-import hierarchy.Npc;
-import hierarchy.Pc;
+import parsers.tokens.Action;
 
 public class Store {
 
-	public void trade(Pc character, Npc creature)
+	public void trade(Action a, String ability, String target)
 	{
 		
 	}

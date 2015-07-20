@@ -1,11 +1,10 @@
 package hierarchy.utilities;
 
-import hierarchy.Npc;
-import hierarchy.Pc;
+import parsers.tokens.Action;
 
 public class Conversation
 {
-	public void talk(Pc pc, Npc npc)
+	public void talk(Action a, String ability, String target)
 	{
 		
 	}

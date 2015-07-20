@@ -98,9 +98,25 @@ public class Root
 		return sliceMap.get(sliceKey).getLocation(locationKey);
 	}
 
-	public void getTargetDescription(String target) 
+	public String getCharacterTarget() 
 	{
+		return character.getTarget();
+	}
+	
+	public void setCharacterTarget(String target) 
+	{
+		character.setTarget(target);
+	}
+	
+	public Object getTarget(String target) 
+	{
+		return null;
 		// TODO Auto-generated method stub
-		
+	}
+	
+	public Class<Object> getTargetType(String target) 
+	{
+		return Object.class;
+		// TODO Auto-generated method stub
 	}
 }

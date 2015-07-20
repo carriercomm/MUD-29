@@ -23,6 +23,8 @@ public class Pc
 	private int level;
 	private JSONArray baseStats;
 	
+	private String target;
+	
 	private int	   sliceKey;
 	private String locationKey;
 	
@@ -41,6 +43,8 @@ public class Pc
 			this.level			= 	(int)(long) PcOutline.get("Level");
 			this.sliceKey 		= 	(int)(long) PcOutline.get("SliceKey");
 			this.locationKey 	= 	(String) PcOutline.get("LocationKey");
+			
+			this.target 	= null;
 			
 			this.npcclass 	= new NpcClass (className + ".json");
 			this.stats 		= new NpcStats(npcclass, baseStats, level);
@@ -81,14 +85,19 @@ public class Pc
 		return stats;
 	}
 	
+	public String getTarget()
+	{
+		return target;
+	}
+	
+	public void setTarget(String o)
+	{
+		this.target = o;
+	}
+	
 	public int getLevel()
 	{
 		return level;
-	}
-	
-	public void addItem(Item item)
-	{
-		items.add(item);
 	}
 	
 	public void move(int sliceKey, String locationKey)
@@ -97,6 +106,11 @@ public class Pc
 		this.locationKey = locationKey; 
 	}
 
+	public void addItem(Item item)
+	{
+		items.add(item);
+	}
+	
 	public Item getItem(String dirObject)
 	{
 		// TODO Auto-generated method stub

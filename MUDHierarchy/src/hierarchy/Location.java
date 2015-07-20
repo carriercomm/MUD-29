@@ -10,7 +10,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-public class Location
+public class Location extends rootObject
 {
 	private ArrayList<Item> items  = new ArrayList<Item>();
 	private ArrayList<Npc> npcs  = new ArrayList<Npc>();

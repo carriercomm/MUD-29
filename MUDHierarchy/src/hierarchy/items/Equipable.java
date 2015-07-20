@@ -38,4 +38,10 @@ public class Equipable extends Item
 		return "";
 	}
 
+	@Override
+	public String getDescription()
+	{
+		return super.description;
+	}
+	
 }

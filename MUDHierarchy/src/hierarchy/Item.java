@@ -12,7 +12,7 @@ import org.json.simple.parser.JSONParser;
 
 import parsers.tokens.Action;
 
-public abstract class Item
+public abstract class Item extends rootObject
 {
 	protected String name;
 	protected String description;	
