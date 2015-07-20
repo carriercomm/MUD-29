@@ -52,7 +52,7 @@ public class Interpreter
 					store.trade(a, ability, target);	//***
 				break;
 				case use:	// TODO: search all location items and inventory items and run interact() on them. filter passed action
-					root.getCharacterLocation().getItem(target).interact(Action.use);	//****************************************
+					root.getCharacterLocation().getItem(target).interact(Action.use);
 				break;
 				case examine:	// searches location for a matching target, then prints description
 					o.write(((rootObject)(root.getTarget(target))).getDescription());
