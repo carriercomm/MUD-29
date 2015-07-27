@@ -1,14 +1,15 @@
 package game;
 
+import java.util.LinkedList;
 import java.util.Scanner;
-import java.util.Stack;
 
 public class InputManager implements Runnable
 {
 	private boolean exitKeyPressed = false;
 	
 	private Scanner reader = new Scanner(System.in);
-	private Stack<String> stack = new Stack<String>();
+	private LinkedList<String> queue = new LinkedList<String>();
+	private LinkedList<String> historyQueue = new LinkedList<String>();
 	private String input;
 	
 	OutputManager o;
@@ -38,9 +39,20 @@ public class InputManager implements Runnable
 	
 	private void writeInput()
 	{
-		synchronized(stack)
+		synchronized(queue)
 		{
-			stack.push(input);
+			queue.add(input);
+		}
+		
+		synchronized(historyQueue)
+		{
+			if(historyQueue.size() < 10)
+				historyQueue.add(input);
+			else
+			{
+				historyQueue.removeFirst();
+				historyQueue.add(input);
+			}
 		}
 		
 		try
@@ -55,17 +67,33 @@ public class InputManager implements Runnable
 	
 	public String read()
 	{
-		synchronized(stack)
+		synchronized(queue)
 		{
-			if(stack.size() > 0)
-				return stack.pop();
+			if(queue.size() > 0)
+				return queue.removeFirst();
 			return null;
+		}
+	}
+	
+	public String getPrevious()
+	{
+		synchronized(historyQueue)
+		{
+			return historyQueue.peek();
 		}
 	}
 	
 	public boolean getExit()
 	{
 		return exitKeyPressed;
+	}
+	
+	public void close()
+	{
+		this.reader.close();
+		this.reader = null;
+		this.queue.clear();
+		this.queue = null;
 	}
 	
 	//private void setExit(boolean b)

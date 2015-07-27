@@ -1,6 +1,6 @@
 import game.OutputManager;
-import hierarchy.Npc;
-import hierarchy.Root;
+import game.hierarchy.Npc;
+import game.hierarchy.Root;
 
 public class TestCase 
 {
@@ -16,12 +16,12 @@ public class TestCase
 			//System.out.println(Goblin1.print());
 			
 			Root slicemap = new Root("res/slicemap.json", o);
-			slicemap.getLocationDescription(0, "entrance");
-			slicemap.getLocationDescription(0, "grand_hallway");
-			slicemap.getLocationDescription(0, "audience_chamber");
-			slicemap.getLocationDescription(0, "suite_hallway");
-			slicemap.getLocationDescription(0, "dining_room");
-			slicemap.getLocationDescription(0, "library");
+			slicemap.getLocation(0, "entrance").getDescription();
+			slicemap.getLocation(0, "grand_hallway").getDescription();
+			slicemap.getLocation(0, "audience_chamber").getDescription();
+			slicemap.getLocation(0, "suite_hallway").getDescription();
+			slicemap.getLocation(0, "dining_room").getDescription();
+			slicemap.getLocation(0, "library").getDescription();
 		}
 		catch (Exception e)
 		{

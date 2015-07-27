@@ -1,6 +1,6 @@
 package game;
 
-import hierarchy.Root;
+import game.hierarchy.Root;
 
 public class SaveGame {
 

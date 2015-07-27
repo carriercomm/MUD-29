@@ -14,6 +14,13 @@ public class OpenTAG
 			
 			g.newGame();
 			g.run();
+			
+			g.close();
+			i.close();
+			o.close();
+			g = null;
+			i = null;
+			o= null;
 		}
 		catch(Exception e)
 		{

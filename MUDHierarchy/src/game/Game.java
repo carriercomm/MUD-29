@@ -1,7 +1,7 @@
 package game;
 
-import parsers.testParser;
-import hierarchy.Root;
+import game.hierarchy.Root;
+import game.parsers.Parser;
 
 public class Game
 {
@@ -9,9 +9,10 @@ public class Game
 	InputManager i;
 
 	SaveGame gamesaver = new SaveGame();
+	AiRunner runner = new AiRunner();
 	
 	Root root;
-	testParser parser;
+	Parser parser;
 	
 	String path;
 	
@@ -26,12 +27,15 @@ public class Game
 	{
 		try
 		{
-			parser = new testParser(root, o);
+			parser = new Parser(root, o);
 			
-			root.getCharacterLocationDescription();
+			o.write(root.getCharacterLocation().getDescription());
 			while(!i.getExit())
 			{
-				parser.parse(i.read());
+				if(parser.parse(i.read()));
+				{
+					runner.run(root, o);
+				}
 			}
 
 		}
@@ -90,18 +94,17 @@ public class Game
 	
 	public void close()
 	{	
-		gamesaver.close();
-		gamesaver = null;
+		this.gamesaver.close();
+		this.gamesaver = null;
 		
-		parser.close();
-		parser = null;
+		this.parser.close();
+		this.parser = null;
 		
-		root.close();
-		root = null;
+		this.root.close();
+		this.root = null;
 		
-		path = null;
-		i = null;
-		o = null;
+		this.i = null;
+		this.o = null;
 	}
 	
 }
