@@ -9,7 +9,6 @@ public class InputManager implements Runnable
 	
 	private Scanner reader = new Scanner(System.in);
 	private LinkedList<String> queue = new LinkedList<String>();
-	private LinkedList<String> historyQueue = new LinkedList<String>();
 	private String input;
 	
 	OutputManager o;
@@ -17,6 +16,7 @@ public class InputManager implements Runnable
 	public InputManager(OutputManager o)
 	{
 		this.o = o;
+
 		Thread thread = new Thread(this);	// without this, the input manager runs in the main thread and stops everything else
 		thread.start();
 	}
@@ -44,17 +44,6 @@ public class InputManager implements Runnable
 			queue.add(input);
 		}
 		
-		synchronized(historyQueue)
-		{
-			if(historyQueue.size() < 10)
-				historyQueue.add(input);
-			else
-			{
-				historyQueue.removeFirst();
-				historyQueue.add(input);
-			}
-		}
-		
 		try
 		{
 			Thread.sleep(100);
@@ -62,6 +51,7 @@ public class InputManager implements Runnable
 		catch (InterruptedException e)
 		{
 			// could be blocking, but it shouldn't be
+			o.write("!!!!!Input Thread Sleep Failed!!!!!");
 		}
 	}
 	
@@ -75,17 +65,14 @@ public class InputManager implements Runnable
 		}
 	}
 	
-	public String getPrevious()
-	{
-		synchronized(historyQueue)
-		{
-			return historyQueue.peek();
-		}
-	}
-	
 	public boolean getExit()
 	{
 		return exitKeyPressed;
+	}
+	
+	protected boolean setExit(boolean exit)
+	{
+		return this.exitKeyPressed = exit;
 	}
 	
 	public void close()
@@ -95,10 +82,4 @@ public class InputManager implements Runnable
 		this.queue.clear();
 		this.queue = null;
 	}
-	
-	//private void setExit(boolean b)
-	//{
-	//	exitKeyPressed = b;				// need to add esc key press detection or something
-	//}
-	
 }

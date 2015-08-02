@@ -5,7 +5,7 @@
 	"Level":1,
 
 	"SliceKey":0,
-	"LocationKey":"entrance",
+	"LocationKey":"store",
 
 	"BaseStats":
 	[
@@ -13,7 +13,7 @@
 		{"Dexterity":12},
 		{"Constitution":14},
 		{"Wisdom":11},
-		{"Intellegence":10},
+		{"Intelligence":10},
 		{"Charisma":12}
 	]
 }

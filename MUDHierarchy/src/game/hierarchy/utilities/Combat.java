@@ -52,11 +52,4 @@ public class Combat
 		}
 		return false;
 	}
-
-	public void close()
-	{
-		// TODO Auto-generated method stub
-		
-	}
-	
 }

@@ -1,5 +1,6 @@
 package game.parsers;
 
+import game.InputManager;
 import game.OutputManager;
 import game.hierarchy.Root;
 import game.hierarchy.RootObject;
@@ -17,6 +18,7 @@ public class Interpreter
 {
 	private Root root;			// hierarchy control
 	private OutputManager o;	// standard output
+	private InputManager i;		// standard input
 	
 	private Combat combat = new Combat();					// Hierarchy utilities are initialized here
 	private Conversation conversation = new Conversation();	// used to control various interactions
@@ -27,12 +29,14 @@ public class Interpreter
 	private Move move = new Move();
 	private Cast cast = new Cast();
 	
-	private String action = null, ability = null, target = null;
-	private boolean success = false;
+	private String action = null, ability = null, target = null;	// string inputs from the parser
+	private boolean success = false;								// boolean for verifying that actions completed successfully
+	private static Action[] actionVals = Action.values();					// a static reference to all of the possible actions and their values
 	
-	public Interpreter(Root root, OutputManager o)
+	public Interpreter(Root root, OutputManager o, InputManager i)
 	{
 		this.o = o;
+		this.i = i;
 		this.root = root;
 	}
 	
@@ -43,12 +47,20 @@ public class Interpreter
 		this.target = targetT;
 		this.success = false;
 		
-		this.checkValues();
+		Action a = null;
 		
-		try
-		{
-			Action a = Action.valueOf(action);
+		for(Action act  : Interpreter.actionVals){
+			if(act.name().toString().equals(action)){
+				a = act;
+			}
+		}
 			
+		if(target == null){
+			target = root.getCharacter().getTarget();
+		}
+
+		if(a != null)
+		{
 			switch(a)
 			{
 				case attack:
@@ -56,7 +68,7 @@ public class Interpreter
 				break;
 				
 				case talk:
-					success = conversation.talk(a, ability, target, o, root);	//***
+					success = conversation.talk(a, ability, target, root, i, o);	//***
 				break;
 				
 				case buy:
@@ -94,26 +106,22 @@ public class Interpreter
 				break;
 				
 				case target:
-					if(ability == null)
-					{
+					if(ability == null){
 						root.getCharacter().setTarget(target);
 					}
 				break;
 				
 				case help:
-					if(ability == null && target == null)
-					{
-						o.write("Here are all of the valid actions:\n");
-						for(Action e : Action.values())
-						{
+					if(ability == null && target == null){
+						o.write("\nHere are all of the valid actions:\n");
+						for(Action e : Action.values()){
 							o.write(e.toString() + "\n");
 						}
 					}
-					else
-					{
+					else{
 						o.write("Invalid action - target pair. The command 'help' does not require a target.\n");
 						o.write("ability: \"" + ability + "\" target: \"" + target + "\"");
-						o.write("character target: " + root.getCharacter().getTarget());
+						//o.write("character target: " + root.getCharacter().getTarget());
 					}
 				break;
 				
@@ -122,43 +130,23 @@ public class Interpreter
 				break;
 			}
 			
-			if(!a.equals(Action.target))
-			{
+			if(!a.equals(Action.target)){
 				root.getCharacter().setTarget(null);	// reset player target if it was just used
 				this.target = null;
 			}
 			
 			return success;
 		}
-		catch(Exception e)
+		else
 		{
-			//e.printStackTrace(o.getPrintWriter());	// debugging
-			//o.getPrintWriter().flush();
 			o.write("Invalid Action. Type help for a list of actions\n");
 			o.write(action + ", " + target + ", " + ability + "\n");
 			return false;
 		}
 	}
-
-	private void checkValues()
-	{
-		if(target == null)
-		{
-			target = root.getCharacter().getTarget();
-		}
-	}
 	
 	public void close()
-	{
-		this.combat.close();
-		this.conversation.close();
-		this.store.close();
-		this.inventory.close();
-		this.rest.close();
-		this.interact.close();
-		this.move.close();
-		this.cast.close();
-		
+	{	
 		this.combat = null;
 		this.conversation = null;
 		this.store = null;

@@ -43,9 +43,19 @@ public class Portal extends RootObject
 		return locationKey;
 	}
 	
+	public String getDescription(int level)
+	{
+		String temp = "";
+		for(int i = 0; i < level; i++)
+			temp += "\t";
+		final String tabs = temp;
+		
+		return  tabs + name + ": " + description + "\n";
+	}
+	
 	public String getDescription()
 	{
-		return  name + ": " + description + "\n";
+		return name + ": " + description + "\n";
 	}
 	
 	public String getName()

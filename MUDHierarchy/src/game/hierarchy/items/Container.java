@@ -21,7 +21,7 @@ public class Container extends Item
 		super(fileName);
 		
 		this.isStatic = (boolean) super.JsonFile.get("IsStatic");
-		this.subItems = (ArrayList<Item>) ((JSONArray)JsonFile.get("SubItems")).stream().map(i -> new ItemBuilder((String)((JSONObject) i).get("FileName")).getItem()).collect(Collectors.toList());
+		this.subItems = (ArrayList<Item>) ((JSONArray)JsonFile.get("SubItems")).stream().map(i -> ItemBuilder.getItem((String)((JSONObject) i).get("FileName"))).collect(Collectors.toList());
 	}
 
 	public boolean getIsStatic()

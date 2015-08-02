@@ -2,12 +2,14 @@ package game.hierarchy;
 
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 
 import game.hierarchy.items.Item;
 import game.hierarchy.subsystems.AI;
+import game.hierarchy.subsystems.ItemBuilder;
 import game.hierarchy.subsystems.NpcClass;
 import game.hierarchy.subsystems.NpcStats;
 
@@ -18,6 +20,7 @@ public class Npc extends RootObject
 	private NpcClass npcclass;
 	
 	private ArrayList<Item> items;
+	private JSONArray conversations;
 	
 	private String name;
 	private String description;
@@ -53,12 +56,15 @@ public class Npc extends RootObject
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void superNpc(String fileName, boolean levelByFile) throws Exception
 	{
 
 		JSONParser parser = new JSONParser();
-		JSONObject NpcOutline = new JSONObject((JSONObject) parser.parse(new FileReader("res/creatures/" + fileName)));
+		JSONObject NpcOutline = (JSONObject) parser.parse(new FileReader("res/creatures/" + fileName));
 			
+		items 	= (ArrayList<Item>) 	((JSONArray)NpcOutline.get("Items"))	.stream().map(i -> ItemBuilder.getItem(	(String)((JSONObject) i).get("FileName"))).collect(Collectors.toList());
+		
 		this.baseStats = 	(JSONArray) NpcOutline.get("BaseStats");
 
 		this.name 			= 	(String) NpcOutline.get("Name");
@@ -68,6 +74,14 @@ public class Npc extends RootObject
 		this.isInteractable = 	(boolean) NpcOutline.get("IsInteractable");
 		this.isAttackable	= 	(boolean) NpcOutline.get("IsAttackable");
 			
+		if(isInteractable){
+			String tempstring = (String) NpcOutline.get("Conversations");
+			JSONParser tempparser = new JSONParser();
+			JSONObject tempobj = (JSONObject) tempparser.parse(new FileReader("res/conversations/" + tempstring));
+			conversations = (JSONArray) tempobj.get("Conversations");
+			System.out.println( "res/conversations/" + ((String) NpcOutline.get("Conversations")) );
+		}
+
 		if(levelByFile)
 			this.level = (int)(long) NpcOutline.get("Level");
 		
@@ -97,6 +111,16 @@ public class Npc extends RootObject
 		stats.setWillSave(npcclass.getWillSave(stats.getLevel()));
 	}*/
 
+	public String getDescription(int level)
+	{
+		String temp = "";
+		for(int i = 0; i < level; i++)
+			temp += "\t";
+		final String tabs = temp;
+		
+		return tabs + description + "\n";
+	}
+	
 	public String getDescription()
 	{
 		return description + "\n";
@@ -171,5 +195,10 @@ public class Npc extends RootObject
 	{
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public JSONArray getConversation(Pc pc)
+	{
+		return (JSONArray) conversations.get(0);
 	}
 }

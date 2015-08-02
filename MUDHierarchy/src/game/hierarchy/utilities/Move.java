@@ -29,19 +29,13 @@ public class Move
 		}
 		else if(ability != null)
 		{
-			o.write("Invalid command. Move does not require an ability.\n");
+			o.write("Invalid command. 'Move' does not require an ability.\n");
 		}
 		else if(portal.isLocked())
 		{
 			o.write("Its locked!");
 		}
+		
 		return false;
 	}
-
-	public void close()
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
 }

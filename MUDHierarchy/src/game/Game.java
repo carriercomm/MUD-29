@@ -27,7 +27,7 @@ public class Game
 	{
 		try
 		{
-			parser = new Parser(root, o);
+			parser = new Parser(root, o, i);
 			
 			o.write(root.getCharacterLocation().getDescription());
 			while(!i.getExit())
@@ -106,5 +106,4 @@ public class Game
 		this.i = null;
 		this.o = null;
 	}
-	
 }

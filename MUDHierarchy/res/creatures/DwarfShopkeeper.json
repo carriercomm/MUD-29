@@ -1,0 +1,27 @@
+{
+	"Name":"Dwarf Shopkeeper",
+	"Description":"A bright-eyed and nimble Dwarf, he is eager to sell you a suit of armor or finely crafted blade.",
+	"Ai":"DwarfAi.json",
+	"Race":"Dwarf",
+	"Class":"Warrior",
+	"Level":5,
+	"IsInteractable":true,
+	"IsAttackable":false,
+
+	"BaseStats":
+	[
+		{"Strength":18},
+		{"Dexterity":12},
+		{"Constitution":15},
+		{"Wisdom":13},
+		{"Intelligence":12},
+		{"Charisma":10}
+	],
+	
+	"Items":
+	[
+		
+	],
+	
+	"Conversations":"Test/ConversationOutline.json"
+}

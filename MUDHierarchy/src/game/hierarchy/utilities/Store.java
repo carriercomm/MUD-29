@@ -10,11 +10,4 @@ public class Store {
 	{
 		return false;
 	}
-
-	public void close()
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
 }

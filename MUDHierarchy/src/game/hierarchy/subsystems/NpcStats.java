@@ -34,7 +34,7 @@ public class NpcStats
 		this.baseStats.put("Dexterity",		(int)(long)	(((JSONObject)(BaseStats.get(1))).get("Dexterity")));
 		this.baseStats.put("Constitution",	(int)(long)	(((JSONObject)(BaseStats.get(2))).get("Constitution")));
 		this.baseStats.put("Wisdom",		(int)(long)	(((JSONObject)(BaseStats.get(3))).get("Wisdom")));
-		this.baseStats.put("Intellegence",	(int)(long)	(((JSONObject)(BaseStats.get(4))).get("Intellegence")));
+		this.baseStats.put("Intelligence",	(int)(long)	(((JSONObject)(BaseStats.get(4))).get("Intelligence")));
 		this.baseStats.put("Charisma",		(int)(long)	(((JSONObject)(BaseStats.get(5))).get("Charisma")));
 		
 		//Base Stats Modifiers
@@ -42,7 +42,7 @@ public class NpcStats
 		this.baseStats.put("DexterityMod",		(baseStats.get("Dexterity")/2)-5);	//set ability modifiers based on formula
 		this.baseStats.put("ConstitutionMod",	(baseStats.get("Constitution")/2)-5);
 		this.baseStats.put("WisdomMod",			(baseStats.get("Wisdom")/2)-5);
-		this.baseStats.put("IntellegenceMod",	(baseStats.get("Intellegence")/2)-5);
+		this.baseStats.put("IntelligenceMod",	(baseStats.get("Intelligence")/2)-5);
 		this.baseStats.put("CharismaMod",		(baseStats.get("Charisma")/2)-5);
 		
 		//Saves & Base Attack Bonus
@@ -177,7 +177,7 @@ public class NpcStats
 	public String printStats()
 	{
 		return	"STR: "+baseStats.get("Strength")+" : "+baseStats.get("StrengthMod")+"\nDEX: "+baseStats.get("Dexterity")+" : "+baseStats.get("DexterityMod")+"\nCON: "+baseStats.get("Constitution")+" : "+baseStats.get("ConstitutionMod")+
-				"\nWIS: "+baseStats.get("Wisdom")+" : "+baseStats.get("WisdomMod")+"\nINT: "+baseStats.get("Intellegence")+" : "+baseStats.get("IntellegenceMod")+"\nCHA: "+baseStats.get("Charisma")+" : "+baseStats.get("CharismaMod");	
+				"\nWIS: "+baseStats.get("Wisdom")+" : "+baseStats.get("WisdomMod")+"\nINT: "+baseStats.get("Intelligence")+" : "+baseStats.get("IntelligenceMod")+"\nCHA: "+baseStats.get("Charisma")+" : "+baseStats.get("CharismaMod");	
 	}
 	
 	public String print()

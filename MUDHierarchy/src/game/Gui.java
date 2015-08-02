@@ -1,5 +1,18 @@
 package game;
 
-public class Gui {
+import javax.swing.SwingUtilities;
 
+public class Gui
+{	
+	public Gui()
+	{
+		SwingUtilities.invokeLater(new Runnable()
+		{
+			@Override
+	        public void run()
+	        {
+	            new Console("Test GUI");
+	        }
+	    });
+	}
 }

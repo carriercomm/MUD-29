@@ -14,7 +14,14 @@
 		{"Dexterity":18},
 		{"Constitution":13},
 		{"Wisdom":10},
-		{"Intellegence":10},
+		{"Intelligence":10},
 		{"Charisma":8}
-	]
+	],
+	
+	"Items":
+	[
+		
+	],
+	
+	"Conversations":"conversations/ConversationOutline.json"
 }

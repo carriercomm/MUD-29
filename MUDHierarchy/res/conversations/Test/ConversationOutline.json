@@ -1,0 +1,49 @@
+{
+	"Conversations"
+	[
+	
+		[
+			{
+				"Statement":"First thing.",
+				"Responses":
+				[
+					{"Response":"Say the first thing again.", "ID":"0"},
+					{"Response":"Say the second thing.", "ID":"1"},
+					{"Response":"Say the third thing.", "ID":"2"},
+				]
+			},
+			
+			{
+				"Statement":"Second thing.",
+				"Responses":
+				[
+					{"Response":"Say the first thing.", "ID":"0"},
+					{"Response":"Say the second thing again.", "ID":"1"},
+					{"Response":"Say the third thing.", "ID":"2"},
+				]
+			},
+			
+			{
+				"Statement":"Third thing.",
+				"Responses":
+				[
+					{"Response":"Say the first thing.", "ID":"0"},
+					{"Response":"Say the second thing.", "ID":"1"},
+					{"Response":"Say the third thing again.", "ID":"2"},
+					{"Response":"Bye!", "ID":"-1"}
+				]
+			},
+		],
+		
+		[
+			{
+				"Statement":"Short conversation, eh?",
+				"Responses":
+				[
+					{"Response":"Bye.", "ID":"-1"}
+				]
+			}
+		]
+		
+	]
+}

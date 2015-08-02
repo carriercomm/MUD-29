@@ -10,11 +10,4 @@ public class Inventory {
 	{
 		return false;
 	}
-
-	public void close()
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
 }

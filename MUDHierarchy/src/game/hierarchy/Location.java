@@ -31,7 +31,7 @@ public class Location extends RootObject
 		this.key 			= (String) JsonFile.get("Key");
 		this.name 			= (String) JsonFile.get("Name");
 		
-		items 	= (ArrayList<Item>) 	((JSONArray)JsonFile.get("Items"))	.stream().map(i -> new ItemBuilder(	(String)((JSONObject) i).get("FileName")).getItem()).collect(Collectors.toList());
+		items 	= (ArrayList<Item>) 	((JSONArray)JsonFile.get("Items"))	.stream().map(i -> ItemBuilder.getItem(	(String)((JSONObject) i).get("FileName")))		.collect(Collectors.toList());
 		npcs  	= (ArrayList<Npc>) 		((JSONArray)JsonFile.get("Npcs"))	.stream().map(n -> new Npc(			(String)((JSONObject) n).get("FileName")))			.collect(Collectors.toList());
 		portals = (ArrayList<Portal>) 	((JSONArray)JsonFile.get("Portals")).stream().map(p -> new Portal(		(String)((JSONObject) p).get("FileName")))			.collect(Collectors.toList());
 	}
@@ -43,15 +43,15 @@ public class Location extends RootObject
 		descr += this.description + "\n";
 		
 		descr += "\nThere are " + npcs.size() + " npcs in this room.\n";
-		descr += "\t" + npcs.stream().map(Npc::getDescription).filter(s -> s != null).reduce((s,t) -> s +"\t"+  t).orElse("");
+		descr += npcs.stream().map(n -> n.getDescription(1)).filter(s -> s != null).reduce((s,t) -> s +"\t"+  t).orElse("");
 		
 		descr += "\nThere are " + items.size() + " items in this room.\n";
 		descr += items.stream().map(i -> i.getDescription(1)).filter(s -> s != null).reduce((s,t) -> s +"\t"+  t).orElse("");
 		
 		descr += "\nThere are " + portals.size() + " exit(s) in this room.\n";
-		descr += "\t" + portals.stream().map(Portal::getDescription).filter(s -> s != null).reduce((s,t) -> s +"\t"+  t).orElse("");
+		descr += portals.stream().map(p -> p.getDescription(1)).filter(s -> s != null).reduce((s,t) -> s +"\t"+  t).orElse("");
 		
-		descr += "==============================================================================================\n";
+		descr += "\n==============================================================================================\n";
 		
 		return descr;
 	}
@@ -134,7 +134,11 @@ public class Location extends RootObject
 
 	public Npc getNpc(String target)
 	{
-		// TODO Auto-generated method stub
+		for(Npc n : this.npcs)
+		{
+			if(n.getName().toLowerCase().contains(target.toLowerCase()))
+				return n;
+		}
 		return null;
 	}
 

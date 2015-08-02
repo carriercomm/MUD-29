@@ -12,14 +12,7 @@ import game.hierarchy.items.Item;
 
 public class ItemBuilder
 {
-	private String fileName;
-	
-	public ItemBuilder(String fileName)
-	{
-		this.fileName = fileName;
-	}
-
-	public Item getItem()
+	public static Item getItem(String fileName)
 	{
 		try
 		{

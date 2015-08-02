@@ -1,5 +1,6 @@
 package game.parsers;
 
+import game.InputManager;
 import game.OutputManager;
 import game.hierarchy.Root;
 
@@ -11,10 +12,10 @@ public class Parser
 	private Tokenizer tokenizer = new Tokenizer(false);
 	private String action = null, ability = null, target = null;
 	
-	public Parser(Root root, OutputManager o)
+	public Parser(Root root, OutputManager o, InputManager i)
 	{
 		this.o = o;
-		this.interpreter = new Interpreter(root, o);
+		this.interpreter = new Interpreter(root, o, i);
 	}
 	
 	public boolean parse(String input)

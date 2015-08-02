@@ -1,0 +1,20 @@
+{
+	"Name":"Store",
+	"Key":"store",
+	"Description":"A small shop filled with all manner of weapons and armor. The walls are covered entirely by shelves overflowing with iron, steel, and bronze goods. As you step inside, the friendly looking shopkeeper, a bald red-bearded dwarf, beckons you over.",
+	
+	"Items":
+	[
+		
+	],
+	
+	"Npcs":
+	[
+		{"FileName":"DwarfShopkeeper.json"}
+	],
+
+	"Portals":
+	[
+		
+	]
+}
