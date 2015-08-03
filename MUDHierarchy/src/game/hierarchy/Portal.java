@@ -7,7 +7,7 @@ import org.json.simple.parser.JSONParser;
 
 import game.parsers.tokens.Action;
 
-public class Portal extends RootObject
+public class Portal implements RootObject
 {
 	private String name;
 	private String description;

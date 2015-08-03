@@ -1,6 +1,6 @@
 package game.hierarchy;
 
-public abstract class RootObject
+public interface RootObject
 {
 	public abstract String getName();
 	public abstract String getDescription();

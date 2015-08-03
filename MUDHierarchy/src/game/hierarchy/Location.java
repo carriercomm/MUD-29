@@ -11,7 +11,7 @@ import org.json.simple.parser.JSONParser;
 import game.hierarchy.items.Item;
 import game.hierarchy.subsystems.ItemBuilder;
 
-public class Location extends RootObject
+public class Location implements RootObject
 {
 	private ArrayList<Item> items  = new ArrayList<Item>();
 	private ArrayList<Npc> npcs  = new ArrayList<Npc>();

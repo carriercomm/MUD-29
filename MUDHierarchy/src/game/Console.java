@@ -86,7 +86,7 @@ public class Console extends JFrame
         inputLine.setFont(new Font("Monospaced", Font.PLAIN, 14));*/
         
         this.add(console);
-        this.add(inputLine,-1);
+        //this.add(inputLine,-1);
         this.pack();
         this.setVisible(true);
         this.append("Test Output:\n", Color.WHITE);

@@ -20,7 +20,7 @@ public class Interpreter
 	private OutputManager o;	// standard output
 	private InputManager i;		// standard input
 	
-	private Combat combat = new Combat();					// Hierarchy utilities are initialized here
+	private Combat combat = new Combat(o);					// Hierarchy utilities are initialized here
 	private Conversation conversation = new Conversation();	// used to control various interactions
 	private Store store = new Store();
 	private Inventory inventory = new Inventory();

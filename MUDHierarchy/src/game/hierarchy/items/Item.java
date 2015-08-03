@@ -12,7 +12,7 @@ import game.hierarchy.RootObject;
 import game.hierarchy.subsystems.Ability;
 import game.parsers.tokens.Action;
 
-public abstract class Item extends RootObject
+public abstract class Item implements RootObject
 {
 	protected String name;
 	protected String description;	
@@ -34,6 +34,11 @@ public abstract class Item extends RootObject
 		this.weight		 = (Double)  JsonFile.get("Weight");
 		
 		abilities = (ArrayList<Ability>) ((JSONArray)JsonFile.get("Abilities")).stream().map(a -> new Ability((String) a)).collect(Collectors.toList());
+	}
+	
+	public Item()
+	{
+		
 	}
 	
 	public abstract String getDescription(int level);

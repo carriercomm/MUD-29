@@ -13,29 +13,22 @@ import game.hierarchy.subsystems.ItemBuilder;
 import game.hierarchy.subsystems.NpcClass;
 import game.hierarchy.subsystems.NpcStats;
 
-public class Npc extends RootObject
+public class Npc extends Creature implements RootObject
 {
 	private AI ai;
-	private NpcStats stats;
-	private NpcClass npcclass;
-	
-	private ArrayList<Item> items;
 	private JSONArray conversations;
 	
-	private String name;
 	private String description;
-	private String className;
-	private String raceName;
-	private int level;
+
 	private boolean isInteractable;
 	private boolean isAttackable;
-	private JSONArray baseStats;
+
 	
 	public Npc(String fileName, int level)
 	{
 		try
 		{
-			this.level = level;
+			super.level = level;
 			superNpc(fileName, false);
 		}
 		catch(Exception e)
@@ -63,13 +56,13 @@ public class Npc extends RootObject
 		JSONParser parser = new JSONParser();
 		JSONObject NpcOutline = (JSONObject) parser.parse(new FileReader("res/creatures/" + fileName));
 			
-		items 	= (ArrayList<Item>) 	((JSONArray)NpcOutline.get("Items"))	.stream().map(i -> ItemBuilder.getItem(	(String)((JSONObject) i).get("FileName"))).collect(Collectors.toList());
+		super.items 	= (ArrayList<Item>) 	((JSONArray)NpcOutline.get("Items"))	.stream().map(i -> ItemBuilder.getItem(	(String)((JSONObject) i).get("FileName"))).collect(Collectors.toList());
 		
-		this.baseStats = 	(JSONArray) NpcOutline.get("BaseStats");
+		super.baseStats = 	(JSONArray) NpcOutline.get("BaseStats");
 
-		this.name 			= 	(String) NpcOutline.get("Name");
-		this.className 		= 	(String) NpcOutline.get("Class");
-		this.raceName 		= 	(String) NpcOutline.get("Race");
+		super.name 			= 	(String) NpcOutline.get("Name");
+		super.className 		= 	(String) NpcOutline.get("Class");
+		super.raceName 		= 	(String) NpcOutline.get("Race");
 		this.description 	=	(String) NpcOutline.get("Description");
 		this.isInteractable = 	(boolean) NpcOutline.get("IsInteractable");
 		this.isAttackable	= 	(boolean) NpcOutline.get("IsAttackable");
@@ -83,10 +76,10 @@ public class Npc extends RootObject
 		}
 
 		if(levelByFile)
-			this.level = (int)(long) NpcOutline.get("Level");
+			super.level = (int)(long) NpcOutline.get("Level");
 		
-		this.npcclass 	= new NpcClass (className + ".json");
-		this.stats 		= new NpcStats(npcclass, baseStats, level);
+		super.npcclass 	= new NpcClass (className + ".json");
+		super.stats 		= new NpcStats(npcclass, baseStats, level);
 		this.ai 		= new AI((String)NpcOutline.get("Ai"));
 	}
 	
@@ -126,31 +119,6 @@ public class Npc extends RootObject
 		return description + "\n";
 	}
 	
-	public String getClassName()
-	{
-		return className;
-	}
-	
-	public String getRace()
-	{
-		return raceName;
-	}
-	
-	public String getName()
-	{
-		return name;
-	}
-	
-	public int getLevel()
-	{
-		return level;
-	}
-	
-	public NpcStats getStats()
-	{
-		return stats;
-	}
-	
 	public boolean getIsInteractable()
 	{
 		return isInteractable;
@@ -161,20 +129,9 @@ public class Npc extends RootObject
 		return isAttackable;
 	}
 	
-	public void addItem(Item item)
-	{
-		items.add(item);
-	}
-	
 	public String print()
 	{
-		return "name: " + name + ", class name" + className + ", race name: " + raceName + ", level: " + level + "\n" + "description: " + description + "\n" + ai.print() + "\n" + stats.print() + "\n";
-	}
-	
-	//TODO: do we need this?
-	public String interact()	// uses isAttackable and isInteractable to resolve interactions & such?
-	{
-		return null;
+		return "name: " + super.name + ", class name" + super.className + ", race name: " + super.raceName + ", level: " + super.level + "\n" + "description: " + description + "\n" + ai.print() + "\n" + super.stats.print() + "\n";
 	}
 
 	public AI getAi()
@@ -182,23 +139,14 @@ public class Npc extends RootObject
 		return ai;
 	}
 
-	public boolean isDead()
-	{
-		if(stats.getCurrHp() <= 0)
-		{
-			return true;
-		}
-		return false;
-	}
-
-	public int getAc()
-	{
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	public JSONArray getConversation(Pc pc)
 	{
 		return (JSONArray) conversations.get(0);
+	}
+	
+	//TODO: do we need this?
+	public String interact()	// uses isAttackable and isInteractable to resolve interactions & such?
+	{
+		return null;
 	}
 }

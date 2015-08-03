@@ -16,12 +16,12 @@ public class TestCase
 			//System.out.println(Goblin1.print());
 			
 			Root slicemap = new Root("res/slicemap.json", o);
-			slicemap.getLocation(0, "entrance").getDescription();
-			slicemap.getLocation(0, "grand_hallway").getDescription();
-			slicemap.getLocation(0, "audience_chamber").getDescription();
-			slicemap.getLocation(0, "suite_hallway").getDescription();
-			slicemap.getLocation(0, "dining_room").getDescription();
-			slicemap.getLocation(0, "library").getDescription();
+			System.out.println(slicemap.getLocation(0, "entrance").getDescription());
+			System.out.println(slicemap.getLocation(0, "grand_hallway").getDescription());
+			System.out.println(slicemap.getLocation(0, "audience_chamber").getDescription());
+			System.out.println(slicemap.getLocation(0, "suite_hallway").getDescription());
+			System.out.println(slicemap.getLocation(0, "dining_room").getDescription());
+			System.out.println(slicemap.getLocation(0, "library").getDescription());
 		}
 		catch (Exception e)
 		{

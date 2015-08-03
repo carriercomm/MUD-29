@@ -12,6 +12,11 @@ public class Equipable extends Item
 		
 		this.isEquiped = (boolean) (super.JsonFile).get("IsEquiped");
 	}
+	
+	public Equipable()
+	{
+		super();
+	}
 
 	public boolean isEquiped()
 	{
@@ -44,14 +49,12 @@ public class Equipable extends Item
 	}
 
 	public int getDamage() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 3;
 	}
 
 	public Object getType()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return "Melee";
 	}
 	
 }
