@@ -1,0 +1,13 @@
+# List of Armor
+# Name, AC, max dex bonus, weight, cost, spell failure
+Padded       1 8 10 5    0.05
+Leather      2 6 15 10   0.10
+Chain-shirt  4 4 25 100  0.20
+Hide         4 4 25 15   0.20
+Scalemail    5 3 30 50   0.25
+Chainmail    6 2 40 150  0.30
+Breastplate  6 3 25 400  0.25
+Splintmail   7 0 45 200  0.40
+Bandedmail   7 1 35 250  0.35
+Half-plate   8 0 50 600  0.40
+Full-plate   9 1 50 1500 0.40

@@ -1,0 +1,8 @@
+#Shields 
+#Name, hands used, AC Bonus, max dex bonus, weight, cost, spell failure
+Buckler            0 1 10 5  5   0.05
+Light_Wood_Shield  1 1 10 5  3   0.05
+Light_Steel_Shield 1 1 10 6  9   0.05
+Heavy_Wood_Shield  1 2 10 10 7   0.15
+Heavy_Steel_Shield 1 2 10 15 20  0.15
+Tower_Shield       1 4 2  45 30  0.50

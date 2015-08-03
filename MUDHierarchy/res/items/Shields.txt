@@ -1,8 +1,0 @@
-#Shields 
-#Name, AC Bonus, hands used, max dex bonus, weight, cost
-Buckler            0 1 10 5  5
-Light_Wood_Shield  1 1 10 5  3
-Light_Steel_Shield 1 1 10 6  9
-Heavy_Wood_Shield  1 2 10 10 7
-Heavy_Steel_Shield 1 2 10 15 20
-Tower_Shield       1 4 2  45 30

@@ -1,0 +1,10 @@
+# List of Weapons
+# Name, hands used, number of dice, dice value, crit value, crit multiplier, weight, cost, ammo
+Heavy_Crossbow       2 1 10 19 2 8   50  bolt
+Light_Crossbow       2 1 8  19 2 4   35  bolt
+Javelin              1 1 4  20 2 2   1   javelin
+Sling                1 1 3  20 2 0.1 1   bullet
+Longbow              2 1 8  20 3 3   75  arrow
+Shortbow             2 1 6  20 3 2   30  arrow
+Composite_Longbow    2 1 8  20 3 3   100 arrow
+Composite_Shortbow   2 1 6  20 3 2   75  arrow
