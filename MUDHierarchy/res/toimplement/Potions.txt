@@ -1,0 +1,13 @@
+
+Health restore
+Mana restore
+Health boost
+Mana boost
+Strength boost
+Constirution boost
+Dexterity Boost
+Intelligence Boost
+Wisdom Boost
+Charisma Boost
+Defence Boost
+True Vision - sense the locations of hidden objects in room
