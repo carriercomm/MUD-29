@@ -5,7 +5,8 @@
 	
 	"IsHidden":false,
 	"Weight":0.1,
-	"IsStatic":true,
+	"IsOpenable":false,
+	"IsOpen":false,
 
 	"SubItems":
 	[
