@@ -2,6 +2,7 @@ package game.hierarchy;
 
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.json.simple.JSONArray;
@@ -43,13 +44,13 @@ public class Location implements RootObject
 		descr += this.description + "\n";
 		
 		descr += "\nThere are " + npcs.size() + " npcs in this room.\n";
-		descr += npcs.stream().map(n -> n.getDescription(1)).filter(s -> s != null).reduce((s,t) -> s +"\t"+  t).orElse("");
+		descr += npcs.stream().map(n -> n.getDescription(1)).filter(s -> s != null).reduce((s,t) -> s + t).orElse("");
 		
 		descr += "\nThere are " + items.size() + " items in this room.\n";
 		descr += items.stream().map(i -> i.getDescription(1)).filter(s -> s != null).reduce((s,t) -> s +"\t"+  t).orElse("");
 		
 		descr += "\nThere are " + portals.size() + " exit(s) in this room.\n";
-		descr += portals.stream().map(p -> p.getDescription(1)).filter(s -> s != null).reduce((s,t) -> s +"\t"+  t).orElse("");
+		descr += portals.stream().map(p -> p.getDescription(1)).filter(s -> s != null).reduce((s,t) -> s + t).orElse("");
 		
 		descr += "\n==============================================================================================\n";
 		
@@ -91,61 +92,70 @@ public class Location implements RootObject
 		return portals.stream().anyMatch(t -> t.equals(n));
 	}
 	
-	public String interact()
+/*	public String interact()
 	{
-		// TODO: get rid of this
+		// TODO: get rid of this?
 		return null;
-	}
+	}*/
 
 	public void addItem(Item item)
 	{
 		items.add(item);
 	}
 
-	public Item getItem(String dirObject)
+	public Item getItem(String target)
 	{
-		// TODO: finish auto generated method
-		return null;
+		return items.stream()
+					.filter(n -> n.getName().toLowerCase().contains(target))
+					.findFirst()
+					.get();
 	}
 
 	public void removeItem(Item item)
 	{
-		// TODO Auto-generated method stub
-		
+		items.remove(item);
 	}
 
 	public Portal getPortal(String target)
 	{
-		for(Portal p : portals)
-		{
-			if(p.getName().toLowerCase().contains(target.toLowerCase()))
-			{
-				return p;
-			}
-		}
-		return null;
+		return portals.stream()
+					.filter(n -> n.getName().toLowerCase().contains(target))
+					.findFirst()
+					.get();
 	}
 
 	public RootObject getTarget(String target)
 	{
-		// TODO Auto-generated method stub
+		RootObject thing = null;
+		
+		thing = getItem(target);
+		if(thing != null)
+			return thing;
+		
+		thing = getNpc(target);
+		if(thing != null)
+			return thing;
+		
+		thing = getPortal(target);
+		if(thing != null)
+			return thing;
+		
 		return null;
 	}
 
 	public Npc getNpc(String target)
 	{
-		for(Npc n : this.npcs)
-		{
-			if(n.getName().toLowerCase().contains(target.toLowerCase()))
-				return n;
-		}
-		return null;
+		return npcs.stream()
+					.filter(n -> n.getName().toLowerCase().contains(target))
+					.findFirst()
+					.get();
 	}
 
-	public ArrayList<Npc> getHostileNpcs()
+	public List<Npc> getHostileNpcs()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return npcs.stream()
+					.filter(n -> !n.getAi().isFriendly())
+					.collect(Collectors.toList());
 	}
 	
 }

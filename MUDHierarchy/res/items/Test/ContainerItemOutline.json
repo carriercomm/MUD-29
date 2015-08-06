@@ -1,0 +1,21 @@
+{
+	"Type":"Container",
+	"Name":"MerchantInventory",
+	"Description":"Default",
+	
+	"IsHidden":true,
+	"Weight":0,
+	"IsOpenable":false,
+	"IsOpen":false,
+
+	"SubItems":
+	[
+		{"FileName":"Test/BrassKeyRing.json"}
+	],
+
+	"Abilities":
+	[
+
+	]
+
+}

@@ -74,7 +74,7 @@ public class Interpreter
 				case buy:
 				case sell:
 				case trade:
-					success = store.trade(a, ability, target, o, root);	//***
+					success = store.trade(a, ability, target, root, i, o);	//***
 				break;
 				
 				case use:	// calls interact() on items, and activates abilities

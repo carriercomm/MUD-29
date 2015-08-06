@@ -18,6 +18,7 @@ public abstract class Item implements RootObject
 	protected String description;	
 	protected boolean isHidden;
 	protected double weight;
+	protected int cost;
 	
 	protected ArrayList<Ability> abilities = new ArrayList<Ability>();
 	protected JSONObject JsonFile;
@@ -31,7 +32,8 @@ public abstract class Item implements RootObject
 		this.description = (String)	 JsonFile.get("Description");
 		this.name 		 = (String)	 JsonFile.get("Name");
 		this.isHidden 	 = (Boolean) JsonFile.get("IsHidden");
-		this.weight		 = (Double)  JsonFile.get("Weight");
+		this.weight		 = (double)  JsonFile.get("Weight");
+		this.cost		 = (int)(long)	 JsonFile.get("Cost");
 		
 		abilities = (ArrayList<Ability>) ((JSONArray)JsonFile.get("Abilities")).stream().map(a -> new Ability((String) a)).collect(Collectors.toList());
 	}
@@ -70,6 +72,11 @@ public abstract class Item implements RootObject
 	{
 		// TODO Auto-generated method stub
 		
+	}
+
+	public int getCost()
+	{
+		return cost;
 	}
 	
 }

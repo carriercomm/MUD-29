@@ -12,7 +12,7 @@ public class AiRunner
 	{		
 		try
 		{
-			ArrayList<Npc> npcs = root.getCharacterLocation().getHostileNpcs();
+			ArrayList<Npc> npcs = (ArrayList<Npc>)root.getCharacterLocation().getHostileNpcs();
 			if(npcs != null && npcs.size() > 0)
 			{
 				Collections.shuffle(npcs);

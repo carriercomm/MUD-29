@@ -2,25 +2,18 @@ package game.hierarchy.items;
 
 public class Consumable extends Item
 {
-	private int usesTotal;
-	private int usesCurrent;
+	private int uses;
 	
 	public Consumable(String fileName) throws Exception
 	{
 		super(fileName);
 		
-		this.usesTotal 		= (int) (super.JsonFile).get("UsesTotal");
-		this.usesCurrent 	= (int) (super.JsonFile).get("UsesCurrent");
-	}
-
-	public int getUsesTotal()
-	{
-		return usesTotal;
+		this.uses 		= (int) (super.JsonFile).get("Uses");
 	}
 	
-	public int getUsesCurrent()
+	public int getCurrentUses()
 	{
-		return usesTotal - usesCurrent;
+		return uses;
 	}
 	
 	@Override

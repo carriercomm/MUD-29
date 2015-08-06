@@ -5,12 +5,26 @@ import game.hierarchy.subsystems.Ability;
 public class Equipable extends Item
 {
 	private boolean isEquiped;
+	private String supertype;
+	private String subtype;
 	
 	public Equipable(String fileName) throws Exception
 	{
 		super(fileName);
 		
+		this.supertype = (String) super.JsonFile.get("Supertype");
+		this.subtype = (String) super.JsonFile.get("Subtype");
 		this.isEquiped = (boolean) (super.JsonFile).get("IsEquiped");
+	}
+
+	public String getSupertype()
+	{
+		return supertype;
+	}
+
+	public String getSubtype()
+	{
+		return subtype;
 	}
 	
 	public Equipable()
@@ -26,6 +40,7 @@ public class Equipable extends Item
 	@Override
 	public String interact()
 	{
+		//TODO: override this
 		return null;
 	}
 
@@ -56,5 +71,4 @@ public class Equipable extends Item
 	{
 		return "Melee";
 	}
-	
 }

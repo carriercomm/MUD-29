@@ -1,7 +1,5 @@
 package game.hierarchy.utilities;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -13,7 +11,7 @@ import game.parsers.tokens.Action;
 
 public class Conversation
 {	
-	private AtomicInteger statement = new AtomicInteger(0);	// yay, no locks or sync blocks!
+	private int statement = 0;	// yay, no locks or sync blocks!
 	private JSONArray conversation;
 	private OutputManager o;
 	
@@ -27,7 +25,7 @@ public class Conversation
 			this.conversation = npc.getConversation(root.getCharacter());
 			this.next(0);
 			
-			while(statement.get() >= 0)	// loop until the conversation end it reached
+			while(statement >= 0)	// loop until the conversation end it reached
 			{
 				String input = i.read();
 				if(input != null)
@@ -35,10 +33,10 @@ public class Conversation
 					try
 					{
 						int selection = Integer.parseInt(input);
-						if(selection >= 0 && selection <= ((JSONArray)( (JSONObject) conversation.get(this.statement.get()) ).get("Responses")).size() )
+						if(selection >= 0 && selection <= ((JSONArray)( (JSONObject) conversation.get(this.statement) ).get("Responses")).size() )
 						{
-							this.statement.set(this.getResponseValue(this.statement.get(), selection - 1));
-							this.next(this.statement.get());
+							this.statement = this.getResponseValue(this.statement, selection - 1);
+							this.next(this.statement);
 						}
 						else
 						{
@@ -53,7 +51,7 @@ public class Conversation
 				}
 			}
 			
-			this.statement.set(0);	// reset the statement
+			this.statement = 0;	// reset the statement
 			return true;
 		}
 		else if(npc != null && ability == null && !npc.getIsInteractable())

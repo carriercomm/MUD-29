@@ -20,7 +20,7 @@
 	
 	"Items":
 	[
-		
+		{"FileName":"Test/MerchantInventory.json"}
 	],
 	
 	"Conversations":"Test/ConversationOutline.json"

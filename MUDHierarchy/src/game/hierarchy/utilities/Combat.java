@@ -72,17 +72,17 @@ public class Combat
 			{
 				if(roll == 20)
 				{
-					o.write( (String)((JSONArray) PcCritical.get("MeleeDescriptionArray")).get((Dice.roll((((JSONArray) PcCritical.get("MeleeDescriptionArray")).size())) - 1)) );
+					o.write( (String)((JSONArray) PcCritical.get("MeleeDescriptionArray")).get((Dice.roll((((JSONArray) PcCritical.get("MeleeDescriptionArray")).size())) - 1)) + "\n" );
 				}
-				o.write( (String)((JSONArray) PcHit.get("MeleeDescriptionArray")).get((Dice.roll((((JSONArray) PcHit.get("MeleeDescriptionArray")).size())) - 1)) );
+				o.write( (String)((JSONArray) PcHit.get("MeleeDescriptionArray")).get((Dice.roll((((JSONArray) PcHit.get("MeleeDescriptionArray")).size())) - 1)) + "\n" );
 			}
 			else
 			{
 				if(roll == 20)
 				{
-					o.write( (String)((JSONArray) NpcCritical.get("MeleeDescriptionArray")).get((Dice.roll((((JSONArray) NpcCritical.get("MeleeDescriptionArray")).size())) - 1)) );
+					o.write( (String)((JSONArray) NpcCritical.get("MeleeDescriptionArray")).get((Dice.roll((((JSONArray) NpcCritical.get("MeleeDescriptionArray")).size())) - 1)) + "\n" );
 				}
-				o.write( (String)((JSONArray) NpcHit.get("MeleeDescriptionArray")).get((Dice.roll((((JSONArray) NpcHit.get("MeleeDescriptionArray")).size())) - 1)) );
+				o.write( (String)((JSONArray) NpcHit.get("MeleeDescriptionArray")).get((Dice.roll((((JSONArray) NpcHit.get("MeleeDescriptionArray")).size())) - 1)) + "\n" );
 			}
 		}
 		else if((aggressor.getEquippedWeapon().getType().equals("Ranged")) && 
@@ -93,17 +93,17 @@ public class Combat
 			{
 				if(roll == 20)
 				{
-					o.write( (String)((JSONArray) PcCritical.get("RangedDescriptionArray")).get((Dice.roll((((JSONArray) PcCritical.get("RangedDescriptionArray")).size())) - 1)) );
+					o.write( (String)((JSONArray) PcCritical.get("RangedDescriptionArray")).get((Dice.roll((((JSONArray) PcCritical.get("RangedDescriptionArray")).size())) - 1)) + "\n" );
 				}
-				o.write( (String)((JSONArray) PcHit.get("RangedDescriptionArray")).get((Dice.roll((((JSONArray) PcHit.get("RangedDescriptionArray")).size())) - 1)) );
+				o.write( (String)((JSONArray) PcHit.get("RangedDescriptionArray")).get((Dice.roll((((JSONArray) PcHit.get("RangedDescriptionArray")).size())) - 1)) + "\n" );
 			}
 			else
 			{
 				if(roll == 20)
 				{
-					o.write( (String)((JSONArray) NpcCritical.get("RangedDescriptionArray")).get((Dice.roll((((JSONArray) NpcCritical.get("RangedDescriptionArray")).size())) - 1)) );
+					o.write( (String)((JSONArray) NpcCritical.get("RangedDescriptionArray")).get((Dice.roll((((JSONArray) NpcCritical.get("RangedDescriptionArray")).size())) - 1)) + "\n" );
 				}
-				o.write( (String)((JSONArray) NpcHit.get("RangedDescriptionArray")).get((Dice.roll((((JSONArray) NpcHit.get("RangedDescriptionArray")).size())) - 1)) );
+				o.write( (String)((JSONArray) NpcHit.get("RangedDescriptionArray")).get((Dice.roll((((JSONArray) NpcHit.get("RangedDescriptionArray")).size())) - 1)) + "\n" );
 			}
 		}
 		else
@@ -112,22 +112,22 @@ public class Combat
 			{
 				if(aggressorIsPc)
 				{
-					o.write( (String)((JSONArray) PcMiss.get("MeleeDescriptionArray")).get((Dice.roll((((JSONArray) PcMiss.get("MeleeDescriptionArray")).size())) - 1)) );
+					o.write( (String)((JSONArray) PcMiss.get("MeleeDescriptionArray")).get((Dice.roll((((JSONArray) PcMiss.get("MeleeDescriptionArray")).size())) - 1)) + "\n" );
 				}
 				else
 				{
-					o.write( (String)((JSONArray) NpcMiss.get("MeleeDescriptionArray")).get((Dice.roll((((JSONArray) NpcMiss.get("MeleeDescriptionArray")).size())) - 1)) );
+					o.write( (String)((JSONArray) NpcMiss.get("MeleeDescriptionArray")).get((Dice.roll((((JSONArray) NpcMiss.get("MeleeDescriptionArray")).size())) - 1)) + "\n" );
 				}
 			}
 			else
 			{
 				if(aggressorIsPc)
 				{
-					o.write( (String)((JSONArray) PcMiss.get("RangedDescriptionArray")).get((Dice.roll((((JSONArray) PcMiss.get("RangedDescriptionArray")).size())) - 1)) );
+					o.write( (String)((JSONArray) PcMiss.get("RangedDescriptionArray")).get((Dice.roll((((JSONArray) PcMiss.get("RangedDescriptionArray")).size())) - 1)) + "\n" );
 				}
 				else
 				{
-					o.write( (String)((JSONArray) NpcMiss.get("RangedDescriptionArray")).get((Dice.roll((((JSONArray) NpcMiss.get("RangedDescriptionArray")).size())) - 1)) );
+					o.write( (String)((JSONArray) NpcMiss.get("RangedDescriptionArray")).get((Dice.roll((((JSONArray) NpcMiss.get("RangedDescriptionArray")).size())) - 1)) + "\n" );
 				}
 			}
 		}
@@ -138,22 +138,22 @@ public class Combat
 			{
 				if(aggressorIsPc)
 				{
-					o.write( (String)((JSONArray) PcDeath.get("MeleeDescriptionArray")).get((Dice.roll((((JSONArray) PcDeath.get("MeleeDescriptionArray")).size())) - 1)) );
+					o.write( (String)((JSONArray) PcDeath.get("MeleeDescriptionArray")).get((Dice.roll((((JSONArray) PcDeath.get("MeleeDescriptionArray")).size())) - 1)) + "\n" );
 				}
 				else
 				{
-					o.write( (String)((JSONArray) NpcDeath.get("MeleeDescriptionArray")).get((Dice.roll((((JSONArray) NpcDeath.get("MeleeDescriptionArray")).size())) - 1)) );
+					o.write( (String)((JSONArray) NpcDeath.get("MeleeDescriptionArray")).get((Dice.roll((((JSONArray) NpcDeath.get("MeleeDescriptionArray")).size())) - 1)) + "\n" );
 				}
 			}
 			else
 			{
 				if(aggressorIsPc)
 				{
-					o.write( (String)((JSONArray) PcDeath.get("RangedDescriptionArray")).get((Dice.roll((((JSONArray) PcDeath.get("RangedDescriptionArray")).size())) - 1)) );
+					o.write( (String)((JSONArray) PcDeath.get("RangedDescriptionArray")).get((Dice.roll((((JSONArray) PcDeath.get("RangedDescriptionArray")).size())) - 1)) + "\n" );
 				}
 				else
 				{
-					o.write( (String)((JSONArray) NpcDeath.get("RangedDescriptionArray")).get((Dice.roll((((JSONArray) NpcDeath.get("RangedDescriptionArray")).size())) - 1)) );
+					o.write( (String)((JSONArray) NpcDeath.get("RangedDescriptionArray")).get((Dice.roll((((JSONArray) NpcDeath.get("RangedDescriptionArray")).size())) - 1)) + "\n" );
 				}
 			}
 		}

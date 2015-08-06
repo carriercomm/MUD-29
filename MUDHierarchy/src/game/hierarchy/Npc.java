@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 
+import game.hierarchy.items.Container;
 import game.hierarchy.items.Item;
 import game.hierarchy.subsystems.AI;
 import game.hierarchy.subsystems.ItemBuilder;
@@ -142,6 +143,23 @@ public class Npc extends Creature implements RootObject
 	public JSONArray getConversation(Pc pc)
 	{
 		return (JSONArray) conversations.get(0);
+	}
+	
+
+	public boolean hasMerchantInventory()
+	{
+		return super.items.stream()
+							.filter(i -> i.getName().equals("MerchantInventory"))
+							.findFirst()
+							.isPresent();
+	}
+
+	public Container getMerchantInventory()
+	{
+		return (Container) super.items.stream()
+									.filter(i -> i.getName().equals("MerchantInventory"))
+									.findFirst()
+									.get();
 	}
 	
 	//TODO: do we need this?

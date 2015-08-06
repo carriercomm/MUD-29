@@ -8,6 +8,7 @@
 	"IsEquiped":false,
 	"Supertype":"Weapon",
 	"Subtype":"Melee",
+	"Cost":1,
 	
 
 	"Abilities":

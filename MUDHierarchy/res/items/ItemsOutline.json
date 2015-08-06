@@ -5,6 +5,7 @@
 	
 	"IsHidden":false,
 	"Weight":0.1,
+	"Cost":1,
 
 	"Abilities":
 	[
