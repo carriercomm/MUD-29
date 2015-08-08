@@ -4,6 +4,7 @@
 	"Ai":"DwarfAi.json",
 	"Race":"Dwarf",
 	"Class":"Warrior",
+	"Gold":0,
 	"Level":5,
 	"IsInteractable":true,
 	"IsAttackable":false,

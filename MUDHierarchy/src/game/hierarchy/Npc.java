@@ -64,6 +64,7 @@ public class Npc extends Creature implements RootObject
 		super.name 			= 	(String) NpcOutline.get("Name");
 		super.className 		= 	(String) NpcOutline.get("Class");
 		super.raceName 		= 	(String) NpcOutline.get("Race");
+		super.gold			= 	(int)(long) NpcOutline.get("Gold");
 		this.description 	=	(String) NpcOutline.get("Description");
 		this.isInteractable = 	(boolean) NpcOutline.get("IsInteractable");
 		this.isAttackable	= 	(boolean) NpcOutline.get("IsAttackable");

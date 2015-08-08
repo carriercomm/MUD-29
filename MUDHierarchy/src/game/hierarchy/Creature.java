@@ -14,8 +14,9 @@ public class Creature
 	protected NpcStats stats;
 	protected NpcClass npcclass;
 	
-	protected ArrayList<Item> items;
+	protected ArrayList<Item> items = new ArrayList<Item>();
 	
+	protected int gold;
 	protected String name;
 	protected String className;
 	protected String raceName;
@@ -73,6 +74,11 @@ public class Creature
 		
 	}
 	
+	public ArrayList<Item> getInventory()
+	{
+		return items;
+	}
+	
 	public int getAc()
 	{
 		// TODO Auto-generated method stub
@@ -82,5 +88,15 @@ public class Creature
 	public Equipable getEquippedWeapon()
 	{
 		return new Equipable();
+	}
+	
+	public void setGold(int gold)
+	{
+		this.gold = gold;
+	}
+	
+	public int getGold()
+	{
+		return gold;
 	}
 }

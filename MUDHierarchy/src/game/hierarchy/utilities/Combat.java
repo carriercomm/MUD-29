@@ -1,6 +1,8 @@
 package game.hierarchy.utilities;
 
 import java.io.FileReader;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -14,27 +16,11 @@ import game.parsers.tokens.Action;
 
 public class Combat
 {	
-	JSONObject PcCritical, PcDeath, PcHit, PcMiss, NpcCritical, NpcDeath, NpcHit, NpcMiss;
+	private TextHandler cText;
 	
 	public Combat(OutputManager o)
 	{
-		try
-		{
-			JSONParser parser = new JSONParser();
-			
-			this.PcCritical = (JSONObject) parser.parse(new FileReader("res/combat/PcCritical.json"));
-			this.PcDeath = (JSONObject) parser.parse(new FileReader("res/combat/PcDeath.json"));
-			this.PcHit = (JSONObject) parser.parse(new FileReader("res/combat/PcHit.json"));
-			this.PcMiss = (JSONObject) parser.parse(new FileReader("res/combat/PcMiss.json"));
-			this.NpcCritical = (JSONObject) parser.parse(new FileReader("res/combat/NpcCritical.json"));
-			this.NpcDeath = (JSONObject) parser.parse(new FileReader("res/combat/NpcDeath.json"));
-			this.NpcHit = (JSONObject) parser.parse(new FileReader("res/combat/NpcHit.json"));
-			this.NpcMiss = (JSONObject) parser.parse(new FileReader("res/combat/NpcMiss.json"));
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace(o.getPrintWriter());
-		}
+		this.cText = new TextHandler(o);
 	}
 	
 	public boolean run(Action a, String ability, String target, OutputManager o, Root root)
@@ -63,99 +49,94 @@ public class Combat
 	{
 		int roll = Dice.d20();
 		boolean aggressorIsPc = aggressor.getClass().getName().equals("game.hierarchy.Pc");
+		String subtype = aggressor.getEquippedWeapon().getType().substring(0,1);
 		
-		if((aggressor.getEquippedWeapon().getType().equals("Melee")) && 
-		((aggressor.getStats().getBAB() + aggressor.getStats().getStat("StrengthMod") + roll)) >= (defender.getAc()))
+		if
+		(((subtype.equals("M")) && 
+		((aggressor.getStats().getBAB() + aggressor.getStats().getStat("StrengthMod") + roll)) >= (defender.getAc())) ||
+		((subtype.equals("R")) && 
+		((aggressor.getStats().getBAB() + aggressor.getStats().getStat("DexterityMod") + roll)) >= (defender.getAc())))
 		{
 			defender.getStats().setCurrHp(defender.getStats().getCurrHp() - Dice.roll(aggressor.getEquippedWeapon().getDamage()));
-			if(aggressorIsPc)
-			{
+			
+			if(aggressorIsPc){
 				if(roll == 20)
-				{
-					o.write( (String)((JSONArray) PcCritical.get("MeleeDescriptionArray")).get((Dice.roll((((JSONArray) PcCritical.get("MeleeDescriptionArray")).size())) - 1)) + "\n" );
-				}
-				o.write( (String)((JSONArray) PcHit.get("MeleeDescriptionArray")).get((Dice.roll((((JSONArray) PcHit.get("MeleeDescriptionArray")).size())) - 1)) + "\n" );
-			}
-			else
-			{
+					o.write( cText.get(subtype + "PcCritical"));
+				else
+					o.write( cText.get(subtype + "PcHit"));
+			}else{
 				if(roll == 20)
-				{
-					o.write( (String)((JSONArray) NpcCritical.get("MeleeDescriptionArray")).get((Dice.roll((((JSONArray) NpcCritical.get("MeleeDescriptionArray")).size())) - 1)) + "\n" );
-				}
-				o.write( (String)((JSONArray) NpcHit.get("MeleeDescriptionArray")).get((Dice.roll((((JSONArray) NpcHit.get("MeleeDescriptionArray")).size())) - 1)) + "\n" );
-			}
-		}
-		else if((aggressor.getEquippedWeapon().getType().equals("Ranged")) && 
-		((aggressor.getStats().getBAB() + aggressor.getStats().getStat("DexterityMod") + roll)) >= (defender.getAc()))
-		{
-			defender.getStats().setCurrHp(defender.getStats().getCurrHp() - Dice.roll(aggressor.getEquippedWeapon().getDamage()));
-			if(aggressorIsPc)
-			{
-				if(roll == 20)
-				{
-					o.write( (String)((JSONArray) PcCritical.get("RangedDescriptionArray")).get((Dice.roll((((JSONArray) PcCritical.get("RangedDescriptionArray")).size())) - 1)) + "\n" );
-				}
-				o.write( (String)((JSONArray) PcHit.get("RangedDescriptionArray")).get((Dice.roll((((JSONArray) PcHit.get("RangedDescriptionArray")).size())) - 1)) + "\n" );
-			}
-			else
-			{
-				if(roll == 20)
-				{
-					o.write( (String)((JSONArray) NpcCritical.get("RangedDescriptionArray")).get((Dice.roll((((JSONArray) NpcCritical.get("RangedDescriptionArray")).size())) - 1)) + "\n" );
-				}
-				o.write( (String)((JSONArray) NpcHit.get("RangedDescriptionArray")).get((Dice.roll((((JSONArray) NpcHit.get("RangedDescriptionArray")).size())) - 1)) + "\n" );
-			}
+					o.write( cText.get(subtype + "NpcCritical"));
+				else
+					o.write( cText.get(subtype + "NpcHit"));
+			}	
 		}
 		else
 		{
-			if(aggressor.getEquippedWeapon().getType().equals("Melee"))
-			{
-				if(aggressorIsPc)
-				{
-					o.write( (String)((JSONArray) PcMiss.get("MeleeDescriptionArray")).get((Dice.roll((((JSONArray) PcMiss.get("MeleeDescriptionArray")).size())) - 1)) + "\n" );
-				}
-				else
-				{
-					o.write( (String)((JSONArray) NpcMiss.get("MeleeDescriptionArray")).get((Dice.roll((((JSONArray) NpcMiss.get("MeleeDescriptionArray")).size())) - 1)) + "\n" );
-				}
-			}
+			if(aggressorIsPc)
+				o.write( cText.get(subtype + "PcMiss"));
 			else
-			{
-				if(aggressorIsPc)
-				{
-					o.write( (String)((JSONArray) PcMiss.get("RangedDescriptionArray")).get((Dice.roll((((JSONArray) PcMiss.get("RangedDescriptionArray")).size())) - 1)) + "\n" );
-				}
-				else
-				{
-					o.write( (String)((JSONArray) NpcMiss.get("RangedDescriptionArray")).get((Dice.roll((((JSONArray) NpcMiss.get("RangedDescriptionArray")).size())) - 1)) + "\n" );
-				}
-			}
+				o.write( cText.get(subtype + "NpcMiss"));
 		}
 
-		if(defender.isDead())
-		{
-			if(aggressor.getEquippedWeapon().getType().equals("Melee"))
-			{
-				if(aggressorIsPc)
-				{
-					o.write( (String)((JSONArray) PcDeath.get("MeleeDescriptionArray")).get((Dice.roll((((JSONArray) PcDeath.get("MeleeDescriptionArray")).size())) - 1)) + "\n" );
-				}
-				else
-				{
-					o.write( (String)((JSONArray) NpcDeath.get("MeleeDescriptionArray")).get((Dice.roll((((JSONArray) NpcDeath.get("MeleeDescriptionArray")).size())) - 1)) + "\n" );
-				}
-			}
+		if(defender.isDead()){
+			if(aggressorIsPc)
+				o.write( cText.get(subtype + "PcDeath"));
 			else
+				o.write( cText.get(subtype + "NpcDeath"));
+		}
+	}
+	
+	private class TextHandler
+	{
+		JSONObject PcCritical, PcDeath, PcHit, PcMiss, NpcCritical, NpcDeath, NpcHit, NpcMiss;
+		private Map<String, JSONArray> cText = new HashMap<String, JSONArray>();
+		
+		public TextHandler(OutputManager o)
+		{
+			try
 			{
-				if(aggressorIsPc)
-				{
-					o.write( (String)((JSONArray) PcDeath.get("RangedDescriptionArray")).get((Dice.roll((((JSONArray) PcDeath.get("RangedDescriptionArray")).size())) - 1)) + "\n" );
-				}
-				else
-				{
-					o.write( (String)((JSONArray) NpcDeath.get("RangedDescriptionArray")).get((Dice.roll((((JSONArray) NpcDeath.get("RangedDescriptionArray")).size())) - 1)) + "\n" );
-				}
+				JSONParser parser = new JSONParser();
+				
+				this.PcCritical = (JSONObject) parser.parse(new FileReader("res/combat/PcCritical.json"));
+				this.PcDeath = (JSONObject) parser.parse(new FileReader("res/combat/PcDeath.json"));
+				this.PcHit = (JSONObject) parser.parse(new FileReader("res/combat/PcHit.json"));
+				this.PcMiss = (JSONObject) parser.parse(new FileReader("res/combat/PcMiss.json"));
+				this.NpcCritical = (JSONObject) parser.parse(new FileReader("res/combat/NpcCritical.json"));
+				this.NpcDeath = (JSONObject) parser.parse(new FileReader("res/combat/NpcDeath.json"));
+				this.NpcHit = (JSONObject) parser.parse(new FileReader("res/combat/NpcHit.json"));
+				this.NpcMiss = (JSONObject) parser.parse(new FileReader("res/combat/NpcMiss.json"));
+				
+				cText.put("MPcCritical", (JSONArray) PcCritical.get("MeleeDescriptionArray"));
+				cText.put("MPcDeath", (JSONArray) PcDeath.get("MeleeDescriptionArray"));
+				cText.put("MPcHit",(JSONArray) PcHit.get("MeleeDescriptionArray"));
+				cText.put("MPcMiss", (JSONArray) PcMiss.get("MeleeDescriptionArray"));
+				cText.put("MNpcCritical", (JSONArray) NpcCritical.get("MeleeDescriptionArray"));
+				cText.put("MNpcDeath", (JSONArray) NpcDeath.get("MeleeDescriptionArray"));
+				cText.put("MNpcHit", (JSONArray) NpcHit.get("MeleeDescriptionArray"));
+				cText.put("MNpcMiss", (JSONArray) NpcMiss.get("MeleeDescriptionArray"));
+				
+				cText.put("RPcCritical", (JSONArray) PcCritical.get("RangedDescriptionArray"));
+				cText.put("RPcDeath", (JSONArray) PcDeath.get("RangedDescriptionArray"));
+				cText.put("RPcHit", (JSONArray) PcHit.get("RangedDescriptionArray"));
+				cText.put("RPcMiss", (JSONArray) PcMiss.get("RangedDescriptionArray"));
+				cText.put("RNpcCritical", (JSONArray) NpcCritical.get("RangedDescriptionArray"));
+				cText.put("RNpcDeath", (JSONArray) NpcDeath.get("RangedDescriptionArray"));
+				cText.put("RNpcHit", (JSONArray) NpcHit.get("RangedDescriptionArray"));
+				cText.put("RNpcMiss", (JSONArray) NpcMiss.get("RangedDescriptionArray"));
 			}
+			catch(Exception e)
+			{
+				e.printStackTrace(o.getPrintWriter());
+			}
+		}
+		
+		public String get(String key)
+		{
+			JSONArray array = cText.get(key);
+			String text = ((String) array.get(Dice.roll(array.size() - 1))) + "\n";
+			
+			return text;
 		}
 	}
 }

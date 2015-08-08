@@ -63,12 +63,15 @@ public class Equipable extends Item
 		return super.description;
 	}
 
-	public int getDamage() {
+	public int getDamage()
+	{
+		//TODO: override this
 		return 3;
 	}
 
-	public Object getType()
+	public String getType()
 	{
+		//TODO: overrride this
 		return "Melee";
 	}
 }

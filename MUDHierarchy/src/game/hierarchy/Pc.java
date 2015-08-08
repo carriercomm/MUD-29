@@ -29,6 +29,7 @@ public class Pc extends Creature
 			super.className 		= 	(String) PcOutline.get("Class");
 			super.raceName 		= 	(String) PcOutline.get("Race");
 			super.level			= 	(int)(long) PcOutline.get("Level");
+			super.gold			= 	(int)(long) PcOutline.get("Gold");
 			sliceKey 		= 	(int)(long) PcOutline.get("SliceKey");
 			locationKey 	= 	(String) PcOutline.get("LocationKey");
 			

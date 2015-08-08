@@ -12,6 +12,11 @@ public class OutputManager
 		p.flush();
 	}
 	
+	public void clear()
+	{
+		//TODO: add this
+	}
+	
 	public PrintWriter getPrintWriter()
 	{
 		return p;
