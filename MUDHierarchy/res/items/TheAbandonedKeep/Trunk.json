@@ -1,0 +1,15 @@
+{
+	"Type":"Container",
+	"Name":"Trunk",
+	"Description":"A trunk crafted of teak used to contain personal effects.",
+	
+	"IsHidden":false,
+	"Weight":0,
+	"Cost":0,
+
+	"Abilities":
+	[
+		{"FileName":"Default"}
+	]
+
+}

@@ -1,0 +1,15 @@
+{
+	"Type":"Container",
+	"Name":"Throne",
+	"Description":"A greatly deteriorated stone throne. Ornate carvings are discernable on the surfaces that havn't fallen completely to ruin.",
+	
+	"IsHidden":false,
+	"Weight":300,
+	"Cost":0,
+
+	"Abilities":
+	[
+		
+	]
+
+}

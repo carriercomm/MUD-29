@@ -1,0 +1,15 @@
+{
+	"Type":"Container",
+	"Name":"Weapon Rack",
+	"Description":"A wooden rack designed to hold weapons.",
+	
+	"IsHidden":false,
+	"Weight":0,
+	"Cost":0,
+
+	"Abilities":
+	[
+		{"FileName":"Default"}
+	]
+
+}
