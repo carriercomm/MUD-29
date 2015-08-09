@@ -115,6 +115,8 @@ public class Location implements RootObject
 	{
 		items.remove(item);
 	}
+	
+	//public 
 
 	public Portal getPortal(String target)
 	{

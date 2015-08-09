@@ -77,13 +77,13 @@ public class Console extends JFrame
                  d.height = Math.max(d.height, rowHeight * ROWS);
                  return d;
         	}
-        };
+        };*/
         
         inputLine.setEditable(true);
-        inputLine.setContentType("text");
+        //inputLine.setContentType("text");
         inputLine.setForeground(Color.WHITE);
         inputLine.setBackground(Color.GRAY);
-        inputLine.setFont(new Font("Monospaced", Font.PLAIN, 14));*/
+        inputLine.setFont(new Font("Monospaced", Font.PLAIN, 14));
         
         this.add(console);
         //this.add(inputLine,-1);

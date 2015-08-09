@@ -81,9 +81,14 @@ public class Combat
 
 		if(defender.isDead()){
 			if(aggressorIsPc)
+			{
 				o.write( cText.get(subtype + "PcDeath"));
+			}
 			else
+			{
 				o.write( cText.get(subtype + "NpcDeath"));
+				//root.getCharacterLocation().
+			}
 		}
 	}
 	
