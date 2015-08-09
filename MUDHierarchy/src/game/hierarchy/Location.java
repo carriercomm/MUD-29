@@ -108,7 +108,7 @@ public class Location implements RootObject
 		return items.stream()
 					.filter(n -> n.getName().toLowerCase().contains(target))
 					.findFirst()
-					.get();
+					.orElse(null);
 	}
 
 	public void removeItem(Item item)
@@ -121,7 +121,7 @@ public class Location implements RootObject
 		return portals.stream()
 					.filter(n -> n.getName().toLowerCase().contains(target))
 					.findFirst()
-					.get();
+					.orElse(null);
 	}
 
 	public RootObject getTarget(String target)
@@ -148,7 +148,7 @@ public class Location implements RootObject
 		return npcs.stream()
 					.filter(n -> n.getName().toLowerCase().contains(target))
 					.findFirst()
-					.get();
+					.orElse(null);
 	}
 
 	public List<Npc> getHostileNpcs()
