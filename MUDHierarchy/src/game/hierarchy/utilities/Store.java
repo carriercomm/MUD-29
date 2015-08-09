@@ -26,7 +26,7 @@ public class Store
 	{
 		this.o = o;
 		this.i = i;
-		
+				
 		this.pc = root.getCharacter();
 		this.npc = root.getCharacterLocation().getNpc(target);
 		
@@ -75,7 +75,7 @@ public class Store
 	}
 	
 	private void shop(ArrayList<Item> c, boolean isbuy, Pc pc, Npc npc)
-	{
+	{	
 		String strinput = null;
 		String numinput = null;
 		int selection = 0;	// parsed numinput
@@ -115,7 +115,7 @@ public class Store
 									else if(!isbuy)
 									{
 										pc.removeItem(item);
-										npc.addItem(item);
+										npc.addItemToContainer(item, "MerchantInventory");
 										pc.setGold(pc.getGold() + item.getCost());
 									}
 									else if(isbuy && pc.getGold() < item.getCost())
@@ -169,8 +169,6 @@ public class Store
 		
 		o.write(mformer.format());
 	}
-	
-	
 	
 	private class MenuFormer
 	{

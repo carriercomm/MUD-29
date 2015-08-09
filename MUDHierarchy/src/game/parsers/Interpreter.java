@@ -81,8 +81,18 @@ public class Interpreter
 					success = interact.interact(a, ability, target, o, root);	//***
 				break;
 				
+				case look:
 				case examine:	// searches location for a matching target, then prints description
-					o.write(((RootObject)(root.getCharacterLocation().getTarget(target))).getDescription());	//***?
+					if(target != null && target.toLowerCase().equals("room"))
+						o.write(root.getCharacterLocation().getDescription());
+					else if(target != null)
+					{
+						RootObject temp = (RootObject)(root.getCharacterLocation().getTarget(target));
+						if(temp != null)
+							o.write(temp.getDescription());
+					}
+					else
+						o.write("Invalid action - target pair. '" + target + "' is not a valid target.\n");
 				break;
 				
 				case go:

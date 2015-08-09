@@ -1,7 +1,6 @@
 package game.hierarchy.items;
 
 import java.util.ArrayList;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.json.simple.JSONArray;
@@ -43,7 +42,6 @@ public class Container extends Item
 		return isOpen;
 	}
 
-	
 	public ArrayList<Item> getSubItems()
 	{
 		return subItems;
@@ -54,7 +52,30 @@ public class Container extends Item
 		return subItems.get(index);
 	}
 	
-	public Item getSubItem(Predicate<Item> p)	// test a predicate against all of the items in the subItem ArrayList. returns the first match
+	public void addItem(Item item)
+	{
+		subItems.add(item);
+	}
+	
+	public boolean removeItem(Item item)
+	{
+		for(Item i : subItems)
+		{
+			if(i.equals(item))
+			{
+				subItems.remove(i);
+				return true;
+			}
+			else if(i.getType().equals("Container"))
+			{
+				if(((Container)i).removeItem(item))
+					return true;
+			}
+		}
+		return false;
+	}
+	
+/*	public Item getSubItem(Predicate<Item> p)	// test a predicate against all of the items in the subItem ArrayList. returns the first match
 	{
 		return (Item) subItems.stream().map(t -> 
 		{
@@ -64,7 +85,7 @@ public class Container extends Item
 			}
 			return null;
 		});
-	}
+	}*/
 	
 	@Override
 	public String interact()

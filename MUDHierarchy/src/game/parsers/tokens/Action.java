@@ -10,6 +10,7 @@ public enum Action	// enum of the unique actions possible
 	drop,
 	equip,
 	unequip,
+	look,
 	examine,
 	go,
 	inventory,

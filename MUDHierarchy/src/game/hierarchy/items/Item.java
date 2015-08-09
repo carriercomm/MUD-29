@@ -15,6 +15,7 @@ import game.parsers.tokens.Action;
 public abstract class Item implements RootObject
 {
 	protected String name;
+	protected String type;
 	protected String description;	
 	protected boolean isHidden;
 	protected double weight;
@@ -29,6 +30,7 @@ public abstract class Item implements RootObject
 		JSONParser parser = new JSONParser();
 		JsonFile = (JSONObject)(parser.parse(new FileReader("res/items/"+fileName)));
 		
+		this.type		 = (String)	 JsonFile.get("Type");
 		this.description = (String)	 JsonFile.get("Description");
 		this.name 		 = (String)	 JsonFile.get("Name");
 		this.isHidden 	 = (Boolean) JsonFile.get("IsHidden");
@@ -49,6 +51,11 @@ public abstract class Item implements RootObject
 	public String getName()
 	{
 		return name;
+	}
+	
+	public String getType()
+	{
+		return type;
 	}
 	
 	public Boolean getIsHidden()

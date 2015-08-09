@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.json.simple.JSONArray;
 
 import game.hierarchy.items.Equipable;
+import game.hierarchy.items.Container;
 import game.hierarchy.items.Item;
 import game.hierarchy.subsystems.NpcClass;
 import game.hierarchy.subsystems.NpcStats;
@@ -62,16 +63,42 @@ public class Creature
 		items.add(item);
 	}
 	
-	public Item getItem(String dirObject)
+	public boolean addItemToContainer(Item item, String name)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		Container c;
+		for(Item i : items)
+		{
+			if(i.getType().equals("Container") && i.getName().equals(name))
+			{
+				c = ((Container) i);
+				c.addItem(item);
+				return true;
+			}
+		}
+		return false;
 	}
 	
-	public void removeItem(Item item)
+	public Item getItem(int index)
 	{
-		// TODO Auto-generated method stub
-		
+		return items.get(index);
+	}
+	
+	public boolean removeItem(Item item)
+	{
+		for(Item i : items)
+		{
+			if(i.equals(item))
+			{
+				items.remove(i);
+				return true;
+			}
+			else if(i.getType().equals("Container"))
+			{
+				if(((Container)i).removeItem(item))
+					return true;
+			}
+		}
+		return false;
 	}
 	
 	public ArrayList<Item> getInventory()
