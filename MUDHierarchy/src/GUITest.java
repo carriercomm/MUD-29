@@ -6,6 +6,7 @@ public class GUITest {
 	{
 		@SuppressWarnings("unused")
 		Gui gui = new Gui();
+		//newGui gui = new newGui;
 	}
 
 }

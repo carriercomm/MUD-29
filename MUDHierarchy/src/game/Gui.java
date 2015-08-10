@@ -11,6 +11,7 @@ public class Gui
 			@Override
 	        public void run()
 	        {
+				
 	            new Console("Test GUI");
 	        }
 	    });
