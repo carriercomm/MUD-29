@@ -1,0 +1,20 @@
+{
+	"Name":"Supply Room",
+	"Key":"supply_room",
+	"Description":"This closet is cluttered with collapsed shelves and destroyed items. Among the few still standing objects is a weapon rack. The heavy dust around the room seems only disturbed around the weapon rack.",
+
+	"Items":
+	[
+		
+	],
+
+	"Npcs":
+	[
+		
+	],
+
+	"Portals":
+	[
+		
+	]
+}
