@@ -1,0 +1,23 @@
+{
+	"Type":"Container",
+	"Name":"",
+	"Description":"",
+	
+	"IsHidden":false,
+	"Weight":0,
+	"Cost":0,
+	"IsInteractable":true,
+	"IsOpenable":true,
+	"IsOpen":false,
+
+	"SubItems":
+	[
+	
+	],
+
+	"Abilities":
+	[
+	
+	]
+
+}

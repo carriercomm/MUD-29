@@ -12,7 +12,7 @@
 
 	"SubItems":
 	[
-		{"FileName":"Test/BrassKeyRing.json"}
+		{"FileName":"res/items/Test/BrassKeyRing.json"}
 	],
 
 	"Abilities":

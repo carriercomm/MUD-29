@@ -9,6 +9,9 @@
 	"IsInteractable":true,
 	"IsAttackable":false,
 
+	"SliceKey":0,
+	"LocationKey":"shop",
+	
 	"BaseStats":
 	[
 		{"Strength":18},
@@ -21,8 +24,8 @@
 	
 	"Items":
 	[
-		{"FileName":"Test/MerchantInventory.json"}
+		{"FileName":"res/items/Test/MerchantInventory.json"}
 	],
 	
-	"Conversations":"Test/ConversationOutline.json"
+	"Conversations":"res/conversations/Test/ConversationOutline.json"
 }

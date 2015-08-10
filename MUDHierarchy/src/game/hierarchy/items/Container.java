@@ -16,11 +16,22 @@ public class Container extends Item
 	private boolean isOpen;
 	private ArrayList<Item> subItems = new ArrayList<Item>();
 	
-	@SuppressWarnings("unchecked")
 	public Container(String fileName) throws Exception
 	{
 		super(fileName);
-		
+		this.containerSetup();
+	}
+	
+	public Container(String fileName, String description, String name, ArrayList<Item> items) throws Exception
+	{
+		super(fileName, description, name);
+		this.containerSetup();
+		this.subItems = items;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void containerSetup()
+	{
 		this.isInteractable = (boolean) JsonFile.get("IsInteractable");
 		this.isOpenable = (boolean) JsonFile.get("IsOpenable");
 		this.isOpen = (boolean) JsonFile.get("IsOpen");

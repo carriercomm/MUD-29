@@ -8,7 +8,7 @@ public class Equipable extends Item
 	private String supertype;
 	private String subtype;
 	
-	public Equipable(String fileName) throws Exception
+	public Equipable(String fileName)
 	{
 		super(fileName);
 		
@@ -25,11 +25,6 @@ public class Equipable extends Item
 	public String getSubtype()
 	{
 		return subtype;
-	}
-	
-	public Equipable()
-	{
-		super();
 	}
 
 	public boolean isEquiped()

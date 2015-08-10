@@ -10,7 +10,7 @@
 	
 	"Npcs":
 	[
-		{"FileName":"DwarfShopkeeper.json"}
+		{"FileName":"res/creatures/DwarfShopkeeper.json"}
 	],
 
 	"Portals":

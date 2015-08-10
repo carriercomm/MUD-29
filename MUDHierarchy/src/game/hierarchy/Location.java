@@ -26,7 +26,7 @@ public class Location implements RootObject
 	public Location(String fileName) throws Exception
 	{
 		JSONParser parser = new JSONParser();
-		JSONObject JsonFile = new JSONObject((JSONObject) parser.parse(new FileReader("res/locations/" + fileName)));
+		JSONObject JsonFile = new JSONObject((JSONObject) parser.parse(new FileReader(fileName)));
 		
 		this.description 	= (String) JsonFile.get("Description");
 		this.key 			= (String) JsonFile.get("Key");
@@ -115,8 +115,6 @@ public class Location implements RootObject
 	{
 		items.remove(item);
 	}
-	
-	//public 
 
 	public Portal getPortal(String target)
 	{
@@ -158,6 +156,11 @@ public class Location implements RootObject
 		return npcs.stream()
 					.filter(n -> !n.getAi().isFriendly())
 					.collect(Collectors.toList());
+	}
+
+	public void removeNpc(Npc npc)
+	{
+		npcs.remove(npc);
 	}
 	
 }

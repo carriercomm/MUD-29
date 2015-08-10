@@ -17,7 +17,7 @@ public class ItemBuilder
 		try
 		{
 			JSONParser parser = new JSONParser();
-			JSONObject item = (JSONObject)(parser.parse(new FileReader("res/items/"+fileName)));
+			JSONObject item = (JSONObject)(parser.parse(new FileReader(fileName)));
 			switch((String)item.get("Type"))
 			{
 				case "Consumable":

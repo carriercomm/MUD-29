@@ -1,0 +1,19 @@
+{
+	"Type":"Equipable",
+	"Name":"Default",
+	"Description":"Default",
+	
+	"IsHidden":false,
+	"Weight":0,
+	"IsEquiped":false,
+	"Supertype":"Default",
+	"Subtype":"Default",
+	"Cost":0,
+	
+
+	"Abilities":
+	[
+	
+	]
+
+}

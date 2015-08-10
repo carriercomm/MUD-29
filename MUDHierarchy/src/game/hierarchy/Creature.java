@@ -1,12 +1,17 @@
 package game.hierarchy;
 
+import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import game.hierarchy.items.Equipable;
 import game.hierarchy.items.Container;
 import game.hierarchy.items.Item;
+import game.hierarchy.subsystems.ItemBuilder;
 import game.hierarchy.subsystems.NpcClass;
 import game.hierarchy.subsystems.NpcStats;
 
@@ -17,12 +22,45 @@ public class Creature
 	
 	protected ArrayList<Item> items = new ArrayList<Item>();
 	
+	private int	   sliceKey;
+	private String locationKey;
 	protected int gold;
 	protected String name;
 	protected String className;
 	protected String raceName;
 	protected int level;
 	protected JSONArray baseStats;
+	
+	@SuppressWarnings("unchecked")
+	public Creature(String fileName)
+	{
+		super();
+		try
+		{
+			JSONParser parser = new JSONParser();
+			JSONObject cOutline = new JSONObject((JSONObject) parser.parse(new FileReader(fileName)));
+			
+			items 	= (ArrayList<Item>) 	((JSONArray)cOutline.get("Items"))	.stream().map(i -> ItemBuilder.getItem(	(String)((JSONObject) i).get("FileName"))).collect(Collectors.toList());
+			
+			baseStats 		= 	(JSONArray) cOutline.get("BaseStats");
+			
+			name 			= 	(String) cOutline.get("Name");
+			className 		= 	(String) cOutline.get("Class");
+			raceName 		= 	(String) cOutline.get("Race");
+			level			= 	(int)(long) cOutline.get("Level");
+			gold			= 	(int)(long) cOutline.get("Gold");
+			
+			sliceKey 		= 	(int)(long) cOutline.get("SliceKey");
+			locationKey 	= 	(String) cOutline.get("LocationKey");
+			
+			npcclass 		= new NpcClass (className + ".json");
+			stats 			= new NpcStats(npcclass, baseStats, level);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 	
 	public boolean isDead()
 	{
@@ -31,6 +69,22 @@ public class Creature
 			return true;
 		}
 		return false;
+	}
+	
+	public int getSliceKey()
+	{
+		return sliceKey;
+	}
+	
+	public String getLocationKey()
+	{
+		return locationKey;
+	}
+	
+	public void move(int sliceKey, String locationKey)
+	{
+		this.sliceKey = sliceKey;
+		this.locationKey = locationKey; 
 	}
 	
 	public String getClassName()
@@ -114,7 +168,7 @@ public class Creature
 	
 	public Equipable getEquippedWeapon()
 	{
-		return new Equipable();
+		return new Equipable("res/items/generics/DeleteThisSoon.json");
 	}
 	
 	public void setGold(int gold)

@@ -1,6 +1,7 @@
 package game.hierarchy.utilities;
 
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,7 +12,10 @@ import org.json.simple.parser.JSONParser;
 import game.Dice;
 import game.OutputManager;
 import game.hierarchy.Creature;
+import game.hierarchy.Npc;
 import game.hierarchy.Root;
+import game.hierarchy.items.Container;
+import game.hierarchy.items.Item;
 import game.parsers.tokens.Action;
 
 public class Combat
@@ -86,8 +90,29 @@ public class Combat
 			}
 			else
 			{
-				o.write( cText.get(subtype + "NpcDeath"));
-				//root.getCharacterLocation().
+				try
+				{
+					o.write( cText.get(subtype + "NpcDeath"));
+					
+					ArrayList<Item> items = defender.getInventory();
+					
+					for(Item i : items)
+					{
+						if(i.getType().equals("Container") && i.getName().equals("MerchantInventory"))
+							items.remove(i);
+					}
+					
+					Container body = new Container("res/items/generics/Corpse.json",
+												   "The corpse of a " + defender.getName(),
+												   defender.getName() + " Corpse",
+												   items);
+					root.getCharacterLocation().addItem(body);
+					root.getLocation(defender.getSliceKey(), defender.getLocationKey()).removeNpc((Npc) defender);
+				}
+				catch(Exception e)
+				{
+					
+				}
 			}
 		}
 	}

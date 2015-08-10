@@ -1,18 +1,11 @@
 package game.hierarchy;
 
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
-
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 
 import game.hierarchy.items.Container;
-import game.hierarchy.items.Item;
 import game.hierarchy.subsystems.AI;
-import game.hierarchy.subsystems.ItemBuilder;
-import game.hierarchy.subsystems.NpcClass;
-import game.hierarchy.subsystems.NpcStats;
 
 public class Npc extends Creature implements RootObject
 {
@@ -27,62 +20,44 @@ public class Npc extends Creature implements RootObject
 	
 	public Npc(String fileName, int level)
 	{
-		try
-		{
-			super.level = level;
-			superNpc(fileName, false);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+		super(fileName);
+		super.level = level;
+		superNpc(fileName, false);
 	}
 	
 	public Npc(String fileName)
 	{
+		super(fileName);
+		superNpc(fileName, true);
+	}
+	
+	private void superNpc(String fileName, boolean levelByFile)
+	{
 		try
 		{
-			superNpc(fileName, true);
+			JSONParser parser = new JSONParser();
+			JSONObject NpcOutline = (JSONObject) parser.parse(new FileReader(fileName));
+	
+			this.description 	=	(String) NpcOutline.get("Description");
+			this.isInteractable = 	(boolean) NpcOutline.get("IsInteractable");
+			this.isAttackable	= 	(boolean) NpcOutline.get("IsAttackable");
+				
+			if(isInteractable){
+				String tempstring = (String) NpcOutline.get("Conversations");
+				JSONParser tempparser = new JSONParser();
+				JSONObject tempobj = (JSONObject) tempparser.parse(new FileReader(tempstring));
+				conversations = (JSONArray) tempobj.get("Conversations");
+			}
+	
+			if(levelByFile)
+				super.level = (int)(long) NpcOutline.get("Level");
+			
+			this.ai 		= new AI((String)NpcOutline.get("Ai"));
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-	}
-	
-	@SuppressWarnings("unchecked")
-	private void superNpc(String fileName, boolean levelByFile) throws Exception
-	{
-
-		JSONParser parser = new JSONParser();
-		JSONObject NpcOutline = (JSONObject) parser.parse(new FileReader("res/creatures/" + fileName));
-			
-		super.items 	= (ArrayList<Item>) 	((JSONArray)NpcOutline.get("Items"))	.stream().map(i -> ItemBuilder.getItem(	(String)((JSONObject) i).get("FileName"))).collect(Collectors.toList());
-		
-		super.baseStats = 	(JSONArray) NpcOutline.get("BaseStats");
-
-		super.name 			= 	(String) NpcOutline.get("Name");
-		super.className 		= 	(String) NpcOutline.get("Class");
-		super.raceName 		= 	(String) NpcOutline.get("Race");
-		super.gold			= 	(int)(long) NpcOutline.get("Gold");
-		this.description 	=	(String) NpcOutline.get("Description");
-		this.isInteractable = 	(boolean) NpcOutline.get("IsInteractable");
-		this.isAttackable	= 	(boolean) NpcOutline.get("IsAttackable");
-			
-		if(isInteractable){
-			String tempstring = (String) NpcOutline.get("Conversations");
-			JSONParser tempparser = new JSONParser();
-			JSONObject tempobj = (JSONObject) tempparser.parse(new FileReader("res/conversations/" + tempstring));
-			conversations = (JSONArray) tempobj.get("Conversations");
-			System.out.println( "res/conversations/" + ((String) NpcOutline.get("Conversations")) );
-		}
-
-		if(levelByFile)
-			super.level = (int)(long) NpcOutline.get("Level");
-		
-		super.npcclass 	= new NpcClass (className + ".json");
-		super.stats 		= new NpcStats(npcclass, baseStats, level);
-		this.ai 		= new AI((String)NpcOutline.get("Ai"));
 	}
 	
 /*	public void levelUp()		// needs to be abstracted to an external utility
